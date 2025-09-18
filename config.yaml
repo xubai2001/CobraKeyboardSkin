@@ -1,0 +1,59 @@
+author: 叙白
+name: 仿仓默认风格
+
+# 字体设置
+# 皮肤中的字体设置级别大于应用中的字体设置
+# fontFace:
+  # - url: "Hamster-Regular.otf"
+
+# 中文键盘
+pinyin:
+  iPhone:
+    portrait: pinyin_26_portrait
+    landscape: pinyin_26_landscape
+  iPad:
+    portrait: pinyin_26_landscape
+    landscape: pinyin_26_landscape
+    floating: pinyin_26_portrait
+
+# 英文键盘
+alphabetic:
+  iPhone:
+    portrait: alphabetic_26_portrait
+    landscape: alphabetic_26_landscape
+  iPad:
+    portrait: alphabetic_26_landscape
+    landscape: alphabetic_26_landscape
+    floating: alphabetic_26_portrait
+
+# 数字键盘
+numeric:
+  iPhone:
+    portrait: numeric_9_portrait
+    landscape: numeric_9_landscape
+  iPad:
+    portrait: numeric_9_portrait
+    landscape: numeric_9_landscape
+    floating: numeric_9_portrait
+
+# 符号键盘
+symbolic:
+  iPhone:
+    portrait: symbolic_portrait
+    landscape: numeric_9_landscape
+  iPad:
+    portrait: symbolic_portrait
+    landscape: symbolic_landscape
+    floating: symbolic_portrait
+
+# emoji键盘
+emoji:
+  iPhone:
+    portrait: emoji_portrait
+    landscape: emoji_landscape
+
+# 面板
+panel:
+  iPhone:
+    portrait: panel_portrait
+    landscape: panel_landscape

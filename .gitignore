@@ -1,0 +1,5 @@
+light/resources/*.png
+dark/resources/*.yaml
+dark/resources/*.png
+light/*.yaml
+dark/*.yaml
