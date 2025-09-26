@@ -61,6 +61,7 @@ keyboardLayout[if orientation == 'portrait' then '竖屏中文26键' else '横�
 swipeStyles.getStyle('cn', theme, swipe_up, swipe_down) +
 hintSymbolsStyles.getStyle(theme, hintSymbolsData.pinyin) +
 toolbar.getToolBar(theme) +
+utils.genPinyinStyles(fontSize, color, theme, center)+
 {
   [if std.objectHas(others, '中文键盘方案') then 'rimeSchema']: others['中文键盘方案'],
   preeditHeight: others[if orientation == 'portrait' then '竖屏' else '横屏']['preedit高度'],
@@ -100,24 +101,6 @@ toolbar.getToolBar(theme) +
   //   center['26键中文前景偏移'],
   // ),
 
-  qButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'Q',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  qButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'Q',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-
 
   qButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -134,24 +117,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  wButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'W',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  wButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'W',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-
 
   wButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -167,24 +132,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  eButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'E',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  eButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'E',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-
 
   eButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -201,24 +148,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  rButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'R',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  rButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'R',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-
 
   rButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -238,24 +167,6 @@ toolbar.getToolBar(theme) +
     $
   ),
 
-  tButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'T',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  tButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'T',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-
 
   tButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -274,24 +185,6 @@ toolbar.getToolBar(theme) +
       keyboardLayout['横屏按键尺寸']['y键size和bounds'].bounds,
     $
   ),
-  yButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'Y',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  yButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'Y',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-
 
   yButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -308,24 +201,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  uButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'U',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  uButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'U',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-
 
   uButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -342,24 +217,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  iButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'I',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  iButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'I',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-
 
   iButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -377,24 +234,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  oButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'O',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  oButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'O',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-
 
   oButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -411,24 +250,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  pButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'P',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  pButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'P',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-
 
   pButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -448,24 +269,6 @@ toolbar.getToolBar(theme) +
     $
   ),
 
-  aButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'A',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  aButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'A',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-
 
   aButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -482,24 +285,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  sButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'S',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  sButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'S',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-
 
   sButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -516,24 +301,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  dButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'D',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  dButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'D',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-
 
   dButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -550,24 +317,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  fButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'F',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  fButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'F',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-
 
   fButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -584,24 +333,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  gButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'G',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  gButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'G',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-
 
   gButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -618,24 +349,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  hButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'H',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  hButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'H',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-
 
   hButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -652,24 +365,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  jButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'J',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  jButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'J',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-
 
   jButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -686,24 +381,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  kButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'K',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  kButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'K',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-
 
   kButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -722,24 +399,6 @@ toolbar.getToolBar(theme) +
       keyboardLayout['横屏按键尺寸']['l键size和bounds'].bounds,
     $
   ),
-  lButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'L',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  lButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'L',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-
 
   lButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -766,7 +425,6 @@ toolbar.getToolBar(theme) +
 
   shiftButtonForegroundStyle: {
     buttonStyleType: 'systemImage',
-    animation: 'ButtonForegroundAnimation',
     systemImageName: 'shift',
     normalColor: color[theme]['按键前景颜色'],
     highlightColor: color[theme]['按键前景颜色'],
@@ -798,23 +456,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  zButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'Z',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  zButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'Z',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
 
   zButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -831,23 +472,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  xButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'X',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  xButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'X',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
 
   xButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -864,22 +488,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  cButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'C',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
-  cButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'C',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
 
   cButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -896,23 +504,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  vButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'V',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  vButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'V',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
 
   vButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -929,23 +520,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  bButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'B',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  bButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'B',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
 
   bButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -962,23 +536,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  nButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'N',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  nButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'N',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
 
   nButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -995,23 +552,6 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  mButtonForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'M',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-
-  },
-  mButtonUppercasedStateForegroundStyle: {
-    buttonStyleType: 'text',
-    text: 'M',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景文字大小'],
-    center: center['26键中文前景偏移'],
-  },
 
   mButtonHintStyle: {
     backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -1035,7 +575,6 @@ toolbar.getToolBar(theme) +
 
   backspaceButtonForegroundStyle: {
     buttonStyleType: 'systemImage',
-    animation: 'ButtonForegroundAnimation',
     systemImageName: 'delete.left',
     normalColor: color[theme]['按键前景颜色'],
     highlightColor: color[theme]['按键前景颜色'],
@@ -1104,7 +643,6 @@ toolbar.getToolBar(theme) +
 
   spaceButtonForegroundStyle: {
     buttonStyleType: 'text',
-    animation: 'ButtonForegroundAnimation',
     text: '空格',
     normalColor: color[theme]['按键前景颜色'],
     highlightColor: color[theme]['按键前景颜色'],
@@ -1281,7 +819,7 @@ toolbar.getToolBar(theme) +
     insets: { top: 5, left: 3, bottom: 5, right: 3 },
     normalColor: color[theme]['enter键背景(蓝色)'],
     highlightColor: color[theme]['功能键背景颜色-高亮'],
-    cornerRadius: 5,
+    cornerRadius: 7,
     normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
     highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
   },
@@ -1290,7 +828,7 @@ toolbar.getToolBar(theme) +
     insets: { top: 5, left: 3, bottom: 5, right: 3 },
     normalColor: color[theme]['字母键背景颜色-普通'],
     highlightColor: color[theme]['字母键背景颜色-高亮'],
-    cornerRadius: 5,
+    cornerRadius: 7,
     normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
     highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
   },
@@ -1299,7 +837,7 @@ toolbar.getToolBar(theme) +
     insets: { top: 5, left: 3, bottom: 6, right: 3 },
     normalColor: color[theme]['功能键背景颜色-普通'],
     highlightColor: color[theme]['功能键背景颜色-高亮'],
-    cornerRadius: 5,
+    cornerRadius: 7,
     normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
     highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
   },
@@ -1311,26 +849,13 @@ toolbar.getToolBar(theme) +
     buttonStyleType: 'geometry',
     normalColor: color[theme]['气泡背景颜色'],
     highlightColor: color[theme]['气泡高亮颜色'],
-    cornerRadius: 5,
+    cornerRadius: 7,
     shadowColor: color[theme]['长按背景阴影颜色'],
     shadowOffset: { x: 0, y: 5 },
   },
   alphabeticHintSymbolsBackgroundStyle: hintSymbolsStyles['长按背景样式'],
   alphabeticHintSymbolsSelectedStyle: hintSymbolsStyles['长按选中背景样式'],
-  // "alphabeticHintSymbolsBackgroundStyle": {
-  //       "type": "original",
-  //       "normalColor": color[theme]["长按背景颜色"],
-  //       "highlightColor": color[theme]["长按背景颜色"],
-  //       "cornerRadius": 5,
-  //       "shadowColor": color[theme]["长按背景阴影颜色"],
-  //       "shadowOffset": {'x': 0, 'y': 5}
-  //   },
-  // "alphabeticHintSymbolsSelectedStyle": {
-  //       "type": "original",
-  //       "normalColor": color[theme]["长按选中背景颜色"],
-  //       "highlightColor": color[theme]["长按选中背景颜色"],
-  //       "cornerRadius": 5,
-  //   }
+
   // 灰色回车通知（前景 0）
   garyReturnKeyTypeNotification: {
     notificationType: 'returnKeyType',

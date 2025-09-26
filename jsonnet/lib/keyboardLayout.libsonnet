@@ -499,28 +499,7 @@ local color = import 'color.libsonnet';
           normalColor: color[theme]['键盘背景颜色'],
         },
       },
-      // "竖屏英文26键-九键版": self["竖屏英文26键"] {
-      //   "keyboardLayout"+: {
-      //     "subviews": std.mapWithIndex(
-      //       function(idx, item)
-      //         if idx == 3 then
-      //           {
-      //             "HStack": {
-      //               "subviews": [
-      //                 { "Cell": "symbolButton" },
-      //                 { "Cell": "123Button" },
-      //                 { "Cell": "spaceButton" },
-      //                 { "Cell": "spaceRightButton" },
-      //                 { "Cell": "en2cnButton" },
-      //                 { "Cell": "enterButton" }
-      //               ]
-      //             }
-      //           }
-      //         else item,
-      //       super["subviews"]
-      //     )
-      //   }
-      // },
+
 
       '横屏英文26键': {
         keyboardLayout: [
@@ -869,4 +848,3 @@ local color = import 'color.libsonnet';
       },
     },
 }
-

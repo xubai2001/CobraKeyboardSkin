@@ -1,0 +1,3493 @@
+"123Button:
+  action:
+    keyboardType: \"numeric\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"systemButtonBackgroundStyle\"
+  foregroundStyle:
+    - \"123ButtonForegroundStyle\"
+    - \"123ButtonUpForegroundStyle\"
+    - \"123ButtonDownForegroundStyle\"
+  hintStyle: \"123ButtonHintStyle\"
+  hintSymbolsStyle: \"123ButtonHintSymbolsStyle\"
+  size:
+    width: \"173/784\"
+  swipeDownAction:
+    shortcut: \"#方案切换\"
+  swipeUpAction:
+    shortcut: \"#RimeSwitcher\"
+123ButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.5
+  fontSize: 15
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"123\"
+123ButtonHintSymbolsForegroundStyleOf0:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"+\"
+123ButtonHintSymbolsForegroundStyleOf1:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"-\"
+123ButtonHintSymbolsForegroundStyleOf2:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"=\"
+123ButtonHintSymbolsForegroundStyleOf3:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"×\"
+123ButtonHintSymbolsForegroundStyleOf4:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"÷\"
+123ButtonHintSymbolsForegroundStyleOf5:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"√\"
+123ButtonHintSymbolsStyle:
+  backgroundStyle: \"alphabeticHintSymbolsBackgroundStyle\"
+  insets:
+    bottom: 3
+    left: 8
+    right: 8
+    top: 3
+  selectedBackgroundStyle: \"alphabeticHintSymbolsSelectedStyle\"
+  selectedIndex: 1
+  size:
+    height: 53
+    width: 40
+  symbolStyles:
+    - \"123ButtonHintSymbolsStyleOf0\"
+    - \"123ButtonHintSymbolsStyleOf1\"
+    - \"123ButtonHintSymbolsStyleOf2\"
+    - \"123ButtonHintSymbolsStyleOf3\"
+    - \"123ButtonHintSymbolsStyleOf4\"
+    - \"123ButtonHintSymbolsStyleOf5\"
+123ButtonHintSymbolsStyleOf0:
+  action:
+    symbol: \"+\"
+  foregroundStyle: \"123ButtonHintSymbolsForegroundStyleOf0\"
+123ButtonHintSymbolsStyleOf1:
+  action:
+    symbol: \"-\"
+  foregroundStyle: \"123ButtonHintSymbolsForegroundStyleOf1\"
+123ButtonHintSymbolsStyleOf2:
+  action:
+    symbol: \"=\"
+  foregroundStyle: \"123ButtonHintSymbolsForegroundStyleOf2\"
+123ButtonHintSymbolsStyleOf3:
+  action:
+    symbol: \"×\"
+  foregroundStyle: \"123ButtonHintSymbolsForegroundStyleOf3\"
+123ButtonHintSymbolsStyleOf4:
+  action:
+    symbol: \"÷\"
+  foregroundStyle: \"123ButtonHintSymbolsForegroundStyleOf4\"
+123ButtonHintSymbolsStyleOf5:
+  action:
+    symbol: \"√\"
+  foregroundStyle: \"123ButtonHintSymbolsForegroundStyleOf5\"
+ButtonForegroundAnimation:
+  - duration: 101
+    fromScale: 1
+    repeatCount: 1
+    toScale: 0.82
+    type: \"bounds\"
+  - duration: 100
+    fromScale: 0.82
+    repeatCount: 1
+    toScale: 1
+    type: \"bounds\"
+aButton:
+  action:
+    character: \"a\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  bounds:
+    alignment: \"right\"
+    width: \"146/200\"
+  capsLockedStateForegroundStyle:
+    - \"aButtonUppercasedStateForegroundStyle\"
+    - \"aButtonUpForegroundStyle\"
+    - \"aButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"aButtonForegroundStyle\"
+    - \"aButtonUpForegroundStyle\"
+    - \"aButtonDownForegroundStyle\"
+  hintStyle: \"aButtonHintStyle\"
+  size:
+    width: \"200/784\"
+  swipeDownAction:
+    character: \"~\"
+  swipeUpAction:
+    character: \"`\"
+  uppercasedStateAction:
+    character: \"A\"
+  uppercasedStateForegroundStyle:
+    - \"aButtonUppercasedStateForegroundStyle\"
+    - \"aButtonUpForegroundStyle\"
+    - \"aButtonDownForegroundStyle\"
+aButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.75
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"~\"
+aButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"A\"
+aButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"A\"
+aButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"aButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"aButtonSwipeUpHintForegroundStyle\"
+aButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"`\"
+aButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"`\"
+aButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"A\"
+alphabeticBackgroundAnimation:
+  animationType: \"scale\"
+  isAutoReverse: true
+  pressDuration: 60
+  releaseDuration: 80
+  scale: 0.87
+alphabeticBackgroundStyle:
+  buttonStyleType: \"geometry\"
+  cornerRadius: 7
+  highlightColor: \"ABB0BA\"
+  highlightLowerEdgeColor: \"89898B\"
+  insets:
+    bottom: 5
+    left: 3
+    right: 3
+    top: 5
+  normalColor: \"FFFFFF\"
+  normalLowerEdgeColor: \"88898D\"
+alphabeticHintBackgroundStyle:
+  buttonStyleType: \"geometry\"
+  cornerRadius: 7
+  highlightColor: \"0279FE\"
+  normalColor: \"ffffff\"
+  shadowColor: \"797B7E\"
+  shadowOffset:
+    x: 0
+    \"y\": 5
+alphabeticHintSymbolsBackgroundStyle:
+  buttonStyleType: \"fileImage\"
+  normalImage:
+    file: \"hold_back\"
+    image: \"IMG1\"
+  targetScale:
+    x: 1
+    \"y\": 1.1
+alphabeticHintSymbolsSelectedStyle:
+  buttonStyleType: \"fileImage\"
+  highlightImage:
+    file: \"hint\"
+    image: \"IMG1\"
+  insets:
+    bottom: 8
+    left: 4
+    right: 3
+    top: 8
+  normalImage:
+    file: \"hint\"
+    image: \"IMG1\"
+  targetScale:
+    x: 0.8
+    \"y\": 0.7
+bButton:
+  action:
+    character: \"b\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"bButtonUppercasedStateForegroundStyle\"
+    - \"bButtonUpForegroundStyle\"
+    - \"bButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"bButtonForegroundStyle\"
+    - \"bButtonUpForegroundStyle\"
+    - \"bButtonDownForegroundStyle\"
+  hintStyle: \"bButtonHintStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction: \"tab\"
+  swipeUpAction:
+    character: \">\"
+  uppercasedStateAction:
+    character: \"B\"
+  uppercasedStateForegroundStyle:
+    - \"bButtonUppercasedStateForegroundStyle\"
+    - \"bButtonUpForegroundStyle\"
+    - \"bButtonDownForegroundStyle\"
+bButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.8
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"tab\"
+bButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"B\"
+bButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"B\"
+bButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"bButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"bButtonSwipeUpHintForegroundStyle\"
+bButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \">\"
+bButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \">\"
+bButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"B\"
+backspaceButton:
+  action: \"backspace\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"systemButtonBackgroundStyle\"
+  foregroundStyle:
+    - \"backspaceButtonForegroundStyle\"
+  hintStyle: \"backspaceButtonHintStyle\"
+  repeatAction: \"backspace\"
+  size:
+    width: \"200/784\"
+backspaceButtonForegroundStyle:
+  animation: \"ButtonForegroundAnimation\"
+  buttonStyleType: \"systemImage\"
+  center:
+    \"y\": 0.53
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  systemImageName: \"delete.left\"
+  targetScale: 0.7
+blueReturnKeyTypeNotification14:
+  backgroundStyle: \"enterButtonBlueBackgroundStyle\"
+  foregroundStyle: \"enterButtonForegroundStyle14\"
+  notificationType: \"returnKeyType\"
+  returnKeyType:
+    - 1
+    - 4
+blueReturnKeyTypeNotification6:
+  backgroundStyle: \"enterButtonBlueBackgroundStyle\"
+  foregroundStyle: \"enterButtonForegroundStyle6\"
+  notificationType: \"returnKeyType\"
+  returnKeyType:
+    - 6
+blueReturnKeyTypeNotification7:
+  backgroundStyle: \"enterButtonBlueBackgroundStyle\"
+  foregroundStyle: \"enterButtonForegroundStyle7\"
+  notificationType: \"returnKeyType\"
+  returnKeyType:
+    - 7
+blueReturnKeyTypeNotification9:
+  backgroundStyle: \"enterButtonBlueBackgroundStyle\"
+  foregroundStyle: \"enterButtonForegroundStyle9\"
+  notificationType: \"returnKeyType\"
+  returnKeyType:
+    - 9
+cButton:
+  action:
+    character: \"c\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"cButtonUppercasedStateForegroundStyle\"
+    - \"cButtonUpForegroundStyle\"
+    - \"cButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"cButtonForegroundStyle\"
+    - \"cButtonUpForegroundStyle\"
+    - \"cButtonDownForegroundStyle\"
+  hintStyle: \"cButtonHintStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    shortcut: \"#copy\"
+  swipeUpAction:
+    symbol: \"」\"
+  uppercasedStateAction:
+    character: \"C\"
+  uppercasedStateForegroundStyle:
+    - \"cButtonUppercasedStateForegroundStyle\"
+    - \"cButtonUpForegroundStyle\"
+    - \"cButtonDownForegroundStyle\"
+cButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.8
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"copy\"
+cButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"C\"
+cButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"C\"
+cButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"cButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"cButtonSwipeUpHintForegroundStyle\"
+cButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"」\"
+cButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"」\"
+cButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"C\"
+candidateStateButtonForegroundStyle:
+  buttonStyleType: \"systemImage\"
+  fontSize: 16
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  systemImageName: \"chevron.down\"
+candidateStateButtonStyle:
+  backgroundStyle: \"toolbarButtonBackgroundStyle\"
+  foregroundStyle: \"candidateStateButtonForegroundStyle\"
+columnStyle1:
+  size:
+    width: \"2/5\"
+columnStyle2:
+  size:
+    width: \"1/5\"
+columnStyle3:
+  size:
+    width: \"2/5\"
+dButton:
+  action:
+    character: \"d\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"dButtonUppercasedStateForegroundStyle\"
+    - \"dButtonUpForegroundStyle\"
+    - \"dButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"dButtonForegroundStyle\"
+    - \"dButtonUpForegroundStyle\"
+    - \"dButtonDownForegroundStyle\"
+  hintStyle: \"dButtonHintStyle\"
+  hintSymbolsStyle: \"dButtonHintSymbolsStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    character: \"+\"
+  swipeUpAction:
+    character: \"=\"
+  uppercasedStateAction:
+    character: \"D\"
+  uppercasedStateForegroundStyle:
+    - \"dButtonUppercasedStateForegroundStyle\"
+    - \"dButtonUpForegroundStyle\"
+    - \"dButtonDownForegroundStyle\"
+dButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.75
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"+\"
+dButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"D\"
+dButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"D\"
+dButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"dButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"dButtonSwipeUpHintForegroundStyle\"
+dButtonHintSymbolsForegroundStyleOf0:
+  buttonStyleType: \"text\"
+  fontSize: 14
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"日期\"
+dButtonHintSymbolsForegroundStyleOf1:
+  buttonStyleType: \"text\"
+  fontSize: 14
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"时间\"
+dButtonHintSymbolsForegroundStyleOf2:
+  buttonStyleType: \"text\"
+  fontSize: 14
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"节气\"
+dButtonHintSymbolsStyle:
+  backgroundStyle: \"alphabeticHintSymbolsBackgroundStyle\"
+  insets:
+    bottom: 3
+    left: 8
+    right: 8
+    top: 3
+  selectedBackgroundStyle: \"alphabeticHintSymbolsSelectedStyle\"
+  selectedIndex: 1
+  symbolStyles:
+    - \"dButtonHintSymbolsStyleOf0\"
+    - \"dButtonHintSymbolsStyleOf1\"
+    - \"dButtonHintSymbolsStyleOf2\"
+dButtonHintSymbolsStyleOf0:
+  action:
+    sendKeys: \"/date\"
+  foregroundStyle: \"dButtonHintSymbolsForegroundStyleOf0\"
+dButtonHintSymbolsStyleOf1:
+  action:
+    sendKeys: \"/fsj\"
+  foregroundStyle: \"dButtonHintSymbolsForegroundStyleOf1\"
+dButtonHintSymbolsStyleOf2:
+  action:
+    sendKeys: \"/fjq\"
+  foregroundStyle: \"dButtonHintSymbolsForegroundStyleOf2\"
+dButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"=\"
+dButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"=\"
+dButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"D\"
+eButton:
+  action:
+    character: \"e\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"eButtonUppercasedStateForegroundStyle\"
+    - \"eButtonUpForegroundStyle\"
+    - \"eButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"eButtonForegroundStyle\"
+    - \"eButtonUpForegroundStyle\"
+    - \"eButtonDownForegroundStyle\"
+  hintStyle: \"eButtonHintStyle\"
+  hintSymbolsStyle: \"eButtonHintSymbolsStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    character: \"#\"
+  swipeUpAction:
+    character: \"3\"
+  uppercasedStateAction:
+    character: \"E\"
+  uppercasedStateForegroundStyle:
+    - \"eButtonUppercasedStateForegroundStyle\"
+    - \"eButtonUpForegroundStyle\"
+    - \"eButtonDownForegroundStyle\"
+eButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.75
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"#\"
+eButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"E\"
+eButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"E\"
+eButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"eButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"eButtonSwipeUpHintForegroundStyle\"
+eButtonHintSymbolsForegroundStyleOf0:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"e\"
+eButtonHintSymbolsForegroundStyleOf1:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"3\"
+eButtonHintSymbolsForegroundStyleOf2:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"E\"
+eButtonHintSymbolsStyle:
+  backgroundStyle: \"alphabeticHintSymbolsBackgroundStyle\"
+  insets:
+    bottom: 3
+    left: 8
+    right: 8
+    top: 3
+  selectedBackgroundStyle: \"alphabeticHintSymbolsSelectedStyle\"
+  selectedIndex: 1
+  symbolStyles:
+    - \"eButtonHintSymbolsStyleOf0\"
+    - \"eButtonHintSymbolsStyleOf1\"
+    - \"eButtonHintSymbolsStyleOf2\"
+eButtonHintSymbolsStyleOf0:
+  action:
+    symbol: \"e\"
+  foregroundStyle: \"eButtonHintSymbolsForegroundStyleOf0\"
+eButtonHintSymbolsStyleOf1:
+  action:
+    symbol: \"3\"
+  foregroundStyle: \"eButtonHintSymbolsForegroundStyleOf1\"
+eButtonHintSymbolsStyleOf2:
+  action:
+    symbol: \"E\"
+  foregroundStyle: \"eButtonHintSymbolsForegroundStyleOf2\"
+eButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"3\"
+eButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"3\"
+eButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"E\"
+enterButton:
+  action: \"enter\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle:
+    - conditionKey: \"$returnKeyType\"
+      conditionValue:
+        - 0
+        - 2
+        - 3
+        - 5
+        - 8
+        - 10
+        - 11
+      styleName: \"systemButtonBackgroundStyle\"
+    - conditionKey: \"$returnKeyType\"
+      conditionValue:
+        - 1
+        - 4
+        - 6
+        - 7
+        - 9
+      styleName: \"enterButtonBlueBackgroundStyle\"
+  foregroundStyle:
+    - conditionKey: \"$returnKeyType\"
+      conditionValue:
+        - 0
+        - 2
+        - 3
+        - 5
+        - 8
+        - 10
+        - 11
+      styleName: \"enterButtonForegroundStyle0\"
+    - conditionKey: \"$returnKeyType\"
+      conditionValue:
+        - 1
+        - 4
+      styleName: \"enterButtonForegroundStyle14\"
+    - conditionKey: \"$returnKeyType\"
+      conditionValue:
+        - 6
+      styleName: \"enterButtonForegroundStyle6\"
+    - conditionKey: \"$returnKeyType\"
+      conditionValue:
+        - 7
+      styleName: \"enterButtonForegroundStyle7\"
+    - conditionKey: \"$returnKeyType\"
+      conditionValue:
+        - 9
+      styleName: \"enterButtonForegroundStyle9\"
+  hintStyle: \"enterButtonHintStyle\"
+  hintSymbolsStyle: \"enterButtonHintSymbolsStyle\"
+  notification:
+    - \"garyReturnKeyTypeNotification\"
+    - \"blueReturnKeyTypeNotification14\"
+    - \"blueReturnKeyTypeNotification6\"
+    - \"blueReturnKeyTypeNotification7\"
+    - \"blueReturnKeyTypeNotification9\"
+  size:
+    width: \"173/784\"
+enterButtonBlueBackgroundStyle:
+  buttonStyleType: \"geometry\"
+  cornerRadius: 7
+  highlightColor: \"FFFFFFE6\"
+  highlightLowerEdgeColor: \"89898B\"
+  insets:
+    bottom: 5
+    left: 3
+    right: 3
+    top: 5
+  normalColor: \"1162ff\"
+  normalLowerEdgeColor: \"88898D\"
+enterButtonForegroundStyle0:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.47
+  fontSize: 15
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"回车\"
+enterButtonForegroundStyle14:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.47
+  fontSize: 15
+  highlightColor: \"000000\"
+  normalColor: \"FFFFFF\"
+  text: \"前往\"
+enterButtonForegroundStyle6:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.47
+  fontSize: 15
+  highlightColor: \"000000\"
+  normalColor: \"FFFFFF\"
+  text: \"搜索\"
+enterButtonForegroundStyle7:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.47
+  fontSize: 15
+  highlightColor: \"000000\"
+  normalColor: \"FFFFFF\"
+  text: \"发送\"
+enterButtonForegroundStyle9:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.47
+  fontSize: 15
+  highlightColor: \"000000\"
+  normalColor: \"FFFFFF\"
+  text: \"完成\"
+enterButtonHintSymbolsForegroundStyleOf0:
+  buttonStyleType: \"text\"
+  fontSize: 16
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"换行\"
+enterButtonHintSymbolsStyle:
+  backgroundStyle: \"alphabeticHintSymbolsBackgroundStyle\"
+  insets:
+    bottom: 3
+    left: 8
+    right: 8
+    top: 3
+  selectedBackgroundStyle: \"alphabeticHintSymbolsSelectedStyle\"
+  selectedIndex: 0
+  size:
+    height: 53
+    width: 50
+  symbolStyles:
+    - \"enterButtonHintSymbolsStyleOf0\"
+enterButtonHintSymbolsStyleOf0:
+  action:
+    shortcut: \"#换行\"
+  foregroundStyle: \"enterButtonHintSymbolsForegroundStyleOf0\"
+fButton:
+  action:
+    character: \"f\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"fButtonUppercasedStateForegroundStyle\"
+    - \"fButtonUpForegroundStyle\"
+    - \"fButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"fButtonForegroundStyle\"
+    - \"fButtonUpForegroundStyle\"
+    - \"fButtonDownForegroundStyle\"
+  hintStyle: \"fButtonHintStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    character: \"{\"
+  swipeUpAction:
+    character: \"[\"
+  uppercasedStateAction:
+    character: \"F\"
+  uppercasedStateForegroundStyle:
+    - \"fButtonUppercasedStateForegroundStyle\"
+    - \"fButtonUpForegroundStyle\"
+    - \"fButtonDownForegroundStyle\"
+fButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.75
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"{\"
+fButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"F\"
+fButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"F\"
+fButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"fButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"fButtonSwipeUpHintForegroundStyle\"
+fButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"[\"
+fButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"[\"
+fButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"F\"
+functionBackgroundAnimation:
+  - duration: 100
+    fromScale: 1
+    repeatCount: 1
+    toScale: 0.87
+    type: \"bounds\"
+  - duration: 100
+    fromScale: 0.87
+    repeatCount: 1
+    toScale: 1
+    type: \"bounds\"
+gButton:
+  action:
+    character: \"g\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"gButtonUppercasedStateForegroundStyle\"
+    - \"gButtonUpForegroundStyle\"
+    - \"gButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"gButtonForegroundStyle\"
+    - \"gButtonUpForegroundStyle\"
+    - \"gButtonDownForegroundStyle\"
+  hintStyle: \"gButtonHintStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    character: \"}\"
+  swipeUpAction:
+    character: \"]\"
+  uppercasedStateAction:
+    character: \"G\"
+  uppercasedStateForegroundStyle:
+    - \"gButtonUppercasedStateForegroundStyle\"
+    - \"gButtonUpForegroundStyle\"
+    - \"gButtonDownForegroundStyle\"
+gButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.75
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"}\"
+gButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"G\"
+gButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"G\"
+gButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"gButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"gButtonSwipeUpHintForegroundStyle\"
+gButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"]\"
+gButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"]\"
+gButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"G\"
+garyReturnKeyTypeNotification:
+  backgroundStyle: \"systemButtonBackgroundStyle\"
+  foregroundStyle: \"enterButtonForegroundStyle0\"
+  notificationType: \"returnKeyType\"
+  returnKeyType:
+    - 0
+    - 2
+    - 3
+    - 5
+    - 8
+    - 10
+    - 11
+hButton:
+  action:
+    character: \"h\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"hButtonUppercasedStateForegroundStyle\"
+    - \"hButtonUpForegroundStyle\"
+    - \"hButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"hButtonForegroundStyle\"
+    - \"hButtonUpForegroundStyle\"
+    - \"hButtonDownForegroundStyle\"
+  hintStyle: \"hButtonHintStyle\"
+  hintSymbolsStyle: \"hButtonHintSymbolsStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    character: \"|\"
+  swipeUpAction:
+    character: \"\\\\\"
+  uppercasedStateAction:
+    character: \"H\"
+  uppercasedStateForegroundStyle:
+    - \"hButtonUppercasedStateForegroundStyle\"
+    - \"hButtonUpForegroundStyle\"
+    - \"hButtonDownForegroundStyle\"
+hButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.75
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"|\"
+hButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"H\"
+hButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"H\"
+hButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"hButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"hButtonSwipeUpHintForegroundStyle\"
+hButtonHintSymbolsForegroundStyleOf0:
+  buttonStyleType: \"text\"
+  fontSize: 14
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"https\"
+hButtonHintSymbolsForegroundStyleOf1:
+  buttonStyleType: \"text\"
+  fontSize: 14
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"http\"
+hButtonHintSymbolsStyle:
+  backgroundStyle: \"alphabeticHintSymbolsBackgroundStyle\"
+  insets:
+    bottom: 3
+    left: 8
+    right: 8
+    top: 3
+  selectedBackgroundStyle: \"alphabeticHintSymbolsSelectedStyle\"
+  selectedIndex: 1
+  symbolStyles:
+    - \"hButtonHintSymbolsStyleOf0\"
+    - \"hButtonHintSymbolsStyleOf1\"
+hButtonHintSymbolsStyleOf0:
+  action:
+    symbol: \"https://\"
+  foregroundStyle: \"hButtonHintSymbolsForegroundStyleOf0\"
+hButtonHintSymbolsStyleOf1:
+  action:
+    symbol: \"http://\"
+  foregroundStyle: \"hButtonHintSymbolsForegroundStyleOf1\"
+hButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"\\\\\"
+hButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"\\\\\"
+hButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"H\"
+horizontalCandidateStyle:
+  candidateStateButtonStyle: \"candidateStateButtonStyle\"
+  commentColor: \"000000\"
+  commentFontSize: 14
+  highlightBackgroundColor: 0
+  indexColor: \"000000\"
+  indexFontSize: 18
+  insets:
+    bottom: 3
+    left: 5
+    top: 8
+  preferredBackgroundColor: \"FFFFFF\"
+  preferredCommentColor: \"000000\"
+  preferredIndexColor: \"000000\"
+  preferredTextColor: \"000000\"
+  textColor: \"000000\"
+  textFontSize: 18
+iButton:
+  action:
+    character: \"i\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"iButtonUppercasedStateForegroundStyle\"
+    - \"iButtonUpForegroundStyle\"
+    - \"iButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"iButtonForegroundStyle\"
+    - \"iButtonUpForegroundStyle\"
+    - \"iButtonDownForegroundStyle\"
+  hintStyle: \"iButtonHintStyle\"
+  hintSymbolsStyle: \"iButtonHintSymbolsStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    character: \"*\"
+  swipeUpAction:
+    character: \"8\"
+  uppercasedStateAction:
+    character: \"I\"
+  uppercasedStateForegroundStyle:
+    - \"iButtonUppercasedStateForegroundStyle\"
+    - \"iButtonUpForegroundStyle\"
+    - \"iButtonDownForegroundStyle\"
+iButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.75
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"*\"
+iButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"I\"
+iButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"I\"
+iButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"iButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"iButtonSwipeUpHintForegroundStyle\"
+iButtonHintSymbolsForegroundStyleOf0:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"i\"
+iButtonHintSymbolsForegroundStyleOf1:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"8\"
+iButtonHintSymbolsForegroundStyleOf2:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"I\"
+iButtonHintSymbolsStyle:
+  backgroundStyle: \"alphabeticHintSymbolsBackgroundStyle\"
+  insets:
+    bottom: 3
+    left: 8
+    right: 8
+    top: 3
+  selectedBackgroundStyle: \"alphabeticHintSymbolsSelectedStyle\"
+  selectedIndex: 1
+  symbolStyles:
+    - \"iButtonHintSymbolsStyleOf0\"
+    - \"iButtonHintSymbolsStyleOf1\"
+    - \"iButtonHintSymbolsStyleOf2\"
+iButtonHintSymbolsStyleOf0:
+  action:
+    symbol: \"i\"
+  foregroundStyle: \"iButtonHintSymbolsForegroundStyleOf0\"
+iButtonHintSymbolsStyleOf1:
+  action:
+    symbol: \"8\"
+  foregroundStyle: \"iButtonHintSymbolsForegroundStyleOf1\"
+iButtonHintSymbolsStyleOf2:
+  action:
+    symbol: \"I\"
+  foregroundStyle: \"iButtonHintSymbolsForegroundStyleOf2\"
+iButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"8\"
+iButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"8\"
+iButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"I\"
+jButton:
+  action:
+    character: \"j\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"jButtonUppercasedStateForegroundStyle\"
+    - \"jButtonUpForegroundStyle\"
+    - \"jButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"jButtonForegroundStyle\"
+    - \"jButtonUpForegroundStyle\"
+    - \"jButtonDownForegroundStyle\"
+  hintStyle: \"jButtonHintStyle\"
+  hintSymbolsStyle: \"jButtonHintSymbolsStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    character: \"?\"
+  swipeUpAction:
+    character: \"/\"
+  uppercasedStateAction:
+    character: \"J\"
+  uppercasedStateForegroundStyle:
+    - \"jButtonUppercasedStateForegroundStyle\"
+    - \"jButtonUpForegroundStyle\"
+    - \"jButtonDownForegroundStyle\"
+jButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.75
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"?\"
+jButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"J\"
+jButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"J\"
+jButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"jButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"jButtonSwipeUpHintForegroundStyle\"
+jButtonHintSymbolsForegroundStyleOf0:
+  buttonStyleType: \"systemImage\"
+  fontSize: 14
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  systemImageName: \"link\"
+jButtonHintSymbolsForegroundStyleOf1:
+  buttonStyleType: \"systemImage\"
+  fontSize: 14
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  systemImageName: \"translate\"
+jButtonHintSymbolsForegroundStyleOf2:
+  buttonStyleType: \"systemImage\"
+  fontSize: 14
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  systemImageName: \"message.fill\"
+jButtonHintSymbolsForegroundStyleOf3:
+  buttonStyleType: \"text\"
+  fontSize: 14
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"U编\"
+jButtonHintSymbolsStyle:
+  backgroundStyle: \"alphabeticHintSymbolsBackgroundStyle\"
+  insets:
+    bottom: 3
+    left: 8
+    right: 8
+    top: 3
+  selectedBackgroundStyle: \"alphabeticHintSymbolsSelectedStyle\"
+  selectedIndex: 1
+  symbolStyles:
+    - \"jButtonHintSymbolsStyleOf0\"
+    - \"jButtonHintSymbolsStyleOf1\"
+    - \"jButtonHintSymbolsStyleOf2\"
+    - \"jButtonHintSymbolsStyleOf3\"
+jButtonHintSymbolsStyleOf0:
+  action:
+    openURL: \"#pasteboardContent\"
+  foregroundStyle: \"jButtonHintSymbolsForegroundStyleOf0\"
+jButtonHintSymbolsStyleOf1:
+  action:
+    runTranslateScript: \"谷歌中英互译\"
+  foregroundStyle: \"jButtonHintSymbolsForegroundStyleOf1\"
+jButtonHintSymbolsStyleOf2:
+  action:
+    runScript: \"DeepSeek\"
+  foregroundStyle: \"jButtonHintSymbolsForegroundStyleOf2\"
+jButtonHintSymbolsStyleOf3:
+  action:
+    runScript: \"Unicode\"
+  foregroundStyle: \"jButtonHintSymbolsForegroundStyleOf3\"
+jButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"/\"
+jButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"/\"
+jButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"J\"
+kButton:
+  action:
+    character: \"k\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"kButtonUppercasedStateForegroundStyle\"
+    - \"kButtonUpForegroundStyle\"
+    - \"kButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"kButtonForegroundStyle\"
+    - \"kButtonUpForegroundStyle\"
+    - \"kButtonDownForegroundStyle\"
+  hintStyle: \"kButtonHintStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    character: \":\"
+  swipeUpAction:
+    character: \";\"
+  uppercasedStateAction:
+    character: \"K\"
+  uppercasedStateForegroundStyle:
+    - \"kButtonUppercasedStateForegroundStyle\"
+    - \"kButtonUpForegroundStyle\"
+    - \"kButtonDownForegroundStyle\"
+kButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.75
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \":\"
+kButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"K\"
+kButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"K\"
+kButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"kButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"kButtonSwipeUpHintForegroundStyle\"
+kButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \";\"
+kButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \";\"
+kButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"K\"
+keyboardBackgroundStyle:
+  buttonStyleType: \"geometry\"
+  normalColor: \"D0D3DA00\"
+keyboardHeight: 160
+keyboardLayout:
+  - VStack:
+      style: \"columnStyle1\"
+      subviews:
+        - HStack:
+            subviews:
+              - Cell: \"qButton\"
+              - Cell: \"wButton\"
+              - Cell: \"eButton\"
+              - Cell: \"rButton\"
+              - Cell: \"tButton\"
+        - HStack:
+            subviews:
+              - Cell: \"aButton\"
+              - Cell: \"sButton\"
+              - Cell: \"dButton\"
+              - Cell: \"fButton\"
+              - Cell: \"gButton\"
+        - HStack:
+            subviews:
+              - Cell: \"shiftButton\"
+              - Cell: \"zButton\"
+              - Cell: \"xButton\"
+              - Cell: \"cButton\"
+              - Cell: \"vButton\"
+        - HStack:
+            subviews:
+              - Cell: \"symbolButton\"
+              - Cell: \"123Button\"
+              - Cell: \"spaceButton\"
+  - VStack:
+      style: \"columnStyle2\"
+  - VStack:
+      style: \"columnStyle3\"
+      subviews:
+        - HStack:
+            subviews:
+              - Cell: \"yButton\"
+              - Cell: \"uButton\"
+              - Cell: \"iButton\"
+              - Cell: \"oButton\"
+              - Cell: \"pButton\"
+        - HStack:
+            subviews:
+              - Cell: \"gButton\"
+              - Cell: \"hButton\"
+              - Cell: \"jButton\"
+              - Cell: \"kButton\"
+              - Cell: \"lButton\"
+        - HStack:
+            subviews:
+              - Cell: \"vButton\"
+              - Cell: \"bButton\"
+              - Cell: \"nButton\"
+              - Cell: \"mButton\"
+              - Cell: \"backspaceButton\"
+        - HStack:
+            subviews:
+              - Cell: \"spaceButton\"
+              - Cell: \"spaceRightButton\"
+              - Cell: \"enterButton\"
+keyboardStyle:
+  backgroundStyle: \"keyboardBackgroundStyle\"
+  insets:
+    bottom: 3
+    left: 4
+    right: 4
+    top: 3
+lButton:
+  action:
+    character: \"l\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  bounds:
+    alignment: \"left\"
+    width: \"146/200\"
+  capsLockedStateForegroundStyle:
+    - \"lButtonUppercasedStateForegroundStyle\"
+    - \"lButtonUpForegroundStyle\"
+    - \"lButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"lButtonForegroundStyle\"
+    - \"lButtonUpForegroundStyle\"
+    - \"lButtonDownForegroundStyle\"
+  hintStyle: \"lButtonHintStyle\"
+  size:
+    width: \"200/784\"
+  swipeDownAction:
+    character: \"\\\"\"
+  swipeUpAction:
+    character: \"'\"
+  uppercasedStateAction:
+    character: \"L\"
+  uppercasedStateForegroundStyle:
+    - \"lButtonUppercasedStateForegroundStyle\"
+    - \"lButtonUpForegroundStyle\"
+    - \"lButtonDownForegroundStyle\"
+lButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.75
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"\\\"\"
+lButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"L\"
+lButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"L\"
+lButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"lButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"lButtonSwipeUpHintForegroundStyle\"
+lButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"'\"
+lButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"'\"
+lButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"L\"
+mButton:
+  action:
+    character: \"m\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"mButtonUppercasedStateForegroundStyle\"
+    - \"mButtonUpForegroundStyle\"
+    - \"mButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"mButtonForegroundStyle\"
+    - \"mButtonUpForegroundStyle\"
+    - \"mButtonDownForegroundStyle\"
+  hintStyle: \"mButtonHintStyle\"
+  hintSymbolsStyle: \"mButtonHintSymbolsStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    shortcut: \"#行尾\"
+  swipeUpAction:
+    shortcut: \"#三选上屏\"
+  uppercasedStateAction:
+    character: \"M\"
+  uppercasedStateForegroundStyle:
+    - \"mButtonUppercasedStateForegroundStyle\"
+    - \"mButtonUpForegroundStyle\"
+    - \"mButtonDownForegroundStyle\"
+mButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.8
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"end\"
+mButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"M\"
+mButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"M\"
+mButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"mButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"mButtonSwipeUpHintForegroundStyle\"
+mButtonHintSymbolsForegroundStyleOf0:
+  buttonStyleType: \"text\"
+  fontSize: 14
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"手机\"
+mButtonHintSymbolsForegroundStyleOf1:
+  buttonStyleType: \"text\"
+  fontSize: 14
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"邮箱\"
+mButtonHintSymbolsStyle:
+  backgroundStyle: \"alphabeticHintSymbolsBackgroundStyle\"
+  insets:
+    bottom: 3
+    left: 8
+    right: 8
+    top: 3
+  selectedBackgroundStyle: \"alphabeticHintSymbolsSelectedStyle\"
+  selectedIndex: 1
+  symbolStyles:
+    - \"mButtonHintSymbolsStyleOf0\"
+    - \"mButtonHintSymbolsStyleOf1\"
+mButtonHintSymbolsStyleOf0:
+  action:
+    sendKeys: \"/sjh\"
+  foregroundStyle: \"mButtonHintSymbolsForegroundStyleOf0\"
+mButtonHintSymbolsStyleOf1:
+  action:
+    sendKeys: \"/mail\"
+  foregroundStyle: \"mButtonHintSymbolsForegroundStyleOf1\"
+mButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"三\"
+mButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 8
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"三\"
+mButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"M\"
+nButton:
+  action:
+    character: \"n\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"nButtonUppercasedStateForegroundStyle\"
+    - \"nButtonUpForegroundStyle\"
+    - \"nButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"nButtonForegroundStyle\"
+    - \"nButtonUpForegroundStyle\"
+    - \"nButtonDownForegroundStyle\"
+  hintStyle: \"nButtonHintStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    shortcut: \"#selectText\"
+  swipeUpAction:
+    shortcut: \"#次选上屏\"
+  uppercasedStateAction:
+    character: \"N\"
+  uppercasedStateForegroundStyle:
+    - \"nButtonUppercasedStateForegroundStyle\"
+    - \"nButtonUpForegroundStyle\"
+    - \"nButtonDownForegroundStyle\"
+nButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.8
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"select\"
+nButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"N\"
+nButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"N\"
+nButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"nButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"nButtonSwipeUpHintForegroundStyle\"
+nButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"次\"
+nButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 8
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"次\"
+nButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"N\"
+oButton:
+  action:
+    character: \"o\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"oButtonUppercasedStateForegroundStyle\"
+    - \"oButtonUpForegroundStyle\"
+    - \"oButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"oButtonForegroundStyle\"
+    - \"oButtonUpForegroundStyle\"
+    - \"oButtonDownForegroundStyle\"
+  hintStyle: \"oButtonHintStyle\"
+  hintSymbolsStyle: \"oButtonHintSymbolsStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    character: \"(\"
+  swipeUpAction:
+    character: \"9\"
+  uppercasedStateAction:
+    character: \"O\"
+  uppercasedStateForegroundStyle:
+    - \"oButtonUppercasedStateForegroundStyle\"
+    - \"oButtonUpForegroundStyle\"
+    - \"oButtonDownForegroundStyle\"
+oButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.75
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"(\"
+oButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"O\"
+oButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"O\"
+oButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"oButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"oButtonSwipeUpHintForegroundStyle\"
+oButtonHintSymbolsForegroundStyleOf0:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"o\"
+oButtonHintSymbolsForegroundStyleOf1:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"9\"
+oButtonHintSymbolsForegroundStyleOf2:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"O\"
+oButtonHintSymbolsStyle:
+  backgroundStyle: \"alphabeticHintSymbolsBackgroundStyle\"
+  insets:
+    bottom: 3
+    left: 8
+    right: 8
+    top: 3
+  selectedBackgroundStyle: \"alphabeticHintSymbolsSelectedStyle\"
+  selectedIndex: 1
+  symbolStyles:
+    - \"oButtonHintSymbolsStyleOf0\"
+    - \"oButtonHintSymbolsStyleOf1\"
+    - \"oButtonHintSymbolsStyleOf2\"
+oButtonHintSymbolsStyleOf0:
+  action:
+    symbol: \"o\"
+  foregroundStyle: \"oButtonHintSymbolsForegroundStyleOf0\"
+oButtonHintSymbolsStyleOf1:
+  action:
+    symbol: \"9\"
+  foregroundStyle: \"oButtonHintSymbolsForegroundStyleOf1\"
+oButtonHintSymbolsStyleOf2:
+  action:
+    symbol: \"O\"
+  foregroundStyle: \"oButtonHintSymbolsForegroundStyleOf2\"
+oButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"9\"
+oButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"9\"
+oButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"O\"
+pButton:
+  action:
+    character: \"p\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"pButtonUppercasedStateForegroundStyle\"
+    - \"pButtonUpForegroundStyle\"
+    - \"pButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"pButtonForegroundStyle\"
+    - \"pButtonUpForegroundStyle\"
+    - \"pButtonDownForegroundStyle\"
+  hintStyle: \"pButtonHintStyle\"
+  hintSymbolsStyle: \"pButtonHintSymbolsStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    character: \")\"
+  swipeUpAction:
+    character: \"0\"
+  uppercasedStateAction:
+    character: \"P\"
+  uppercasedStateForegroundStyle:
+    - \"pButtonUppercasedStateForegroundStyle\"
+    - \"pButtonUpForegroundStyle\"
+    - \"pButtonDownForegroundStyle\"
+pButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.75
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \")\"
+pButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"P\"
+pButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"P\"
+pButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"pButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"pButtonSwipeUpHintForegroundStyle\"
+pButtonHintSymbolsForegroundStyleOf0:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"p\"
+pButtonHintSymbolsForegroundStyleOf1:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"0\"
+pButtonHintSymbolsForegroundStyleOf2:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"P\"
+pButtonHintSymbolsStyle:
+  backgroundStyle: \"alphabeticHintSymbolsBackgroundStyle\"
+  insets:
+    bottom: 3
+    left: 8
+    right: 8
+    top: 3
+  selectedBackgroundStyle: \"alphabeticHintSymbolsSelectedStyle\"
+  selectedIndex: 2
+  symbolStyles:
+    - \"pButtonHintSymbolsStyleOf0\"
+    - \"pButtonHintSymbolsStyleOf1\"
+    - \"pButtonHintSymbolsStyleOf2\"
+pButtonHintSymbolsStyleOf0:
+  action:
+    symbol: \"p\"
+  foregroundStyle: \"pButtonHintSymbolsForegroundStyleOf0\"
+pButtonHintSymbolsStyleOf1:
+  action:
+    symbol: \"0\"
+  foregroundStyle: \"pButtonHintSymbolsForegroundStyleOf1\"
+pButtonHintSymbolsStyleOf2:
+  action:
+    symbol: \"P\"
+  foregroundStyle: \"pButtonHintSymbolsForegroundStyleOf2\"
+pButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"0\"
+pButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"0\"
+pButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"P\"
+preedit:
+  backgroundStyle: \"preeditBackgroundStyle\"
+  foregroundStyle: \"preeditForegroundStyle\"
+  insets:
+    left: 8
+    top: 2
+preeditBackgroundStyle:
+  buttonStyleType: \"geometry\"
+  normalColor: \"D0D3DA00\"
+preeditForegroundStyle:
+  fontSize: 16
+  fontWeight: 0
+  textColor: \"000000\"
+preeditHeight: 14
+primaryButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 13
+  fontWeight: \"medium\"
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"面板\"
+primaryButtonStyle:
+  action:
+    floatKeyboardType: \"panel\"
+  backgroundStyle: \"toolbarButtonBackgroundStyle\"
+  foregroundStyle: \"primaryButtonForegroundStyle\"
+qButton:
+  action:
+    character: \"q\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"qButtonUppercasedStateForegroundStyle\"
+    - \"qButtonUpForegroundStyle\"
+    - \"qButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"qButtonForegroundStyle\"
+    - \"qButtonUpForegroundStyle\"
+    - \"qButtonDownForegroundStyle\"
+  hintStyle: \"qButtonHintStyle\"
+  hintSymbolsStyle: \"qButtonHintSymbolsStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    character: \"!\"
+  swipeUpAction:
+    character: \"1\"
+  uppercasedStateAction:
+    character: \"Q\"
+  uppercasedStateForegroundStyle:
+    - \"qButtonUppercasedStateForegroundStyle\"
+    - \"qButtonUpForegroundStyle\"
+    - \"qButtonDownForegroundStyle\"
+qButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.75
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"!\"
+qButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"Q\"
+qButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"Q\"
+qButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"qButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"qButtonSwipeUpHintForegroundStyle\"
+qButtonHintSymbolsForegroundStyleOf0:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"q\"
+qButtonHintSymbolsForegroundStyleOf1:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"1\"
+qButtonHintSymbolsForegroundStyleOf2:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"Q\"
+qButtonHintSymbolsStyle:
+  backgroundStyle: \"alphabeticHintSymbolsBackgroundStyle\"
+  insets:
+    bottom: 3
+    left: 8
+    right: 8
+    top: 3
+  selectedBackgroundStyle: \"alphabeticHintSymbolsSelectedStyle\"
+  selectedIndex: 0
+  symbolStyles:
+    - \"qButtonHintSymbolsStyleOf0\"
+    - \"qButtonHintSymbolsStyleOf1\"
+    - \"qButtonHintSymbolsStyleOf2\"
+qButtonHintSymbolsStyleOf0:
+  action:
+    symbol: \"q\"
+  foregroundStyle: \"qButtonHintSymbolsForegroundStyleOf0\"
+qButtonHintSymbolsStyleOf1:
+  action:
+    symbol: \"1\"
+  foregroundStyle: \"qButtonHintSymbolsForegroundStyleOf1\"
+qButtonHintSymbolsStyleOf2:
+  action:
+    symbol: \"Q\"
+  foregroundStyle: \"qButtonHintSymbolsForegroundStyleOf2\"
+qButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"1\"
+qButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"1\"
+qButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"Q\"
+rButton:
+  action:
+    character: \"r\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"rButtonUppercasedStateForegroundStyle\"
+    - \"rButtonUpForegroundStyle\"
+    - \"rButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"rButtonForegroundStyle\"
+    - \"rButtonUpForegroundStyle\"
+    - \"rButtonDownForegroundStyle\"
+  hintStyle: \"rButtonHintStyle\"
+  hintSymbolsStyle: \"rButtonHintSymbolsStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    character: \"$\"
+  swipeUpAction:
+    character: \"4\"
+  uppercasedStateAction:
+    character: \"R\"
+  uppercasedStateForegroundStyle:
+    - \"rButtonUppercasedStateForegroundStyle\"
+    - \"rButtonUpForegroundStyle\"
+    - \"rButtonDownForegroundStyle\"
+rButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.75
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"$\"
+rButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"R\"
+rButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"R\"
+rButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"rButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"rButtonSwipeUpHintForegroundStyle\"
+rButtonHintSymbolsForegroundStyleOf0:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"r\"
+rButtonHintSymbolsForegroundStyleOf1:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"4\"
+rButtonHintSymbolsForegroundStyleOf2:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"R\"
+rButtonHintSymbolsStyle:
+  backgroundStyle: \"alphabeticHintSymbolsBackgroundStyle\"
+  insets:
+    bottom: 3
+    left: 8
+    right: 8
+    top: 3
+  selectedBackgroundStyle: \"alphabeticHintSymbolsSelectedStyle\"
+  selectedIndex: 1
+  symbolStyles:
+    - \"rButtonHintSymbolsStyleOf0\"
+    - \"rButtonHintSymbolsStyleOf1\"
+    - \"rButtonHintSymbolsStyleOf2\"
+rButtonHintSymbolsStyleOf0:
+  action:
+    symbol: \"r\"
+  foregroundStyle: \"rButtonHintSymbolsForegroundStyleOf0\"
+rButtonHintSymbolsStyleOf1:
+  action:
+    symbol: \"4\"
+  foregroundStyle: \"rButtonHintSymbolsForegroundStyleOf1\"
+rButtonHintSymbolsStyleOf2:
+  action:
+    symbol: \"R\"
+  foregroundStyle: \"rButtonHintSymbolsForegroundStyleOf2\"
+rButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"4\"
+rButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"4\"
+rButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"R\"
+sButton:
+  action:
+    character: \"s\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"sButtonUppercasedStateForegroundStyle\"
+    - \"sButtonUpForegroundStyle\"
+    - \"sButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"sButtonForegroundStyle\"
+    - \"sButtonUpForegroundStyle\"
+    - \"sButtonDownForegroundStyle\"
+  hintStyle: \"sButtonHintStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    character: \"_\"
+  swipeUpAction:
+    character: \"-\"
+  uppercasedStateAction:
+    character: \"S\"
+  uppercasedStateForegroundStyle:
+    - \"sButtonUppercasedStateForegroundStyle\"
+    - \"sButtonUpForegroundStyle\"
+    - \"sButtonDownForegroundStyle\"
+sButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.75
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"_\"
+sButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"S\"
+sButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"S\"
+sButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"sButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"sButtonSwipeUpHintForegroundStyle\"
+sButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"-\"
+sButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"-\"
+sButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"S\"
+shiftButton:
+  action: \"shift\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"systemButtonBackgroundStyle\"
+  capsLockedStateForegroundStyle: \"shiftButtonCapsLockedForegroundStyle\"
+  foregroundStyle:
+    - \"shiftButtonForegroundStyle\"
+  hintStyle: \"shiftButtonHintStyle\"
+  size:
+    width: \"200/784\"
+  uppercasedStateAction: \"shift\"
+  uppercasedStateForegroundStyle: \"shiftButtonUppercasedForegroundStyle\"
+shiftButtonCapsLockedForegroundStyle:
+  buttonStyleType: \"systemImage\"
+  center:
+    \"y\": 0.53
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  systemImageName: \"capslock.fill\"
+shiftButtonForegroundStyle:
+  animation: \"ButtonForegroundAnimation\"
+  buttonStyleType: \"systemImage\"
+  center:
+    \"y\": 0.53
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  systemImageName: \"shift\"
+shiftButtonUppercasedForegroundStyle:
+  buttonStyleType: \"systemImage\"
+  center:
+    \"y\": 0.53
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  systemImageName: \"shift.fill\"
+simpStyle:
+  buttonStyleType: \"text\"
+  fontSize: 13
+  fontWeight: \"medium\"
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"简体\"
+spaceButton:
+  action: \"space\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  foregroundStyle:
+    - \"spaceButtonForegroundStyle\"
+    - \"spaceButtonUpForegroundStyle\"
+  hintStyle: \"spaceButtonHintStyle\"
+  size:
+    width: \"438/784\"
+  swipeUpAction:
+    keyboardType: \"alphabetic\"
+spaceButtonForegroundStyle:
+  animation: \"ButtonForegroundAnimation\"
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.47
+  fontSize: 15
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"空格\"
+spaceLeftButton:
+  action:
+    symbol: \"@\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  foregroundStyle: \"spaceLeftButtonForegroundStyle\"
+  hintStyle: \"spaceLeftButtonHintStyle\"
+  size:
+    width: \"173/784\"
+spaceLeftButtonForegroundStyle:
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"@\"
+spaceRightButton:
+  action:
+    symbol: \"，\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  foregroundStyle:
+    - \"spaceRightButtonForegroundStyle\"
+    - \"spaceRightButtonForegroundStyle2\"
+  hintStyle: \"spaceRightButtonHintStyle\"
+  size:
+    width: \"173/784\"
+  swipeUpAction:
+    character: \"。\"
+spaceRightButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.64
+    \"y\": 0.45
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"，\"
+spaceRightButtonForegroundStyle2:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.6
+    \"y\": 0.3
+  fontSize: 16
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"。\"
+symbolButton:
+  action:
+    keyboardType: \"numeric\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"systemButtonBackgroundStyle\"
+  foregroundStyle:
+    - \"symbolButtonForegroundStyle\"
+  hintStyle: \"symbolButtonHintStyle\"
+  hintSymbolsStyle: \"symbolButtonHintSymbolsStyle\"
+  size:
+    width: \"173/784\"
+symbolButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.5
+  fontSize: 15
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"#+=\"
+symbolButtonHintSymbolsForegroundStyleOf0:
+  buttonStyleType: \"systemImage\"
+  fontSize: 12
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  systemImageName: \"globe\"
+symbolButtonHintSymbolsStyle:
+  backgroundStyle: \"alphabeticHintSymbolsBackgroundStyle\"
+  insets:
+    bottom: 3
+    left: 8
+    right: 8
+    top: 3
+  selectedBackgroundStyle: \"alphabeticHintSymbolsSelectedStyle\"
+  selectedIndex: 0
+  symbolStyles:
+    - \"symbolButtonHintSymbolsStyleOf0\"
+symbolButtonHintSymbolsStyleOf0:
+  action: \"nextKeyboard\"
+  foregroundStyle: \"symbolButtonHintSymbolsForegroundStyleOf0\"
+systemButtonBackgroundStyle:
+  buttonStyleType: \"geometry\"
+  cornerRadius: 7
+  highlightColor: \"FFFFFFE6\"
+  highlightLowerEdgeColor: \"89898B\"
+  insets:
+    bottom: 6
+    left: 3
+    right: 3
+    top: 5
+  normalColor: \"979faf80\"
+  normalLowerEdgeColor: \"88898D\"
+tButton:
+  action:
+    character: \"t\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  bounds:
+    alignment: \"left\"
+    width: \"146/200\"
+  capsLockedStateForegroundStyle:
+    - \"tButtonUppercasedStateForegroundStyle\"
+    - \"tButtonUpForegroundStyle\"
+    - \"tButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"tButtonForegroundStyle\"
+    - \"tButtonUpForegroundStyle\"
+    - \"tButtonDownForegroundStyle\"
+  hintStyle: \"tButtonHintStyle\"
+  hintSymbolsStyle: \"tButtonHintSymbolsStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    character: \"%\"
+  swipeUpAction:
+    character: \"5\"
+  uppercasedStateAction:
+    character: \"T\"
+  uppercasedStateForegroundStyle:
+    - \"tButtonUppercasedStateForegroundStyle\"
+    - \"tButtonUpForegroundStyle\"
+    - \"tButtonDownForegroundStyle\"
+tButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.75
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"%\"
+tButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"T\"
+tButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"T\"
+tButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"tButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"tButtonSwipeUpHintForegroundStyle\"
+tButtonHintSymbolsForegroundStyleOf0:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"t\"
+tButtonHintSymbolsForegroundStyleOf1:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"5\"
+tButtonHintSymbolsForegroundStyleOf2:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"T\"
+tButtonHintSymbolsStyle:
+  backgroundStyle: \"alphabeticHintSymbolsBackgroundStyle\"
+  insets:
+    bottom: 3
+    left: 8
+    right: 8
+    top: 3
+  selectedBackgroundStyle: \"alphabeticHintSymbolsSelectedStyle\"
+  selectedIndex: 1
+  symbolStyles:
+    - \"tButtonHintSymbolsStyleOf0\"
+    - \"tButtonHintSymbolsStyleOf1\"
+    - \"tButtonHintSymbolsStyleOf2\"
+tButtonHintSymbolsStyleOf0:
+  action:
+    symbol: \"t\"
+  foregroundStyle: \"tButtonHintSymbolsForegroundStyleOf0\"
+tButtonHintSymbolsStyleOf1:
+  action:
+    symbol: \"5\"
+  foregroundStyle: \"tButtonHintSymbolsForegroundStyleOf1\"
+tButtonHintSymbolsStyleOf2:
+  action:
+    symbol: \"T\"
+  foregroundStyle: \"tButtonHintSymbolsForegroundStyleOf2\"
+tButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"5\"
+tButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"5\"
+tButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"T\"
+toolbar:
+  backgroundStyle: \"toolbarBackgroundStyle\"
+  horizontalCandidateStyle: \"horizontalCandidateStyle\"
+  primaryButtonStyle: \"primaryButtonStyle\"
+  secondaryButtonStyle:
+    - \"toolbarButton1Style\"
+    - \"toolbarButton2Style\"
+    - \"toolbarButton3Style\"
+    - \"toolbarButton4Style\"
+    - \"toolbarButton7Style\"
+    - \"toolbarButton5Style\"
+    - \"toolbarButton6Style\"
+  verticalCandidateStyle: \"verticalCandidateStyle\"
+toolbarBackgroundStyle:
+  buttonStyleType: \"geometry\"
+  normalColor: \"D0D3DA00\"
+toolbarButton1ForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 13
+  fontWeight: \"medium\"
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"收起\"
+toolbarButton1Style:
+  action: \"dismissKeyboard\"
+  backgroundStyle: \"toolbarButtonBackgroundStyle\"
+  foregroundStyle: \"toolbarButton1ForegroundStyle\"
+toolbarButton2Style:
+  action:
+    shortcutCommand: \"#简繁切换\"
+  backgroundStyle: \"toolbarButtonBackgroundStyle\"
+  foregroundStyle:
+    - conditionKey: \"rime$simplification\"
+      conditionValue: true
+      styleName: \"tranStyle\"
+    - conditionKey: \"rime$simplification\"
+      conditionValue: false
+      styleName: \"simpStyle\"
+toolbarButton3ForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 13
+  fontWeight: \"medium\"
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"脚本\"
+toolbarButton3Style:
+  action:
+    shortcutCommand: \"#toggleScriptView\"
+  backgroundStyle: \"toolbarButtonBackgroundStyle\"
+  foregroundStyle: \"toolbarButton3ForegroundStyle\"
+toolbarButton4ForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 13
+  fontWeight: \"medium\"
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"剪贴\"
+toolbarButton4Style:
+  action:
+    shortcutCommand: \"#showPasteboardView\"
+  backgroundStyle: \"toolbarButtonBackgroundStyle\"
+  foregroundStyle: \"toolbarButton4ForegroundStyle\"
+toolbarButton5ForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 13
+  fontWeight: \"medium\"
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"表情\"
+toolbarButton5Style:
+  action:
+    keyboardType: \"emoji\"
+  backgroundStyle: \"toolbarButtonBackgroundStyle\"
+  foregroundStyle: \"toolbarButton5ForegroundStyle\"
+toolbarButton6ForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 13
+  fontWeight: \"medium\"
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"翻译\"
+toolbarButton6Style:
+  action:
+    runTranslateScript: \"快捷翻译\"
+  backgroundStyle: \"toolbarButtonBackgroundStyle\"
+  foregroundStyle: \"toolbarButton6ForegroundStyle\"
+toolbarButton7ForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 13
+  fontWeight: \"medium\"
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"短语\"
+toolbarButton7Style:
+  action:
+    shortcutCommand: \"#showPhraseView\"
+  backgroundStyle: \"toolbarButtonBackgroundStyle\"
+  foregroundStyle: \"toolbarButton7ForegroundStyle\"
+toolbarButtonBackgroundStyle:
+  highlightColor: 0
+  normalColor: 0
+toolbarHeight: 30
+tranStyle:
+  buttonStyleType: \"text\"
+  fontSize: 13
+  fontWeight: \"medium\"
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"繁体\"
+uButton:
+  action:
+    character: \"u\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"uButtonUppercasedStateForegroundStyle\"
+    - \"uButtonUpForegroundStyle\"
+    - \"uButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"uButtonForegroundStyle\"
+    - \"uButtonUpForegroundStyle\"
+    - \"uButtonDownForegroundStyle\"
+  hintStyle: \"uButtonHintStyle\"
+  hintSymbolsStyle: \"uButtonHintSymbolsStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    character: \"&\"
+  swipeUpAction:
+    character: \"7\"
+  uppercasedStateAction:
+    character: \"U\"
+  uppercasedStateForegroundStyle:
+    - \"uButtonUppercasedStateForegroundStyle\"
+    - \"uButtonUpForegroundStyle\"
+    - \"uButtonDownForegroundStyle\"
+uButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.75
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"&\"
+uButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"U\"
+uButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"U\"
+uButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"uButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"uButtonSwipeUpHintForegroundStyle\"
+uButtonHintSymbolsForegroundStyleOf0:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"u\"
+uButtonHintSymbolsForegroundStyleOf1:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"7\"
+uButtonHintSymbolsForegroundStyleOf2:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"U\"
+uButtonHintSymbolsStyle:
+  backgroundStyle: \"alphabeticHintSymbolsBackgroundStyle\"
+  insets:
+    bottom: 3
+    left: 8
+    right: 8
+    top: 3
+  selectedBackgroundStyle: \"alphabeticHintSymbolsSelectedStyle\"
+  selectedIndex: 1
+  symbolStyles:
+    - \"uButtonHintSymbolsStyleOf0\"
+    - \"uButtonHintSymbolsStyleOf1\"
+    - \"uButtonHintSymbolsStyleOf2\"
+uButtonHintSymbolsStyleOf0:
+  action:
+    symbol: \"u\"
+  foregroundStyle: \"uButtonHintSymbolsForegroundStyleOf0\"
+uButtonHintSymbolsStyleOf1:
+  action:
+    symbol: \"7\"
+  foregroundStyle: \"uButtonHintSymbolsForegroundStyleOf1\"
+uButtonHintSymbolsStyleOf2:
+  action:
+    symbol: \"U\"
+  foregroundStyle: \"uButtonHintSymbolsForegroundStyleOf2\"
+uButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"7\"
+uButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"7\"
+uButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"U\"
+vButton:
+  action:
+    character: \"v\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"vButtonUppercasedStateForegroundStyle\"
+    - \"vButtonUpForegroundStyle\"
+    - \"vButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"vButtonForegroundStyle\"
+    - \"vButtonUpForegroundStyle\"
+    - \"vButtonDownForegroundStyle\"
+  hintStyle: \"vButtonHintStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    shortcut: \"#paste\"
+  swipeUpAction:
+    character: \"<\"
+  uppercasedStateAction:
+    character: \"V\"
+  uppercasedStateForegroundStyle:
+    - \"vButtonUppercasedStateForegroundStyle\"
+    - \"vButtonUpForegroundStyle\"
+    - \"vButtonDownForegroundStyle\"
+vButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.8
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"paste\"
+vButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"V\"
+vButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"V\"
+vButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"vButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"vButtonSwipeUpHintForegroundStyle\"
+vButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"<\"
+vButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"<\"
+vButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"V\"
+verticalCandidateBackgroundStyle:
+  buttonStyleType: \"fileImage\"
+  normalImage:
+    file: \"bg\"
+    image: \"IMG1\"
+verticalCandidateBackspaceButtonForegroundStyle:
+  buttonStyleType: \"systemImage\"
+  center:
+    \"y\": 0.53
+  fontSize: 17
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  systemImageName: \"delete.left\"
+verticalCandidateBackspaceButtonStyle:
+  backgroundStyle: \"systemButtonBackgroundStyle\"
+  foregroundStyle: \"verticalCandidateBackspaceButtonForegroundStyle\"
+verticalCandidateOfCandidateStyle:
+  backgroundColor: 0
+  backgroundInsets:
+    bottom: 8
+    left: 8
+    right: 8
+    top: 8
+  commentColor: \"000000\"
+  commentFontSize: 18
+  cornerRadius: 7
+  highlightBackgroundColor: 0
+  indexColor: \"000000\"
+  indexFontSize: 16
+  insets:
+    bottom: 8
+    left: 8
+    right: 8
+    top: 8
+  preferredBackgroundColor: \"FFFFFF\"
+  preferredCommentColor: \"000000\"
+  preferredIndexColor: \"000000\"
+  preferredTextColor: \"000000\"
+  separatorColor: 0
+  textColor: \"000000\"
+  textFontSize: 16
+verticalCandidatePageDownButtonForegroundStyle:
+  buttonStyleType: \"systemImage\"
+  center:
+    \"y\": 0.53
+  fontSize: 17
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  systemImageName: \"chevron.down\"
+verticalCandidatePageDownButtonStyle:
+  backgroundStyle: \"systemButtonBackgroundStyle\"
+  foregroundStyle: \"verticalCandidatePageDownButtonForegroundStyle\"
+verticalCandidatePageUpButtonForegroundStyle:
+  buttonStyleType: \"systemImage\"
+  center:
+    \"y\": 0.53
+  fontSize: 17
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  systemImageName: \"chevron.up\"
+verticalCandidatePageUpButtonStyle:
+  backgroundStyle: \"systemButtonBackgroundStyle\"
+  foregroundStyle: \"verticalCandidatePageUpButtonForegroundStyle\"
+verticalCandidateReturnButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 15
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"返回\"
+verticalCandidateReturnButtonStyle:
+  backgroundStyle: \"systemButtonBackgroundStyle\"
+  foregroundStyle: \"verticalCandidateReturnButtonForegroundStyle\"
+verticalCandidateStyle:
+  backspaceButtonStyle: \"verticalCandidateBackspaceButtonStyle\"
+  bottomRowHeight: 50
+  candidateStyle: \"verticalCandidateOfCandidateStyle\"
+  insets:
+    bottom: 0
+    left: 0
+    right: 0
+    top: 0
+  pageDownButtonStyle: \"verticalCandidatePageDownButtonStyle\"
+  pageUpButtonStyle: \"verticalCandidatePageUpButtonStyle\"
+  returnButtonStyle: \"verticalCandidateReturnButtonStyle\"
+wButton:
+  action:
+    character: \"w\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"wButtonUppercasedStateForegroundStyle\"
+    - \"wButtonUpForegroundStyle\"
+    - \"wButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"wButtonForegroundStyle\"
+    - \"wButtonUpForegroundStyle\"
+    - \"wButtonDownForegroundStyle\"
+  hintStyle: \"wButtonHintStyle\"
+  hintSymbolsStyle: \"wButtonHintSymbolsStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    character: \"@\"
+  swipeUpAction:
+    character: \"2\"
+  uppercasedStateAction:
+    character: \"W\"
+  uppercasedStateForegroundStyle:
+    - \"wButtonUppercasedStateForegroundStyle\"
+    - \"wButtonUpForegroundStyle\"
+    - \"wButtonDownForegroundStyle\"
+wButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.75
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"@\"
+wButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"W\"
+wButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"W\"
+wButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"wButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"wButtonSwipeUpHintForegroundStyle\"
+wButtonHintSymbolsForegroundStyleOf0:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"w\"
+wButtonHintSymbolsForegroundStyleOf1:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"2\"
+wButtonHintSymbolsForegroundStyleOf2:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"W\"
+wButtonHintSymbolsStyle:
+  backgroundStyle: \"alphabeticHintSymbolsBackgroundStyle\"
+  insets:
+    bottom: 3
+    left: 8
+    right: 8
+    top: 3
+  selectedBackgroundStyle: \"alphabeticHintSymbolsSelectedStyle\"
+  selectedIndex: 1
+  symbolStyles:
+    - \"wButtonHintSymbolsStyleOf0\"
+    - \"wButtonHintSymbolsStyleOf1\"
+    - \"wButtonHintSymbolsStyleOf2\"
+wButtonHintSymbolsStyleOf0:
+  action:
+    symbol: \"w\"
+  foregroundStyle: \"wButtonHintSymbolsForegroundStyleOf0\"
+wButtonHintSymbolsStyleOf1:
+  action:
+    symbol: \"2\"
+  foregroundStyle: \"wButtonHintSymbolsForegroundStyleOf1\"
+wButtonHintSymbolsStyleOf2:
+  action:
+    symbol: \"W\"
+  foregroundStyle: \"wButtonHintSymbolsForegroundStyleOf2\"
+wButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"2\"
+wButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"2\"
+wButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"W\"
+xButton:
+  action:
+    character: \"x\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"xButtonUppercasedStateForegroundStyle\"
+    - \"xButtonUpForegroundStyle\"
+    - \"xButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"xButtonForegroundStyle\"
+    - \"xButtonUpForegroundStyle\"
+    - \"xButtonDownForegroundStyle\"
+  hintStyle: \"xButtonHintStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    shortcut: \"#cut\"
+  swipeUpAction:
+    symbol: \"「\"
+  uppercasedStateAction:
+    character: \"X\"
+  uppercasedStateForegroundStyle:
+    - \"xButtonUppercasedStateForegroundStyle\"
+    - \"xButtonUpForegroundStyle\"
+    - \"xButtonDownForegroundStyle\"
+xButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.8
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"cut\"
+xButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"X\"
+xButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"X\"
+xButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"xButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"xButtonSwipeUpHintForegroundStyle\"
+xButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"「\"
+xButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"「\"
+xButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"X\"
+yButton:
+  action:
+    character: \"y\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  bounds:
+    alignment: \"right\"
+    width: \"146/200\"
+  capsLockedStateForegroundStyle:
+    - \"yButtonUppercasedStateForegroundStyle\"
+    - \"yButtonUpForegroundStyle\"
+    - \"yButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"yButtonForegroundStyle\"
+    - \"yButtonUpForegroundStyle\"
+    - \"yButtonDownForegroundStyle\"
+  hintStyle: \"yButtonHintStyle\"
+  hintSymbolsStyle: \"yButtonHintSymbolsStyle\"
+  size:
+    width: \"200/784\"
+  swipeDownAction:
+    character: \"^\"
+  swipeUpAction:
+    character: \"6\"
+  uppercasedStateAction:
+    character: \"Y\"
+  uppercasedStateForegroundStyle:
+    - \"yButtonUppercasedStateForegroundStyle\"
+    - \"yButtonUpForegroundStyle\"
+    - \"yButtonDownForegroundStyle\"
+yButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.75
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"^\"
+yButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"Y\"
+yButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"Y\"
+yButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"yButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"yButtonSwipeUpHintForegroundStyle\"
+yButtonHintSymbolsForegroundStyleOf0:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"y\"
+yButtonHintSymbolsForegroundStyleOf1:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"6\"
+yButtonHintSymbolsForegroundStyleOf2:
+  buttonStyleType: \"text\"
+  fontSize: 20
+  highlightColor: \"FFFFFF\"
+  normalColor: \"000000\"
+  text: \"Y\"
+yButtonHintSymbolsStyle:
+  backgroundStyle: \"alphabeticHintSymbolsBackgroundStyle\"
+  insets:
+    bottom: 3
+    left: 8
+    right: 8
+    top: 3
+  selectedBackgroundStyle: \"alphabeticHintSymbolsSelectedStyle\"
+  selectedIndex: 1
+  symbolStyles:
+    - \"yButtonHintSymbolsStyleOf0\"
+    - \"yButtonHintSymbolsStyleOf1\"
+    - \"yButtonHintSymbolsStyleOf2\"
+yButtonHintSymbolsStyleOf0:
+  action:
+    symbol: \"y\"
+  foregroundStyle: \"yButtonHintSymbolsForegroundStyleOf0\"
+yButtonHintSymbolsStyleOf1:
+  action:
+    symbol: \"6\"
+  foregroundStyle: \"yButtonHintSymbolsForegroundStyleOf1\"
+yButtonHintSymbolsStyleOf2:
+  action:
+    symbol: \"Y\"
+  foregroundStyle: \"yButtonHintSymbolsForegroundStyleOf2\"
+yButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"6\"
+yButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"6\"
+yButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"Y\"
+zButton:
+  action:
+    character: \"z\"
+  animation:
+    - \"alphabeticBackgroundAnimation\"
+  backgroundStyle: \"alphabeticBackgroundStyle\"
+  capsLockedStateForegroundStyle:
+    - \"zButtonUppercasedStateForegroundStyle\"
+    - \"zButtonUpForegroundStyle\"
+    - \"zButtonDownForegroundStyle\"
+  foregroundStyle:
+    - \"zButtonForegroundStyle\"
+    - \"zButtonUpForegroundStyle\"
+    - \"zButtonDownForegroundStyle\"
+  hintStyle: \"zButtonHintStyle\"
+  size:
+    width: \"146/784\"
+  swipeDownAction:
+    shortcut: \"#行首\"
+  swipeUpAction: \"tab\"
+  uppercasedStateAction:
+    character: \"Z\"
+  uppercasedStateForegroundStyle:
+    - \"zButtonUppercasedStateForegroundStyle\"
+    - \"zButtonUpForegroundStyle\"
+    - \"zButtonDownForegroundStyle\"
+zButtonDownForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.8
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"home\"
+zButtonForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"Z\"
+zButtonHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"Z\"
+zButtonHintStyle:
+  backgroundStyle: \"alphabeticHintBackgroundStyle\"
+  foregroundStyle: \"zButtonHintForegroundStyle\"
+  swipeUpForegroundStyle: \"zButtonSwipeUpHintForegroundStyle\"
+zButtonSwipeUpHintForegroundStyle:
+  buttonStyleType: \"text\"
+  fontSize: 28
+  normalColor: \"2E2E2E\"
+  text: \"⇥\"
+zButtonUpForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.25
+    \"y\": 0.28
+  fontSize: 9
+  highlightColor: \"5E686F\"
+  normalColor: \"5E686F\"
+  text: \"⇥\"
+zButtonUppercasedStateForegroundStyle:
+  buttonStyleType: \"text\"
+  center:
+    x: 0.5
+    \"y\": 0.54
+  fontSize: 18
+  highlightColor: \"000000\"
+  normalColor: \"000000\"
+  text: \"Z\""

@@ -253,7 +253,7 @@ local fontSize = import 'fontSize.libsonnet';
           left: 8,
           right: 8,
         },
-        cornerRadius: 5,
+        cornerRadius: 7,
         backgroundColor: 0,
         separatorColor: 0,
         highlightBackgroundColor: 0,

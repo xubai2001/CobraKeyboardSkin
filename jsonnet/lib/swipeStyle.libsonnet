@@ -98,13 +98,15 @@ local ButtonDownForegroundStyles(key, o, theme, center, type) =
   };
 
 // 上划提示气泡
-local ButtonSwipeUpHintForegroundStyle(key, o, theme) = {
-  [if std.objectHas(o, 'label') then key + 'ButtonSwipeUpHintForegroundStyle']:
-    display(o) +
-    if std.objectHas(o.label, 'text') then
-      swipe_style(center['划动气泡文字偏移'], theme)['上划气泡前景样式']
-    else
-      swipe_style(center['划动气泡sf符号偏移'], theme)['上划气泡前景样式'],
+local ButtonSwipeUpHintForegroundStyle(key, o, theme, type) = 
+  if !std.objectHas(o, 'label') then {} else {
+    [if type == 'number' then 'number' + key + 'ButtonSwipeUpHintForegroundStyle' else
+      key + 'ButtonSwipeUpHintForegroundStyle']:
+      display(o) +
+      if std.objectHas(o.label, 'text') then
+        swipe_style(center['划动气泡文字偏移'], theme)['上划气泡前景样式']
+      else
+        swipe_style(center['划动气泡sf符号偏移'], theme)['上划气泡前景样式'],
 };
 
 // 按下气泡
@@ -135,18 +137,21 @@ local finalStyles(type, theme, swipe_up, swipe_down) = {
            {}
          ) +
          std.foldl(  // 上划提示气泡样式
-           function(acc, key) acc + ButtonSwipeUpHintForegroundStyle(key, swipe_up[key], theme),
+           function(acc, key) acc + ButtonSwipeUpHintForegroundStyle(key, swipe_up[key], theme, type),
            std.objectFields(swipe_up),
            {}
-         ) +
-         std.foldl(  // 按下气泡样式，有潜在问题，暂时放着
-           function(acc, key)
-             if std.length(key) == 1 then
-               acc + ButtonHintForegroundStyle(key, swipe_up[key], theme, type)
-             else acc,
-           std.stringChars('qwertyuiopasdfghjklzxcvbnm'),
-           {}
-         ),
+         )+ 
+         if type != 'number' then
+          std.foldl(  // 按下气泡样式，有潜在问题，暂时放着
+            function(acc, key)
+              if std.length(key) == 1 then
+                acc + ButtonHintForegroundStyle(key, swipe_up[key], theme, type)
+              else acc,
+            std.stringChars('qwertyuiopasdfghjklzxcvbnm'),
+            {}
+          )
+        else
+          {}
 };
 
 

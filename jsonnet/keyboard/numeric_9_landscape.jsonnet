@@ -3,14 +3,18 @@ local center = import '../lib/center.libsonnet';
 local collectionData = import '../lib/collectionData.libsonnet';
 local color = import '../lib/color.libsonnet';
 local fontSize = import '../lib/fontSize.libsonnet';
-local holdSymbolStyles = import '../lib/holdSymbolStyles.libsonnet';
 local others = import '../lib/others.libsonnet';
-local swipe = import '../lib/swipeData.libsonnet';
-local swipeStyles = import '../lib/swipeStyle.libsonnet';
+local swipeData = import '../lib/swipeData.libsonnet';
+local hintSymbolsData = import "../lib/hintSymbolsData.libsonnet";
 local toolbar = import '../lib/toolbar.libsonnet';
+local utils = import '../lib/utils.libsonnet';
 
-local swipe_up = swipe.number_swipe_up;
-local swipe_down = swipe.number_swipe_down;
+local swipeStyles = import '../lib/swipeStyle.libsonnet';
+local hintSymbolsStyles = import '../lib/hintSymbolsStyles.libsonnet';
+
+// 上下和下划的数据
+local swipe_up = if std.objectHas(swipeData, 'number_swipe_up') then swipeData.number_swipe_up else {};
+local swipe_down = if std.objectHas(swipeData, 'number_swipe_up') then swipeData.number_swipe_down else {};
 
 
 local createButton(key, size, bounds, root) = {
@@ -32,9 +36,11 @@ local createButton(key, size, bounds, root) = {
   [if std.objectHas(root, 'number' + key + 'ButtonHintSymbolsStyle') then 'hintSymbolsStyle']: 'number' + key + 'ButtonHintSymbolsStyle',
 };
 
-local keyboard(theme) = swipeStyles.getStyle('number', theme) +
-holdSymbolStyles.getStyle('number', theme) +
+local keyboard(theme) =
+swipeStyles.getStyle('number', theme, swipe_up, swipe_down) +
+hintSymbolsStyles.getStyle(theme, hintSymbolsData.number) +
 toolbar.getToolBar(theme) +
+utils.genNumberStyles(fontSize, color, theme, center)+
 {
   [if std.objectHas(others, '中文键盘方案') then 'rimeSchema']: others['中文键盘方案'],
   preeditHeight: others['横屏']['preedit高度'],
@@ -264,7 +270,7 @@ toolbar.getToolBar(theme) +
     buttonStyleType: 'geometry',
     insets: { top: 5, left: 3, bottom: 5, right: 3 },
     normalColor: color[theme]['符号键盘左侧collection背景颜色'],
-    cornerRadius: 5,
+    cornerRadius: 7,
     normalLowerEdgeColor: color[theme]['符号键盘左侧collection背景下边缘颜色'],
   },
 
@@ -277,7 +283,7 @@ toolbar.getToolBar(theme) +
     insets: { top: 6, left: 3, bottom: 6, right: 3 },
     highlightColor: 'ffffff',
     normalColor: 'ffffff00',
-    cornerRadius: 5,
+    cornerRadius: 7,
   },
   collectionCellForegroundStyle: {
     buttonStyleType: "text",
@@ -306,43 +312,21 @@ toolbar.getToolBar(theme) +
     {},
     $
   ),
-  number1ButtonForegroundStyle: {
-    buttonStyleType: "text",
-    text: '1',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['数字键盘数字前景字体大小'],
-    // center: center['数字键盘数字前景偏移'],
-  },
+  
   number4Button: createButton(
     '4',
     {},
     {},
     $
   ),
-  number4ButtonForegroundStyle: {
-    buttonStyleType: "text",
-    text: '4',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['数字键盘数字前景字体大小'],
-    // center: center['数字键盘数字前景偏移'],
-
-  },
+  
   number7Button: createButton(
     '7',
     {},
     {},
     $
   ),
-  number7ButtonForegroundStyle: {
-    buttonStyleType: "text",
-    text: '7',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['数字键盘数字前景字体大小'],
-    // center: center['数字键盘数字前景偏移'],
-  },
+  
   symbolButton: {
     size: {
       height: '1/4',
@@ -366,70 +350,21 @@ toolbar.getToolBar(theme) +
   },
   number2Button: createButton('2', {}, {}, $),
 
-  number2ButtonForegroundStyle: {
-    buttonStyleType: "text",
-    text: '2',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['数字键盘数字前景字体大小'],
-    // center: center['数字键盘数字前景偏移'],
-  },
+  
   number5Button: createButton('5', {}, {}, $),
-  number5ButtonForegroundStyle: {
-    buttonStyleType: "text",
-    text: '5',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['数字键盘数字前景字体大小'],
-    // center: center['数字键盘数字前景偏移'],
-  },
+  
   number8Button: createButton('8', {}, {}, $),
-  number8ButtonForegroundStyle: {
-    buttonStyleType: "text",
-    text: '8',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['数字键盘数字前景字体大小'],
-    // center: center['数字键盘数字前景偏移'],
-  },
+  
 
   number0Button: createButton('0', {}, {}, $),
 
-  number0ButtonForegroundStyle: {
-    buttonStyleType: "text",
-    text: '0',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['数字键盘数字前景字体大小'],
-    // center: center['数字键盘数字前景偏移'],
-  },
+  
   number3Button: createButton('3', {}, {}, $),
-  number3ButtonForegroundStyle: {
-    buttonStyleType: "text",
-    text: '3',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['数字键盘数字前景字体大小'],
-    // center: center['数字键盘数字前景偏移'],
-  },
+  
   number6Button: createButton('6', {}, {}, $),
-  number6ButtonForegroundStyle: {
-    buttonStyleType: "text",
-    text: '6',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['数字键盘数字前景字体大小'],
-    // center: center['数字键盘数字前景偏移'],
-  },
+  
   number9Button: createButton('9', {}, {}, $),
-  number9ButtonForegroundStyle: {
-    buttonStyleType: "text",
-    text: '9',
-    normalColor: color[theme]['按键前景颜色'],
-    highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['数字键盘数字前景字体大小'],
-    // center: center['数字键盘数字前景偏移'],
-  },
+  
   spaceButton: createButton(
     'space', {}, {}, $
   ) + {
@@ -439,7 +374,6 @@ toolbar.getToolBar(theme) +
 
   spaceButtonForegroundStyle: {
     buttonStyleType: "text",
-    animation: 'ButtonForegroundAnimation',
     text: '空格',
     normalColor: color[theme]['按键前景颜色'],
     highlightColor: color[theme]['按键前景颜色'],
@@ -456,7 +390,6 @@ toolbar.getToolBar(theme) +
 
   backspaceButtonForegroundStyle: {
     buttonStyleType: "systemImage",
-    animation: 'ButtonForegroundAnimation',
     systemImageName: 'delete.left',
     normalColor: color[theme]['按键前景颜色'],
     highlightColor: color[theme]['按键前景颜色'],
@@ -474,7 +407,6 @@ toolbar.getToolBar(theme) +
 
   spaceRightButtonForegroundStyle: {
     buttonStyleType: "text",
-    animation: 'ButtonForegroundAnimation',
     text: '.',
     normalColor: color[theme]['按键前景颜色'],
     highlightColor: color[theme]['按键前景颜色'],
@@ -495,7 +427,6 @@ toolbar.getToolBar(theme) +
 
   atButtonForegroundStyle: {
     buttonStyleType: "text",
-    animation: 'ButtonForegroundAnimation',
     text: '=',
     normalColor: color[theme]['按键前景颜色'],
     highlightColor: color[theme]['按键前景颜色'],
@@ -514,7 +445,6 @@ toolbar.getToolBar(theme) +
   },
   enterButtonForegroundStyle: {
     buttonStyleType: "text",
-    animation: 'ButtonForegroundAnimation',
     text: '换行',
     normalColor: color[theme]['按键前景颜色'],
     highlightColor: color[theme]['按键前景颜色'],
@@ -526,7 +456,7 @@ toolbar.getToolBar(theme) +
     insets: { top: 4, left: 3, bottom: 4, right: 3 },
     normalColor: color[theme]['字母键背景颜色-普通'],
     highlightColor: color[theme]['字母键背景颜色-高亮'],
-    cornerRadius: 5,
+    cornerRadius: 7,
     normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
     highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
   },
@@ -535,7 +465,7 @@ toolbar.getToolBar(theme) +
     insets: { top: 4, left: 3, bottom: 4, right: 3 },
     normalColor: color[theme]['功能键背景颜色-普通'],
     highlightColor: color[theme]['功能键背景颜色-高亮'],
-    cornerRadius: 5,
+    cornerRadius: 7,
     normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
     highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
   },
@@ -554,7 +484,7 @@ toolbar.getToolBar(theme) +
     buttonStyleType: 'geometry',
     insets: { top: 5, left: 3, bottom: 5, right: 3 },
     normalColor: color[theme]['符号键盘左侧collection背景颜色'],
-    cornerRadius: 5,
+    cornerRadius: 7,
     normalShadowColor: color[theme]['符号键盘左侧collection背景下边缘颜色'],
     normalLowerEdgeColor: color[theme]['符号键盘左侧collection背景下边缘颜色'],
   },
@@ -564,12 +494,13 @@ toolbar.getToolBar(theme) +
   },
   symbolcollectionCellBackgroundStyle: {
     buttonStyleType: 'geometry',
-    insets: { top: 4, bottom: 4 },
-    normalColor: color[theme]['字母键背景颜色-普通'],
+    insets: { top: 4, bottom: 4, left: 5, right: 5 },
+    normalColor: "00000000",
     highlightColor: color[theme]['字母键背景颜色-普通'],
-    cornerRadius: 5,
+    cornerRadius: 7,
   },
   symbolcollectionCellForegroundStyle: {
+    buttonStyleType: "text",
     normalColor: color[theme]['列表未选中字体颜色'],
     highlightColor: color[theme]['列表选中字体颜色'],
     fontSize: fontSize['符号键盘左侧collection前景字体大小'],
@@ -585,7 +516,7 @@ toolbar.getToolBar(theme) +
   },
   descriptionCollectionBackgroundStyle: {
     buttonStyleType: 'geometry',
-    insets: { top: 5, left: 3, bottom: 5, right: 3 },
+    insets: { top: 5, left: 5, bottom: 5, right: 5 },
     normalColor: color[theme]['符号键盘右侧collection背景颜色'],
     cornerRadius: 12,
     normalLowerEdgeColor: color[theme]['符号键盘右侧collection背景下边缘颜色'],
@@ -595,6 +526,7 @@ toolbar.getToolBar(theme) +
     foregroundStyle: 'descriptionCollectionCellForegroundStyle',
   },
   descriptionCollectionCellForegroundStyle: {
+    buttonStyleType: "text",
     normalColor: color[theme]['列表未选中字体颜色'],
     highlightColor: color[theme]['列表选中字体颜色'],
     fontSize: fontSize['符号键盘右侧collection前景字体大小'],
@@ -627,6 +559,7 @@ toolbar.getToolBar(theme) +
     action: 'pageUp',
   },
   pageUpButtonForegroundStyle: {
+    buttonStyleType: "systemImage",
     systemImageName: 'chevron.up',
     normalColor: color[theme]['按键前景颜色'],
     highlightColor: color[theme]['按键前景颜色'],
@@ -642,6 +575,7 @@ toolbar.getToolBar(theme) +
     action: 'pageDown',
   },
   pageDownButtonForegroundStyle: {
+    buttonStyleType: "systemImage",
     systemImageName: 'chevron.down',
     normalColor: color[theme]['按键前景颜色'],
     highlightColor: color[theme]['按键前景颜色'],
@@ -653,23 +587,36 @@ toolbar.getToolBar(theme) +
       width: '87/375',
     },
     backgroundStyle: 'systemButtonBackgroundStyle',
-    foregroundStyle: '// JavaScript\nfunction getText() {\n  return $getSymbolicKeyboardLockState() ? "lockButtonForegroundStyle" : "unlockButtonForegroundStyle";\n}',
+    foregroundStyle: [
+      {
+        "styleName": "unlockButtonForegroundStyle",
+        "conditionKey": "$symbolicKeyboardLockState",
+        "conditionValue": false
+      },
+      {
+        "styleName": "lockButtonForegroundStyle",
+        "conditionKey": "$symbolicKeyboardLockState",
+        "conditionValue": true
+      }
+    ],
     action: 'symbolicKeyboardLockStateToggle',
   },
 
   lockButtonForegroundStyle: {
-    animation: 'ButtonForegroundAnimation',
+    buttonStyleType: "systemImage",
     systemImageName: 'lock',
     normalColor: color[theme]['按键前景颜色'],
     highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景sf符号大小'] - 3,
+    fontSize: fontSize['按键前景sf符号大小'],
+    targetScale: 0.6,
   },
   unlockButtonForegroundStyle: {
-    animation: 'ButtonForegroundAnimation',
+    buttonStyleType: "systemImage",
     systemImageName: 'lock.open',
     normalColor: color[theme]['按键前景颜色'],
     highlightColor: color[theme]['按键前景颜色'],
-    fontSize: fontSize['按键前景sf符号大小'] - 3,
+    fontSize: fontSize['按键前景sf符号大小'],
+    targetScale: 0.6,
   },
   symbolbackspaceButton: {
     size: {
@@ -684,6 +631,7 @@ toolbar.getToolBar(theme) +
   },
 
   symbolbackspaceButtonForegroundStyle: {
+    buttonStyleType: "systemImage",
     systemImageName: 'delete.left',
     normalColor: color[theme]['按键前景颜色'],
     highlightColor: color[theme]['按键前景颜色'],

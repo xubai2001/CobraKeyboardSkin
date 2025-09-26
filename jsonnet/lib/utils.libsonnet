@@ -33,18 +33,65 @@ local makeTextStyle(text, fontSize, normalColor, highlightColor, center) = {
 local keyMap = {
   q: 'Q', w: 'W', e: 'E', r: 'R', t: 'T', y: 'Y', u: 'U', i: 'I', o: 'O', p: 'P',
   a: 'A', s: 'S', d: 'D', f: 'F', g: 'G', h: 'H', j: 'J', k: 'K', l: 'L',
-  z: 'Z', x: 'X', c: 'C', v: 'V', b: 'B', n: 'N', m: 'M'
+  z: 'Z', x: 'X', c: 'C', v: 'V', b: 'B', n: 'N', m: 'M',
 };
-local genPinyinStyles(fontSize, color, theme, center) = {
-  [keyName + 'ButtonForegroundStyle']: makeTextStyle(
-    keyMap[keyName],
-    fontSize['按键前景文字大小'],
-    color[theme]['按键前景颜色'],
-    color[theme]['按键前景颜色'],
-    center['26键中文前景偏移']
-  )
-  for keyName in std.objectFields(keyMap)
+
+// 生成26字母键前景
+local genPinyinStyles(fontSize, color, theme, center) = 
+  {
+    [keyName + 'ButtonForegroundStyle']: makeTextStyle(
+      keyMap[keyName],
+      fontSize['按键前景文字大小'],
+      color[theme]['按键前景颜色'],
+      color[theme]['按键前景颜色'],
+      center['26键中文前景偏移']
+    )
+    for keyName in std.objectFields(keyMap)
+  } + {
+    [keyName + 'ButtonUppercasedStateForegroundStyle']: makeTextStyle(
+      keyMap[keyName],
+      fontSize['按键前景文字大小'],
+      color[theme]['按键前景颜色'],
+      color[theme]['按键前景颜色'],
+      center['26键中文前景偏移']
+    )
+    for keyName in std.objectFields(keyMap)
+  };
+
+// 生成英文26键前景
+local genAlphabeticStyles(fontSize, color, theme, center) = 
+  {
+    [keyName + 'ButtonForegroundStyle']: makeTextStyle(
+      std.asciiLower(keyMap[keyName]),
+      fontSize['按键前景文字大小'],
+      color[theme]['按键前景颜色'],
+      color[theme]['按键前景颜色'],
+      center['26键中文前景偏移']
+    )
+    for keyName in std.objectFields(keyMap)
+  } + {
+    [keyName + 'ButtonUppercasedStateForegroundStyle']: makeTextStyle(
+      keyMap[keyName],
+      fontSize['按键前景文字大小'],
+      color[theme]['按键前景颜色'],
+      color[theme]['按键前景颜色'],
+      center['26键中文前景偏移']
+    )
+    for keyName in std.objectFields(keyMap)
+  };
+
+local genNumberStyles(fontSize, color, theme, center) = {
+  ['number' + num + 'ButtonForegroundStyle']: {
+    buttonStyleType: "text",
+    text: std.toString(num),
+    normalColor: color[theme]['按键前景颜色'],
+    highlightColor: color[theme]['按键前景颜色'],
+    fontSize: fontSize['数字键盘数字前景字体大小'],
+    center: center['数字键盘数字前景偏移'],
+  }
+  for num in std.range(0, 9)
 };
+
 
 {
     makeImageStyle(contentMode, normalFile, highlightFile, normalImage, highlightImage, center, insets):
@@ -53,5 +100,8 @@ local genPinyinStyles(fontSize, color, theme, center) = {
       makeTextStyle(text, fontSize, normalColor, highlightColor, center),
     genPinyinStyles(fontSize, color, theme, center):
       genPinyinStyles(fontSize, color, theme, center),
-
+    genAlphabeticStyles(fontSize, color, theme, center):
+      genAlphabeticStyles(fontSize, color, theme, center),
+    genNumberStyles(fontSize, color, theme, center):
+      genNumberStyles(fontSize, color, theme, center),
 }

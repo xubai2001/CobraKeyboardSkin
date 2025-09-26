@@ -41,4 +41,4 @@ local lightPanelLandscape = panel.new("light", "landscape");
 local darkPanelLandscape = panel.new("dark", "landscape");
 
 
-std.manifestYamlDoc(lightPinyinPortrait, indent_array_in_object=true, quote_keys=false)
+std.manifestYamlDoc(lightPinyinLandscape, indent_array_in_object=true, quote_keys=false)

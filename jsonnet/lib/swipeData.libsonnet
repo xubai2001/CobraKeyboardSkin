@@ -2,7 +2,7 @@
   /* 
   说明: 
     swipe_up和swipe_down为中文26键盘的划动数据
-    下面对应的cn9(如果当前皮肤不是九键皮肤，就不用管)和number为中文九键和数字九键的划动数据
+    下面对应的pinyin9(如果当前皮肤不是九键皮肤，就不用管)和number为中文九键和数字九键的划动数据
   格式说明:
     action: 必需， 格式同仓文档
     label:  非必需， 不设置这个不会生成对应前景，也就是不会显示在按键上，具体格式也见文档
@@ -103,7 +103,7 @@
   },
 
   // 中文九键划动
-  cn9_swipe_up: {
+  pinyin9_swipe_up: {
     '1': { action: { symbol: '1' }, label: { text: '1' } },
     '2': { action: { symbol: '2' }, label: { text: '2' } },
     '3': { action: { symbol: '3' }, label: { text: '3' } },
@@ -115,7 +115,7 @@
     '9': { action: { symbol: '9' }, label: { text: '9' } },
     space: { action: { symbol: '0' }, label: { text: '0' } },
   },
-  cn9_swipe_down: {
+  pinyin9_swipe_down: {
     '3': { action: { sendKeys: 'dt' }, label: { text: '时间' } },
     '4': { action: { shortcut: '#行首' }, label: { text: '行首' } },
     '5': { action: { shortcut: '#selectText' }, label: { text: '全选' } },
@@ -128,10 +128,10 @@
 
   // 格式和上面一致
   number_swipe_up: {
-    // '1': { action: { character: '/' }, label: { text: '/' } },
+    '1': { action: { character: '/' }, label: { text: '/' } },
   },
   number_swipe_down: {
-    // '1': { action: { character: '/' }, label: { text: '/' } },
+    '1': { action: { character: '$' }, label: { text: '复制' } },
   },
 }
 

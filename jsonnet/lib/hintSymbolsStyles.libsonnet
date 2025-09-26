@@ -1,10 +1,10 @@
-local color = import "color.libsonnet";
-local fontSize = import "fontSize.libsonnet";
-local center = import "center.libsonnet";
+local center = import 'center.libsonnet';
+local color = import 'color.libsonnet';
+local fontSize = import 'fontSize.libsonnet';
 
 // 文字前景样式
 local textStyle(text, fs, theme) = {  //fs 字体大小
-  buttonStyleType: "text",
+  buttonStyleType: 'text',
   text: text,
   fontSize: fs,
   normalColor: color[theme]['长按非选中字体颜色'],
@@ -14,7 +14,7 @@ local textStyle(text, fs, theme) = {  //fs 字体大小
 
 // sf符号前景样式
 local systemImageStyle(systemImageName, fs, theme) = {
-  buttonStyleType: "systemImage",
+  buttonStyleType: 'systemImage',
   systemImageName: systemImageName,
   fontSize: fs,
   normalColor: color[theme]['长按非选中字体颜色'],
@@ -32,7 +32,7 @@ local holdSymbolsStyle(key, selectedIndex, size, symbol_list, theme) = {
     backgroundStyle: 'alphabeticHintSymbolsBackgroundStyle',
     [if size != {} then 'size']: {
       width: size.width,
-      height: size.height
+      height: size.height,
     },
     symbolStyles: [
       key + 'ButtonHintSymbolsStyleOf' + std.toString(index)
@@ -60,7 +60,7 @@ local holdSymbolsStyle(key, selectedIndex, size, symbol_list, theme) = {
 } + {
   [key + 'ButtonHintSymbolsStyleOf' + std.toString(index)]: {
     action: symbol_list[index].action,
-    foregroundStyle: key + 'ButtonHintSymbolsForegroundStyleOf' + std.toString(index)
+    foregroundStyle: key + 'ButtonHintSymbolsForegroundStyleOf' + std.toString(index),
   }
   for index in std.range(0, std.length(symbol_list) - 1)
 };
@@ -88,7 +88,7 @@ local finalStyles(theme, hintSymbolsData) = {
   getStyle(type, theme):
     finalStyles(type, theme).style,
   '长按背景样式': {
-    buttonStyleType: "fileImage",
+    buttonStyleType: 'fileImage',
     normalImage: {
       file: 'hold_back',
       image: 'IMG1',
@@ -99,8 +99,8 @@ local finalStyles(theme, hintSymbolsData) = {
     },
   },
   '长按选中背景样式': {
-    buttonStyleType: "fileImage",
-    insets: { left: 4, right: 3, top: 8, bottom: 8},
+    buttonStyleType: 'fileImage',
+    insets: { left: 4, right: 3, top: 8, bottom: 8 },
     normalImage: {
       file: 'hint',
       image: 'IMG1',
@@ -116,4 +116,3 @@ local finalStyles(theme, hintSymbolsData) = {
   },
 
 }
-
