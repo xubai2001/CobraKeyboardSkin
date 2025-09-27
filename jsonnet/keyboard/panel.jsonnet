@@ -1,8 +1,7 @@
+local animation = import '../lib/animation.libsonnet';
 local center = import '../lib/center.libsonnet';
 local color = import '../lib/color.libsonnet';
 local fontSize = import '../lib/fontSize.libsonnet';
-
-local theme = std.extVar('theme');
 
 // key: 按键名称
 local createButton(key, action, sf_symbol, text, theme) = {
@@ -33,6 +32,9 @@ local createButton(key, action, sf_symbol, text, theme) = {
     highlightColor: color[theme]['按键前景颜色'],
     center: center['panel键盘按键文字前景偏移'],
   },
+  animation: [
+    'ButtonScaleAnimation',
+  ],
 };
 local keyboard(theme, orientation) =
   createButton(
@@ -156,38 +158,7 @@ local keyboard(theme, orientation) =
       normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
       highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
     },
-    ButtonBackgroundAnimation: [
-      {
-        type: 'bounds',
-        duration: 60,
-        repeatCount: 1,
-        fromScale: 1,
-        toScale: 0.87,
-      },
-      {
-        type: 'bounds',
-        duration: 80,
-        repeatCount: 1,
-        fromScale: 0.87,
-        toScale: 1,
-      },
-    ],
-    ButtonForegroundAnimation: [
-      {
-        type: 'bounds',
-        duration: 60,
-        repeatCount: 1,
-        fromScale: 1,
-        toScale: 0.82,
-      },
-      {
-        type: 'bounds',
-        duration: 80,
-        repeatCount: 1,
-        fromScale: 0.82,
-        toScale: 1,
-      },
-    ],
+    ButtonScaleAnimation: animation['26键按键动画'],
   };
 
 {

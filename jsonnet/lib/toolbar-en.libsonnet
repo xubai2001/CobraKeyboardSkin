@@ -1,5 +1,5 @@
-local toolbar = import "toolbar.libsonnet";
-local center = import "center.libsonnet";
+// local center = import 'center.libsonnet';
+local toolbar = import 'toolbar.libsonnet';
 
 local custom = {  // 中英键盘有不同，在这里加上，会覆盖掉toolbar.libsonnet中对应的按键设置以供英文键盘使用。
   // "toolbarButton2Style": {
@@ -37,5 +37,5 @@ local custom = {  // 中英键盘有不同，在这里加上，会覆盖掉toolb
 
 // 下面不要动
 {
-    getToolBar(theme) : toolbar.getToolBar(theme) + custom
+  getToolBar(theme): toolbar.getToolBar(theme) + custom,
 }

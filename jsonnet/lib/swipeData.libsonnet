@@ -1,15 +1,24 @@
 {
-  /* 
-  说明: 
+  /*
+  说明:
     swipe_up和swipe_down为中文26键盘的划动数据
     下面对应的pinyin9(如果当前皮肤不是九键皮肤，就不用管)和number为中文九键和数字九键的划动数据
   格式说明:
     action: 必需， 格式同仓文档
-    label:  非必需， 不设置这个不会生成对应前景，也就是不会显示在按键上，具体格式也见文档
-  */ 
+    label:  非必需， 用于控制是否在按键上显示这个划动前景，可选text/systemImageName
+    fontSize: 非必需，用于单独指定某个划动前景字符大小
+    color: 非必需，用于单独指定某个划动前景字符颜色, 格式见下方q键
+  */
 
   swipe_up: {
-    q: { action: { character: '1' }, label: { text: '1' } },  // action同仓皮肤定义，label可选text/systemImageName, 具体见仓皮肤文档，若不想显示，可设置为text: ""
+    q: {
+      action: { character: '1' },
+      label: { text: '1' },
+      // color: {
+      //   light: { normalColor: '121212', highlightColor: '121212' },
+      //   dark: { normalColor: 'E5C07B', highlightColor: 'E5C07B' },
+      // },
+    },
     w: { action: { character: '2' }, label: { text: '2' } },
     e: { action: { character: '3' }, label: { text: '3' } },
     r: { action: { character: '4' }, label: { text: '4' } },
@@ -35,9 +44,9 @@
     b: { action: { character: '>' }, label: { text: '>' } },
     n: { action: { shortcut: '#次选上屏' }, label: { text: '次' }, fontSize: 8 },
     m: { action: { shortcut: '#三选上屏' }, label: { text: '三' }, fontSize: 8 },
-    '123': { action: { shortcut: '#RimeSwitcher' },  },
-    spaceRight: { action: { character: '。' }, },
-    space: { action: { keyboardType: 'alphabetic'} , },  // 如果你没加一个中英切换键，最好别改这个
+    '123': { action: { shortcut: '#RimeSwitcher' } },
+    spaceRight: { action: { character: '。' } },
+    space: { action: { keyboardType: 'alphabetic' } },  // 如果你没加一个中英切换键，最好别改这个
     // "backspace": {"action": { "character": "。" }, "label": {"text": "。"}},
     // "enter": {"action": { "shortcut": "#换行" }, "label": {"text": "。"}},
     // "symbol": {"action": { "character": "。" }, "label": {"text": "。"}},
@@ -99,7 +108,7 @@
       label: { text: 'end' },
       center: { x: 0.5, y: 0.8 },
     },
-    '123': { action: { shortcut: '#方案切换' },  },
+    '123': { action: { shortcut: '#方案切换' } },
   },
 
   // 中文九键划动
@@ -134,4 +143,3 @@
     '1': { action: { character: '$' }, label: { text: '复制' } },
   },
 }
-

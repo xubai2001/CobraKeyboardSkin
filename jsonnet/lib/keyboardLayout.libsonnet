@@ -8,127 +8,57 @@ local color = import 'color.libsonnet';
           {
             HStack: {
               subviews: [
-                {
-                  Cell: 'qButton',
-                },
-                {
-                  Cell: 'wButton',
-                },
-                {
-                  Cell: 'eButton',
-                },
-                {
-                  Cell: 'rButton',
-                },
-                {
-                  Cell: 'tButton',
-                },
-                {
-                  Cell: 'yButton',
-                },
-                {
-                  Cell: 'uButton',
-                },
-                {
-                  Cell: 'iButton',
-                },
-                {
-                  Cell: 'oButton',
-                },
-                {
-                  Cell: 'pButton',
-                },
+                { Cell: 'qButton' },
+                { Cell: 'wButton' },
+                { Cell: 'eButton' },
+                { Cell: 'rButton' },
+                { Cell: 'tButton' },
+                { Cell: 'yButton' },
+                { Cell: 'uButton' },
+                { Cell: 'iButton' },
+                { Cell: 'oButton' },
+                { Cell: 'pButton' },
               ],
             },
           },
           {
             HStack: {
               subviews: [
-                {
-                  Cell: 'aButton',
-                },
-                {
-                  Cell: 'sButton',
-                },
-                {
-                  Cell: 'dButton',
-                },
-                {
-                  Cell: 'fButton',
-                },
-                {
-                  Cell: 'gButton',
-                },
-                {
-                  Cell: 'hButton',
-                },
-                {
-                  Cell: 'jButton',
-                },
-                {
-                  Cell: 'kButton',
-                },
-                {
-                  Cell: 'lButton',
-                },
+                { Cell: 'aButton' },
+                { Cell: 'sButton' },
+                { Cell: 'dButton' },
+                { Cell: 'fButton' },
+                { Cell: 'gButton' },
+                { Cell: 'hButton' },
+                { Cell: 'jButton' },
+                { Cell: 'kButton' },
+                { Cell: 'lButton' },
               ],
             },
           },
           {
             HStack: {
               subviews: [
-                {
-                  Cell: 'shiftButton',
-                },
-                {
-                  Cell: 'zButton',
-                },
-                {
-                  Cell: 'xButton',
-                },
-                {
-                  Cell: 'cButton',
-                },
-                {
-                  Cell: 'vButton',
-                },
-                {
-                  Cell: 'bButton',
-                },
-                {
-                  Cell: 'nButton',
-                },
-                {
-                  Cell: 'mButton',
-                },
-                {
-                  Cell: 'backspaceButton',
-                },
+                { Cell: 'shiftButton' },
+                { Cell: 'zButton' },
+                { Cell: 'xButton' },
+                { Cell: 'cButton' },
+                { Cell: 'vButton' },
+                { Cell: 'bButton' },
+                { Cell: 'nButton' },
+                { Cell: 'mButton' },
+                { Cell: 'backspaceButton' },
               ],
             },
           },
           {
             HStack: {
               subviews: [
-                {
-                  Cell: 'symbolButton',
-                },
-                {
-                  Cell: '123Button',
-                },
-                // {
-                //   "Cell": "spaceLeftButton"
-                // },
-                {
-                  Cell: 'spaceButton',
-                },
-                {
-                  Cell: 'spaceRightButton',
-                },
-
-                {
-                  Cell: 'enterButton',
-                },
+                { Cell: 'symbolButton' },
+                { Cell: '123Button' },
+                { Cell: 'spaceButton' },
+                { Cell: 'spaceRightButton' },
+                { Cell: 'enterButton' },
               ],
             },
           },
@@ -157,78 +87,42 @@ local color = import 'color.libsonnet';
                 {
                   HStack: {
                     subviews: [
-                      {
-                        Cell: 'qButton',
-                      },
-                      {
-                        Cell: 'wButton',
-                      },
-                      {
-                        Cell: 'eButton',
-                      },
-                      {
-                        Cell: 'rButton',
-                      },
-                      {
-                        Cell: 'tButton',
-                      },
+                      { Cell: 'qButton' },
+                      { Cell: 'wButton' },
+                      { Cell: 'eButton' },
+                      { Cell: 'rButton' },
+                      { Cell: 'tButton' },
                     ],
                   },
                 },
                 {
                   HStack: {
                     subviews: [
-                      {
-                        Cell: 'aButton',
-                      },
-                      {
-                        Cell: 'sButton',
-                      },
-                      {
-                        Cell: 'dButton',
-                      },
-                      {
-                        Cell: 'fButton',
-                      },
-                      {
-                        Cell: 'gButton',
-                      },
+                      { Cell: 'aButton' },
+                      { Cell: 'sButton' },
+                      { Cell: 'dButton' },
+                      { Cell: 'fButton' },
+                      { Cell: 'gButton' },
                     ],
                   },
                 },
                 {
                   HStack: {
                     subviews: [
-                      {
-                        Cell: 'shiftButton',
-                      },
-                      {
-                        Cell: 'zButton',
-                      },
-                      {
-                        Cell: 'xButton',
-                      },
-                      {
-                        Cell: 'cButton',
-                      },
-                      {
-                        Cell: 'vButton',
-                      },
+                      { Cell: 'shiftButton' },
+                      { Cell: 'zButton' },
+                      { Cell: 'xButton' },
+                      { Cell: 'cButton' },
+                      { Cell: 'vButton' },
                     ],
                   },
                 },
                 {
                   HStack: {
                     subviews: [
-                      {
-                        Cell: 'symbolButton',
-                      },
-                      {
-                        Cell: '123Button',
-                      },
-                      {
-                        Cell: 'spaceButton',
-                      },
+                      { Cell: 'symbolButton' },
+                      { Cell: '123Button' },
+                      { Cell: 'spaceButton' },
                     ],
                   },
                 },
@@ -247,78 +141,42 @@ local color = import 'color.libsonnet';
                 {
                   HStack: {
                     subviews: [
-                      {
-                        Cell: 'yButton',
-                      },
-                      {
-                        Cell: 'uButton',
-                      },
-                      {
-                        Cell: 'iButton',
-                      },
-                      {
-                        Cell: 'oButton',
-                      },
-                      {
-                        Cell: 'pButton',
-                      },
+                      { Cell: 'yButton' },
+                      { Cell: 'uButton' },
+                      { Cell: 'iButton' },
+                      { Cell: 'oButton' },
+                      { Cell: 'pButton' },
                     ],
                   },
                 },
                 {
                   HStack: {
                     subviews: [
-                      {
-                        Cell: 'gButton',
-                      },
-                      {
-                        Cell: 'hButton',
-                      },
-                      {
-                        Cell: 'jButton',
-                      },
-                      {
-                        Cell: 'kButton',
-                      },
-                      {
-                        Cell: 'lButton',
-                      },
+                      { Cell: 'gButton' },
+                      { Cell: 'hButton' },
+                      { Cell: 'jButton' },
+                      { Cell: 'kButton' },
+                      { Cell: 'lButton' },
                     ],
                   },
                 },
                 {
                   HStack: {
                     subviews: [
-                      {
-                        Cell: 'vButton',
-                      },
-                      {
-                        Cell: 'bButton',
-                      },
-                      {
-                        Cell: 'nButton',
-                      },
-                      {
-                        Cell: 'mButton',
-                      },
-                      {
-                        Cell: 'backspaceButton',
-                      },
+                      { Cell: 'vButton' },
+                      { Cell: 'bButton' },
+                      { Cell: 'nButton' },
+                      { Cell: 'mButton' },
+                      { Cell: 'backspaceButton' },
                     ],
                   },
                 },
                 {
                   HStack: {
                     subviews: [
-                      {
-                        Cell: 'spaceButton',
-                      },
-                      {
-                        Cell: 'spaceRightButton',
-                      },
-                      {
-                        Cell: 'enterButton',
-                      },
+                      { Cell: 'spaceButton' },
+                      { Cell: 'spaceRightButton' },
+                      { Cell: 'enterButton' },
                     ],
                   },
                 },
@@ -361,126 +219,60 @@ local color = import 'color.libsonnet';
           {
             HStack: {
               subviews: [
-                {
-                  Cell: 'qButton',
-                },
-                {
-                  Cell: 'wButton',
-                },
-                {
-                  Cell: 'eButton',
-                },
-                {
-                  Cell: 'rButton',
-                },
-                {
-                  Cell: 'tButton',
-                },
-                {
-                  Cell: 'yButton',
-                },
-                {
-                  Cell: 'uButton',
-                },
-                {
-                  Cell: 'iButton',
-                },
-                {
-                  Cell: 'oButton',
-                },
-                {
-                  Cell: 'pButton',
-                },
+                { Cell: 'qButton' },
+                { Cell: 'wButton' },
+                { Cell: 'eButton' },
+                { Cell: 'rButton' },
+                { Cell: 'tButton' },
+                { Cell: 'yButton' },
+                { Cell: 'uButton' },
+                { Cell: 'iButton' },
+                { Cell: 'oButton' },
+                { Cell: 'pButton' },
               ],
             },
           },
           {
             HStack: {
               subviews: [
-                {
-                  Cell: 'aButton',
-                },
-                {
-                  Cell: 'sButton',
-                },
-                {
-                  Cell: 'dButton',
-                },
-                {
-                  Cell: 'fButton',
-                },
-                {
-                  Cell: 'gButton',
-                },
-                {
-                  Cell: 'hButton',
-                },
-                {
-                  Cell: 'jButton',
-                },
-                {
-                  Cell: 'kButton',
-                },
-                {
-                  Cell: 'lButton',
-                },
+                { Cell: 'aButton' },
+                { Cell: 'sButton' },
+                { Cell: 'dButton' },
+                { Cell: 'fButton' },
+                { Cell: 'gButton' },
+                { Cell: 'hButton' },
+                { Cell: 'jButton' },
+                { Cell: 'kButton' },
+                { Cell: 'lButton' },
               ],
             },
           },
           {
             HStack: {
               subviews: [
-                {
-                  Cell: 'shiftButton',
-                },
-                {
-                  Cell: 'zButton',
-                },
-                {
-                  Cell: 'xButton',
-                },
-                {
-                  Cell: 'cButton',
-                },
-                {
-                  Cell: 'vButton',
-                },
-                {
-                  Cell: 'bButton',
-                },
-                {
-                  Cell: 'nButton',
-                },
-                {
-                  Cell: 'mButton',
-                },
-                {
-                  Cell: 'backspaceButton',
-                },
+                { Cell: 'shiftButton' },
+                { Cell: 'zButton' },
+                { Cell: 'xButton' },
+                { Cell: 'cButton' },
+                { Cell: 'vButton' },
+                { Cell: 'bButton' },
+                { Cell: 'nButton' },
+                { Cell: 'mButton' },
+                { Cell: 'backspaceButton' },
               ],
             },
           },
           {
             HStack: {
               subviews: [
-                {
-                  Cell: 'symbolButton',
-                },
-                {
-                  Cell: '123Button',
-                },
-                {
-                  Cell: 'spaceButton',
-                },
-                {
-                  Cell: 'spaceRightButton',
-                },
+                { Cell: 'symbolButton' },
+                { Cell: '123Button' },
+                { Cell: 'spaceButton' },
+                { Cell: 'spaceRightButton' },
                 // {
                 //   "Cell": "EnZhButton"
                 // },
-                {
-                  Cell: 'enterButton',
-                },
+                { Cell: 'enterButton' },
               ],
             },
           },
@@ -510,78 +302,42 @@ local color = import 'color.libsonnet';
                 {
                   HStack: {
                     subviews: [
-                      {
-                        Cell: 'qButton',
-                      },
-                      {
-                        Cell: 'wButton',
-                      },
-                      {
-                        Cell: 'eButton',
-                      },
-                      {
-                        Cell: 'rButton',
-                      },
-                      {
-                        Cell: 'tButton',
-                      },
+                      { Cell: 'qButton' },
+                      { Cell: 'wButton' },
+                      { Cell: 'eButton' },
+                      { Cell: 'rButton' },
+                      { Cell: 'tButton' },
                     ],
                   },
                 },
                 {
                   HStack: {
                     subviews: [
-                      {
-                        Cell: 'aButton',
-                      },
-                      {
-                        Cell: 'sButton',
-                      },
-                      {
-                        Cell: 'dButton',
-                      },
-                      {
-                        Cell: 'fButton',
-                      },
-                      {
-                        Cell: 'gButton',
-                      },
+                      { Cell: 'aButton' },
+                      { Cell: 'sButton' },
+                      { Cell: 'dButton' },
+                      { Cell: 'fButton' },
+                      { Cell: 'gButton' },
                     ],
                   },
                 },
                 {
                   HStack: {
                     subviews: [
-                      {
-                        Cell: 'shiftButton',
-                      },
-                      {
-                        Cell: 'zButton',
-                      },
-                      {
-                        Cell: 'xButton',
-                      },
-                      {
-                        Cell: 'cButton',
-                      },
-                      {
-                        Cell: 'vButton',
-                      },
+                      { Cell: 'shiftButton' },
+                      { Cell: 'zButton' },
+                      { Cell: 'xButton' },
+                      { Cell: 'cButton' },
+                      { Cell: 'vButton' },
                     ],
                   },
                 },
                 {
                   HStack: {
                     subviews: [
-                      {
-                        Cell: 'symbolButton',
-                      },
-                      {
-                        Cell: '123Button',
-                      },
-                      {
-                        Cell: 'spaceButton',
-                      },
+                      { Cell: 'symbolButton' },
+                      { Cell: '123Button' },
+                      { Cell: 'spaceButton' },
                     ],
                   },
                 },
@@ -600,81 +356,45 @@ local color = import 'color.libsonnet';
                 {
                   HStack: {
                     subviews: [
-                      {
-                        Cell: 'yButton',
-                      },
-                      {
-                        Cell: 'uButton',
-                      },
-                      {
-                        Cell: 'iButton',
-                      },
-                      {
-                        Cell: 'oButton',
-                      },
-                      {
-                        Cell: 'pButton',
-                      },
+                      { Cell: 'yButton' },
+                      { Cell: 'uButton' },
+                      { Cell: 'iButton' },
+                      { Cell: 'oButton' },
+                      { Cell: 'pButton' },
                     ],
                   },
                 },
                 {
                   HStack: {
                     subviews: [
-                      {
-                        Cell: 'gButton',
-                      },
-                      {
-                        Cell: 'hButton',
-                      },
-                      {
-                        Cell: 'jButton',
-                      },
-                      {
-                        Cell: 'kButton',
-                      },
-                      {
-                        Cell: 'lButton',
-                      },
+                      { Cell: 'gButton' },
+                      { Cell: 'hButton' },
+                      { Cell: 'jButton' },
+                      { Cell: 'kButton' },
+                      { Cell: 'lButton' },
                     ],
                   },
                 },
                 {
                   HStack: {
                     subviews: [
-                      {
-                        Cell: 'vButton',
-                      },
-                      {
-                        Cell: 'bButton',
-                      },
-                      {
-                        Cell: 'nButton',
-                      },
-                      {
-                        Cell: 'mButton',
-                      },
-                      {
-                        Cell: 'backspaceButton',
-                      },
+                      { Cell: 'vButton' },
+                      { Cell: 'bButton' },
+                      { Cell: 'nButton' },
+                      { Cell: 'mButton' },
+                      { Cell: 'backspaceButton' },
                     ],
                   },
                 },
                 {
                   HStack: {
                     subviews: [
-                      {
-                        Cell: 'spaceButton',
-                      },
-                      {
-                        Cell: 'spaceRightButton',
-                      },
+                      { Cell: 'spaceButton' },
+                      { Cell: 'spaceRightButton' },
                       // {
                       //   "Cell": "EnZhButton"
                       // },
-                      {
-                        Cell: 'enterButton',
-                      },
+                      { Cell: 'enterButton' },
                     ],
                   },
                 },

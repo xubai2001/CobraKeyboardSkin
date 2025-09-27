@@ -3,7 +3,6 @@ local color = import 'color.libsonnet';
 local fontSize = import 'fontSize.libsonnet';
 {
   getToolBar(theme)::
-
     {
       toolbar: {
         backgroundStyle: 'toolbarBackgroundStyle',
@@ -32,19 +31,16 @@ local fontSize = import 'fontSize.libsonnet';
         },
       },
       toolbarButtonBackgroundStyle: {
-        // "type": "original",
-        // "normalBorderColor": "000000",
-        // "borderSize": 1,
         normalColor: 0,
         highlightColor: 0,
       },
       primaryButtonForegroundStyle: {
-        buttonStyleType: "text",
+        buttonStyleType: 'text',
         text: '面板',
         normalColor: color[theme]['toolbar按键颜色'],
         highlightColor: color[theme]['toolbar按键颜色'],
         fontSize: fontSize['toolbar按键前景文字大小'],
-        // center: center['toolbar按键文字偏移'],
+        center: center['toolbar按键文字偏移'],
         fontWeight: 'medium',
       },
       toolbarButton1Style: {
@@ -53,27 +49,27 @@ local fontSize = import 'fontSize.libsonnet';
         action: 'dismissKeyboard',
       },
       toolbarButton1ForegroundStyle: {
-        buttonStyleType: "text",
+        buttonStyleType: 'text',
         text: '收起',
         normalColor: color[theme]['toolbar按键颜色'],
         highlightColor: color[theme]['toolbar按键颜色'],
         fontSize: fontSize['toolbar按键前景文字大小'],
-        // center: center['toolbar按键文字偏移'],
+        center: center['toolbar按键文字偏移'],
         fontWeight: 'medium',
       },
       toolbarButton2Style: {
         backgroundStyle: 'toolbarButtonBackgroundStyle',
         foregroundStyle: [
           {
-            "styleName": "tranStyle",
-            "conditionKey": "rime$simplification",
-            "conditionValue": true
+            styleName: 'tranStyle',
+            conditionKey: 'rime$simplification',
+            conditionValue: true,
           },
           {
-            "styleName": "simpStyle",
-            "conditionKey": "rime$simplification",
-            "conditionValue": false
-          }
+            styleName: 'simpStyle',
+            conditionKey: 'rime$simplification',
+            conditionValue: false,
+          },
         ],
         // notification: "simpstateNotification",
         action: {
@@ -87,21 +83,21 @@ local fontSize = import 'fontSize.libsonnet';
       //   rimeOptionValue: false
       // },
       simpStyle: {
-        buttonStyleType: "text",
+        buttonStyleType: 'text',
         text: '简体',
         normalColor: color[theme]['toolbar按键颜色'],
         highlightColor: color[theme]['toolbar按键颜色'],
         fontSize: fontSize['toolbar按键前景文字大小'],
-        // center: center['toolbar按键文字偏移'],
+        center: center['toolbar按键文字偏移'],
         fontWeight: 'medium',
       },
       tranStyle: {
-        buttonStyleType: "text",
+        buttonStyleType: 'text',
         text: '繁体',
         normalColor: color[theme]['toolbar按键颜色'],
         highlightColor: color[theme]['toolbar按键颜色'],
         fontSize: fontSize['toolbar按键前景文字大小'],
-        // center: center['toolbar按键文字偏移'],
+        center: center['toolbar按键文字偏移'],
         fontWeight: 'medium',
       },
       toolbarButton3Style: {
@@ -112,12 +108,12 @@ local fontSize = import 'fontSize.libsonnet';
         },
       },
       toolbarButton3ForegroundStyle: {
-        buttonStyleType: "text",
+        buttonStyleType: 'text',
         text: '脚本',
         normalColor: color[theme]['toolbar按键颜色'],
         highlightColor: color[theme]['toolbar按键颜色'],
         fontSize: fontSize['toolbar按键前景文字大小'],
-        // center: center['toolbar按键文字偏移'],
+        center: center['toolbar按键文字偏移'],
         fontWeight: 'medium',
       },
 
@@ -129,12 +125,12 @@ local fontSize = import 'fontSize.libsonnet';
         },
       },
       toolbarButton4ForegroundStyle: {
-        buttonStyleType: "text",
+        buttonStyleType: 'text',
         text: '剪贴',
         normalColor: color[theme]['toolbar按键颜色'],
         highlightColor: color[theme]['toolbar按键颜色'],
         fontSize: fontSize['toolbar按键前景文字大小'],
-        // center: center['toolbar按键文字偏移'],
+        center: center['toolbar按键文字偏移'],
         fontWeight: 'medium',
       },
 
@@ -146,12 +142,12 @@ local fontSize = import 'fontSize.libsonnet';
         },
       },
       toolbarButton5ForegroundStyle: {
-        buttonStyleType: "text",
+        buttonStyleType: 'text',
         text: '表情',
         normalColor: color[theme]['toolbar按键颜色'],
         highlightColor: color[theme]['toolbar按键颜色'],
         fontSize: fontSize['toolbar按键前景文字大小'],
-        // center: center['toolbar按键文字偏移'],
+        center: center['toolbar按键文字偏移'],
         fontWeight: 'medium',
       },
 
@@ -159,16 +155,16 @@ local fontSize = import 'fontSize.libsonnet';
         backgroundStyle: 'toolbarButtonBackgroundStyle',
         foregroundStyle: 'toolbarButton6ForegroundStyle',
         action: {
-          runTranslateScript: '快捷翻译',
+          runScript: '快捷翻译',
         },
       },
       toolbarButton6ForegroundStyle: {
-        buttonStyleType: "text",
+        buttonStyleType: 'text',
         text: '翻译',
         normalColor: color[theme]['toolbar按键颜色'],
         highlightColor: color[theme]['toolbar按键颜色'],
         fontSize: fontSize['toolbar按键前景文字大小'],
-        // center: center['toolbar按键文字偏移'],
+        center: center['toolbar按键文字偏移'],
         fontWeight: 'medium',
       },
       toolbarButton7Style: {
@@ -179,12 +175,12 @@ local fontSize = import 'fontSize.libsonnet';
         },
       },
       toolbarButton7ForegroundStyle: {
-        buttonStyleType: "text",
+        buttonStyleType: 'text',
         text: '短语',
         normalColor: color[theme]['toolbar按键颜色'],
         highlightColor: color[theme]['toolbar按键颜色'],
         fontSize: fontSize['toolbar按键前景文字大小'],
-        // center: center['toolbar按键文字偏移'],
+        center: center['toolbar按键文字偏移'],
         fontWeight: 'medium',
       },
       horizontalCandidateStyle: {
@@ -211,7 +207,7 @@ local fontSize = import 'fontSize.libsonnet';
         foregroundStyle: 'candidateStateButtonForegroundStyle',
       },
       candidateStateButtonForegroundStyle: {
-        buttonStyleType: "systemImage",
+        buttonStyleType: 'systemImage',
         systemImageName: 'chevron.down',
         normalColor: color[theme]['toolbar按键颜色'],
         highlightColor: color[theme]['toolbar按键颜色'],
@@ -234,7 +230,7 @@ local fontSize = import 'fontSize.libsonnet';
         backspaceButtonStyle: 'verticalCandidateBackspaceButtonStyle',
       },
       verticalCandidateBackgroundStyle: {
-        buttonStyleType: "fileImage",
+        buttonStyleType: 'fileImage',
         normalImage: {
           file: 'bg',
           image: 'IMG1',
@@ -278,7 +274,7 @@ local fontSize = import 'fontSize.libsonnet';
       },
 
       verticalCandidatePageUpButtonForegroundStyle: {
-        buttonStyleType: "systemImage",
+        buttonStyleType: 'systemImage',
         systemImageName: 'chevron.up',
         normalColor: color[theme]['按键前景颜色'],
         highlightColor: color[theme]['按键前景颜色'],
@@ -286,7 +282,7 @@ local fontSize = import 'fontSize.libsonnet';
         center: { y: 0.53 },
       },
       verticalCandidatePageDownButtonForegroundStyle: {
-        buttonStyleType: "systemImage",
+        buttonStyleType: 'systemImage',
         systemImageName: 'chevron.down',
         normalColor: color[theme]['按键前景颜色'],
         highlightColor: color[theme]['按键前景颜色'],
@@ -298,7 +294,7 @@ local fontSize = import 'fontSize.libsonnet';
         foregroundStyle: 'verticalCandidateReturnButtonForegroundStyle',
       },
       verticalCandidateReturnButtonForegroundStyle: {
-        buttonStyleType: "text",
+        buttonStyleType: 'text',
         text: '返回',
         normalColor: color[theme]['按键前景颜色'],
         highlightColor: color[theme]['按键前景颜色'],
@@ -311,7 +307,7 @@ local fontSize = import 'fontSize.libsonnet';
       },
 
       verticalCandidateBackspaceButtonForegroundStyle: {
-        buttonStyleType: "systemImage",
+        buttonStyleType: 'systemImage',
         systemImageName: 'delete.left',
         normalColor: color[theme]['按键前景颜色'],
         highlightColor: color[theme]['按键前景颜色'],
@@ -320,4 +316,3 @@ local fontSize = import 'fontSize.libsonnet';
       },
     },
 }
-

@@ -28,8 +28,8 @@ local custom = {  // 同字母但是不同设置的，在这里加上，会覆�
     b: { action: { symbol: '>' }, label: { text: '>' } },
     n: { action: { symbol: ',' }, label: { text: ',' } },
     m: { action: { symbol: '.' }, label: { text: '.' } },
-    spaceRight: { action: { symbol: ',' }, },
-    space: { action: { keyboardType: 'pinyin'} , },
+    spaceRight: { action: { symbol: ',' } },
+    space: { action: { keyboardType: 'pinyin' } },
   },
   swipe_down: {
     q: { action: { symbol: '!' }, label: { text: '!' } },
@@ -59,4 +59,3 @@ local custom = {  // 同字母但是不同设置的，在这里加上，会覆�
   swipe_up: swipeData.swipe_up + custom.swipe_up,
   swipe_down: swipeData.swipe_down + custom.swipe_down,
 }
-

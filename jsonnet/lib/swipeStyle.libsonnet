@@ -6,14 +6,14 @@ local fontSize = import 'fontSize.libsonnet';
 local swipe_style(center, theme, fs=null) = {
   '上划样式': {
     '文字样式': {
-      buttonStyleType: "text",
+      buttonStyleType: 'text',
       normalColor: color[theme]['划动字符颜色'],
       highlightColor: color[theme]['划动字符颜色'],
       center: center,
       fontSize: if fs == null then fontSize['上划文字大小'] else fs,
     },
     'sf符号样式': {
-      buttonStyleType: "systemImage",
+      buttonStyleType: 'systemImage',
       normalColor: color[theme]['划动字符颜色'],
       highlightColor: color[theme]['划动字符颜色'],
       center: center,
@@ -22,14 +22,14 @@ local swipe_style(center, theme, fs=null) = {
   },
   '下划样式': {
     '文字样式': {
-      buttonStyleType: "text",
+      buttonStyleType: 'text',
       normalColor: color[theme]['划动字符颜色'],
       highlightColor: color[theme]['划动字符颜色'],
       center: center,
       fontSize: if fs == null then fontSize['下划文字大小'] else fs,
     },
     'sf符号样式': {
-      buttonStyleType: "systemImage",
+      buttonStyleType: 'systemImage',
       normalColor: color[theme]['划动字符颜色'],
       highlightColor: color[theme]['划动字符颜色'],
       center: center,
@@ -37,13 +37,13 @@ local swipe_style(center, theme, fs=null) = {
     },
   },
   '上划气泡前景样式': {
-    buttonStyleType: "text",
+    buttonStyleType: 'text',
     fontSize: fontSize['划动气泡前景文字大小'],
     // center: center,
     normalColor: color[theme]['按下气泡文字颜色'],
   },
   '按下气泡样式': {
-    buttonStyleType: "text",
+    buttonStyleType: 'text',
     fontSize: fontSize['划动气泡前景文字大小'],
     // center: center,
     normalColor: color[theme]['按下气泡文字颜色'],
@@ -58,8 +58,10 @@ local display(o) = {
 
 // 上划前景
 // key: 按键名称，o: 按键数据(action label以及偏移，字体大小等)，theme: dark/light
-local ButtonUpForegroundStyles(key, o, theme, center, type) = 
-  if !std.objectHas(o, 'label') then {} else { // 当没有
+local ButtonUpForegroundStyles(key, o, theme, center, type) =
+  //划动设置里单独指定的颜色
+  local color = if std.objectHas(o, 'color') then o.color[theme] else {};
+  if !std.objectHas(o, 'label') then {} else {
     [if type == 'number' then 'number' + key + 'ButtonUpForegroundStyle' else
       key + 'ButtonUpForegroundStyle']:
       display(o) +  // text: "xxx" or systemImageName: "xxx"
@@ -68,17 +70,18 @@ local ButtonUpForegroundStyles(key, o, theme, center, type) =
           if std.objectHas(o, 'center') then o.center else center['上划文字偏移'],
           theme,
           if std.objectHas(o, 'fontSize') then o.fontSize else null
-        )['上划样式']['文字样式']
+        )['上划样式']['文字样式'] + color
       else
         swipe_style(
           if std.objectHas(o, 'center') then o.center else center['上划sf符号偏移'],
           theme,
           if std.objectHas(o, 'fontSize') then o.fontSize else null
-        )['上划样式']['sf符号样式']
+        )['上划样式']['sf符号样式'] + color,
   };
 
 // 下划前景
-local ButtonDownForegroundStyles(key, o, theme, center, type) = 
+local ButtonDownForegroundStyles(key, o, theme, center, type) =
+  local color = if std.objectHas(o, 'color') then o.color[theme] else {};
   if !std.objectHas(o, 'label') then {} else {
     [if type == 'number' then 'number' + key + 'ButtonDownForegroundStyle' else
       key + 'ButtonDownForegroundStyle']:
@@ -88,17 +91,17 @@ local ButtonDownForegroundStyles(key, o, theme, center, type) =
           if std.objectHas(o, 'center') then o.center else center['下划文字偏移'],
           theme,
           if std.objectHas(o, 'fontSize') then o.fontSize else null,
-        )['下划样式']['文字样式']
-      else 
+        )['下划样式']['文字样式'] + color
+      else
         swipe_style(
           if std.objectHas(o, 'center') then o.center else center['下划sf符号偏移'],
           theme,
           if std.objectHas(o, 'fontSize') then o.fontSize else null,
-        )['下划样式']['sf符号样式']
+        )['下划样式']['sf符号样式'] + color,
   };
 
 // 上划提示气泡
-local ButtonSwipeUpHintForegroundStyle(key, o, theme, type) = 
+local ButtonSwipeUpHintForegroundStyle(key, o, theme, type) =
   if !std.objectHas(o, 'label') then {} else {
     [if type == 'number' then 'number' + key + 'ButtonSwipeUpHintForegroundStyle' else
       key + 'ButtonSwipeUpHintForegroundStyle']:
@@ -107,7 +110,7 @@ local ButtonSwipeUpHintForegroundStyle(key, o, theme, type) =
         swipe_style(center['划动气泡文字偏移'], theme)['上划气泡前景样式']
       else
         swipe_style(center['划动气泡sf符号偏移'], theme)['上划气泡前景样式'],
-};
+  };
 
 // 按下气泡
 local ButtonHintForegroundStyle(key, o, theme, type) = {
@@ -140,22 +143,21 @@ local finalStyles(type, theme, swipe_up, swipe_down) = {
            function(acc, key) acc + ButtonSwipeUpHintForegroundStyle(key, swipe_up[key], theme, type),
            std.objectFields(swipe_up),
            {}
-         )+ 
+         ) +
          if type != 'number' then
-          std.foldl(  // 按下气泡样式，有潜在问题，暂时放着
-            function(acc, key)
-              if std.length(key) == 1 then
-                acc + ButtonHintForegroundStyle(key, swipe_up[key], theme, type)
-              else acc,
-            std.stringChars('qwertyuiopasdfghjklzxcvbnm'),
-            {}
-          )
-        else
-          {}
+           std.foldl(  // 按下气泡样式，有潜在问题，暂时放着
+             function(acc, key)
+               if std.length(key) == 1 then
+                 acc + ButtonHintForegroundStyle(key, swipe_up[key], theme, type)
+               else acc,
+             std.stringChars('qwertyuiopasdfghjklzxcvbnm'),
+             {}
+           )
+         else
+           {},
 };
 
 
 {
   getStyle(type, theme, swipe_up, swipe_down): finalStyles(type, theme, swipe_up, swipe_down).style,
 }
-

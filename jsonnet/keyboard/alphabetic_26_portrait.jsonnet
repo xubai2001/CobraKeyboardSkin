@@ -49,7 +49,7 @@ local createButton(key, size, bounds, root, isUpper=true) = {
   [if std.objectHas(root, key + 'ButtonHintSymbolsStyle') then 'hintSymbolsStyle']: key + 'ButtonHintSymbolsStyle',
   // 动画
   animation: [
-    'alphabeticBackgroundAnimation',
+    'ButtonScaleAnimation',
   ],
 };
 
@@ -585,7 +585,7 @@ local keyboard(theme, orientation, keyboardLayout) =
       false
     ) + {
       backgroundStyle: 'systemButtonBackgroundStyle',
-      action: { keyboardType: if orientation == 'portrait' then 'symbolic' else 'numeric' },
+      action: { keyboardType: 'symbolic' },
     },
 
     symbolButtonForegroundStyle: {
@@ -607,7 +607,7 @@ local keyboard(theme, orientation, keyboardLayout) =
       false
     ) + {
       backgroundStyle: 'systemButtonBackgroundStyle',
-      action: { keyboardType: 'numeric' },
+      action: { keyboardType: if orientation == 'portrait' then 'numeric' else 'symbolic' },
     },
     '123ButtonForegroundStyle': {
       buttonStyleType: 'text',
@@ -824,41 +824,6 @@ local keyboard(theme, orientation, keyboardLayout) =
       normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
       highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
     },
-
-    alphabeticBackgroundStyle: {
-      // animation: 'alphabeticBackgroundAnimation',
-      buttonStyleType: 'geometry',
-      insets: { top: 5, left: 3, bottom: 5, right: 3 },
-      normalColor: color[theme]['字母键背景颜色-普通'],
-      highlightColor: color[theme]['字母键背景颜色-高亮'],
-      cornerRadius: 7,
-      normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
-      highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
-    },
-    systemButtonBackgroundStyle: {
-      // animation: 'alphabeticBackgroundAnimation',
-      buttonStyleType: 'geometry',
-      insets: { top: 5, left: 3, bottom: 6, right: 3 },
-      normalColor: color[theme]['功能键背景颜色-普通'],
-      highlightColor: color[theme]['功能键背景颜色-高亮'],
-      cornerRadius: 7,
-      normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
-      highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
-    },
-    alphabeticBackgroundAnimation: animation['26键按键背景动画'],
-    ButtonForegroundAnimation: animation['26键按键前景动画'],
-    functionBackgroundAnimation: animation['26键功能键背景动画'],
-    alphabeticHintBackgroundStyle: {
-      buttonStyleType: 'geometry',
-      normalColor: color[theme]['气泡背景颜色'],
-      highlightColor: color[theme]['气泡高亮颜色'],
-      cornerRadius: 7,
-      shadowColor: color[theme]['长按背景阴影颜色'],
-      shadowOffset: { x: 0, y: 5 },
-    },
-    alphabeticHintSymbolsBackgroundStyle: hintSymbolsStyles['长按背景样式'],
-    alphabeticHintSymbolsSelectedStyle: hintSymbolsStyles['长按选中背景样式'],
-
     // 灰色回车通知（前景 0）
     garyReturnKeyTypeNotification: {
       notificationType: 'returnKeyType',
@@ -892,6 +857,39 @@ local keyboard(theme, orientation, keyboardLayout) =
       backgroundStyle: 'enterButtonBlueBackgroundStyle',
       foregroundStyle: 'enterButtonForegroundStyle9',
     },
+
+    alphabeticBackgroundStyle: {
+      buttonStyleType: 'geometry',
+      insets: { top: 5, left: 3, bottom: 5, right: 3 },
+      normalColor: color[theme]['字母键背景颜色-普通'],
+      highlightColor: color[theme]['字母键背景颜色-高亮'],
+      cornerRadius: 7,
+      normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
+      highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
+    },
+    systemButtonBackgroundStyle: {
+      buttonStyleType: 'geometry',
+      insets: { top: 5, left: 3, bottom: 6, right: 3 },
+      normalColor: color[theme]['功能键背景颜色-普通'],
+      highlightColor: color[theme]['功能键背景颜色-高亮'],
+      cornerRadius: 7,
+      normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
+      highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
+    },
+
+
+    alphabeticHintBackgroundStyle: {
+      buttonStyleType: 'geometry',
+      normalColor: color[theme]['气泡背景颜色'],
+      highlightColor: color[theme]['气泡高亮颜色'],
+      cornerRadius: 7,
+      shadowColor: color[theme]['长按背景阴影颜色'],
+      shadowOffset: { x: 0, y: 5 },
+    },
+    ButtonScaleAnimation: animation['26键按键动画'],
+    alphabeticHintSymbolsBackgroundStyle: hintSymbolsStyles['长按背景样式'],
+    alphabeticHintSymbolsSelectedStyle: hintSymbolsStyles['长按选中背景样式'],
+
   };
 {
   new(theme, orientation):

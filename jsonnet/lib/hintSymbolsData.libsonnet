@@ -1,10 +1,10 @@
 {
   /*
-  说明: 
+  说明:
     长按没有区分中英文，这里pinyin会作用到中英键盘上
     pinyin9为中文九键(不是九键的皮肤就不用管)的长按数据
     number为数字九键的长按数据
-    
+
   */
   pinyin: {
     q: {
@@ -98,10 +98,10 @@
     j: {
       selectedIndex: 1,
       list: [
-        { action: { openURL: '#pasteboardContent' }, label: { systemImageName: 'link' }, fontSize: 14},
-        { action: { runTranslateScript: '谷歌中英互译' }, label: { systemImageName: 'translate' }, fontSize: 14},
-        { action: { runScript: 'DeepSeek' }, label: { systemImageName: 'message.fill' }, fontSize: 14},
-        { action: { runScript: 'Unicode' }, label: { text: 'U编' }, fontSize: 14},
+        { action: { openURL: '#pasteboardContent' }, label: { systemImageName: 'link' }, fontSize: 14 },
+        { action: { runTranslateScript: '谷歌中英互译' }, label: { systemImageName: 'translate' }, fontSize: 14 },
+        { action: { runScript: 'DeepSeek' }, label: { systemImageName: 'message.fill' }, fontSize: 14 },
+        { action: { runScript: 'Unicode' }, label: { text: 'U编' }, fontSize: 14 },
       ],
     },
     h: {
@@ -128,7 +128,7 @@
     },
     '123': {
       selectedIndex: 1,
-      size: {width: 40, height: 53},
+      size: { width: 40, height: 53 },
       list: [
         { action: { symbol: '+' }, label: { text: '+' } },
         { action: { symbol: '-' }, label: { text: '-' } },
@@ -139,7 +139,7 @@
       ],
     },
     enter: {
-      size: {width: 50, height: 53},
+      size: { width: 50, height: 53 },
       selectedIndex: 0,
       list: [
         { action: { shortcut: '#换行' }, label: { text: '换行' }, fontSize: 16 },
@@ -162,7 +162,7 @@
   pinyin9: {
     number1: {
       selectedIndex: 1,
-      size: {width: 42, height: 53},
+      size: { width: 42, height: 53 },
       list: [
         { action: { symbol: '一' }, label: { text: '一' }, fontSize: 17 },
         { action: { symbol: '壹' }, label: { text: '壹' }, fontSize: 17 },
@@ -173,7 +173,7 @@
   number: {
     number1: {
       selectedIndex: 1,
-      size: {width: 42, height: 53},
+      size: { width: 42, height: 53 },
       list: [
         { action: { symbol: '一' }, label: { text: '一' }, fontSize: 17 },
         { action: { symbol: '壹' }, label: { text: '壹' }, fontSize: 17 },
@@ -182,7 +182,7 @@
     },
     number2: {
       selectedIndex: 1,
-      size: {width: 42, height: 53},
+      size: { width: 42, height: 53 },
       list: [
         { action: { symbol: '二' }, label: { text: '二' }, fontSize: 17 },
         { action: { symbol: '贰' }, label: { text: '贰' }, fontSize: 17 },
@@ -191,7 +191,7 @@
     },
     number3: {
       selectedIndex: 1,
-      size: {width: 42, height: 53},
+      size: { width: 42, height: 53 },
       list: [
         { action: { symbol: '三' }, label: { text: '三' }, fontSize: 17 },
         { action: { symbol: '叁' }, label: { text: '叁' }, fontSize: 17 },
@@ -200,7 +200,7 @@
     },
     number4: {
       selectedIndex: 1,
-      size: {width: 42, height: 53},
+      size: { width: 42, height: 53 },
       list: [
         { action: { symbol: '四' }, label: { text: '四' }, fontSize: 17 },
         { action: { symbol: '肆' }, label: { text: '肆' }, fontSize: 17 },
@@ -209,7 +209,7 @@
     },
     number5: {
       selectedIndex: 1,
-      size: {width: 42, height: 53},
+      size: { width: 42, height: 53 },
       list: [
         { action: { symbol: '五' }, label: { text: '五' }, fontSize: 17 },
         { action: { symbol: '伍' }, label: { text: '伍' }, fontSize: 17 },
@@ -218,7 +218,7 @@
     },
     number6: {
       selectedIndex: 1,
-      size: {width: 42, height: 53},
+      size: { width: 42, height: 53 },
       list: [
         { action: { symbol: '六' }, label: { text: '六' }, fontSize: 17 },
         { action: { symbol: '陆' }, label: { text: '陆' }, fontSize: 17 },
@@ -227,7 +227,7 @@
     },
     number7: {
       selectedIndex: 1,
-      size: {width: 42, height: 53},
+      size: { width: 42, height: 53 },
       list: [
         { action: { symbol: '七' }, label: { text: '七' }, fontSize: 17 },
         { action: { symbol: '柒' }, label: { text: '柒' }, fontSize: 17 },
@@ -236,7 +236,7 @@
     },
     number8: {
       selectedIndex: 1,
-      size: {width: 42, height: 53},
+      size: { width: 42, height: 53 },
       list: [
         { action: { symbol: '八' }, label: { text: '八' }, fontSize: 17 },
         { action: { symbol: '捌' }, label: { text: '捌' }, fontSize: 17 },
@@ -245,7 +245,7 @@
     },
     number9: {
       selectedIndex: 1,
-      size: {width: 42, height: 53},
+      size: { width: 42, height: 53 },
       list: [
         { action: { symbol: '九' }, label: { text: '九' }, fontSize: 17 },
         { action: { symbol: '玖' }, label: { text: '玖' }, fontSize: 17 },
@@ -254,7 +254,7 @@
     },
     number0: {
       selectedIndex: 1,
-      size: {width: 42, height: 53},
+      size: { width: 42, height: 53 },
       list: [
         { action: { symbol: '零' }, label: { text: '零' }, fontSize: 17 },
         { action: { symbol: '〇' }, label: { text: '〇' }, fontSize: 17 },
@@ -266,4 +266,3 @@
     // 其他按键同上
   },
 }
-

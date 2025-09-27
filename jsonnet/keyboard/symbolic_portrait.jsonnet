@@ -4,7 +4,19 @@ local collectionData = import '../lib/collectionData.libsonnet';
 local color = import '../lib/color.libsonnet';
 local fontSize = import '../lib/fontSize.libsonnet';
 local others = import '../lib/others.libsonnet';
-// local toolbar = import "../lib/toolbar.libsonnet";
+
+local createButton(key, size, bounds, root) = {
+  [if size != {} then 'size']: size,
+  backgroundStyle: 'systemButtonBackgroundStyle',
+  foregroundStyle: key + 'ButtonForegroundStyle',
+  action: {
+    character: key,
+  },
+  // 动画
+  animation: [
+    'ButtonScaleAnimation',
+  ],
+};
 
 local keyboard(theme) =
   {
@@ -16,12 +28,8 @@ local keyboard(theme) =
           HStack: {
             style: 'HStackStyle1',
             subviews: [
-              {
-                Cell: 'categoryCollection',
-              },
-              {
-                Cell: 'descriptionCollection',
-              },
+              { Cell: 'categoryCollection' },
+              { Cell: 'descriptionCollection' },
             ],
           },
         },
@@ -29,21 +37,11 @@ local keyboard(theme) =
           HStack: {
             style: 'HStackStyle2',
             subviews: [
-              {
-                Cell: 'returnButton',
-              },
-              {
-                Cell: 'pageUpButton',
-              },
-              {
-                Cell: 'pageDownButton',
-              },
-              {
-                Cell: 'lockButton',
-              },
-              {
-                Cell: 'backspaceButton',
-              },
+              { Cell: 'returnButton' },
+              { Cell: 'pageUpButton' },
+              { Cell: 'pageDownButton' },
+              { Cell: 'lockButton' },
+              { Cell: 'backspaceButton' },
             ],
           },
         },
@@ -76,12 +74,12 @@ local keyboard(theme) =
       size: {
         width: '56/375',
       },
-      backgroundStyle: 'listBackgroundStyle',
+      backgroundStyle: 'categoryCollectionBackgroundStyle',
       type: 'classifiedSymbols',
       dataSource: 'category',
-      cellStyle: 'collectionCellStyle',
+      cellStyle: 'categoryCollectionCellStyle',
     },
-    listBackgroundStyle: {
+    categoryCollectionBackgroundStyle: {
       buttonStyleType: 'geometry',
       insets: { top: 5, left: 3, bottom: 5, right: 3 },
       normalColor: color[theme]['符号键盘左侧collection背景颜色'],
@@ -89,18 +87,18 @@ local keyboard(theme) =
       normalShadowColor: color[theme]['符号键盘左侧collection背景下边缘颜色'],
       normalLowerEdgeColor: color[theme]['符号键盘左侧collection背景下边缘颜色'],
     },
-    collectionCellStyle: {
-      backgroundStyle: 'collectionCellBackgroundStyle',
-      foregroundStyle: 'collectionCellForegroundStyle',
+    categoryCollectionCellStyle: {
+      backgroundStyle: 'categoryCollectionCellBackgroundStyle',
+      foregroundStyle: 'categoryCollectionCellForegroundStyle',
     },
-    collectionCellBackgroundStyle: {
+    categoryCollectionCellBackgroundStyle: {
       buttonStyleType: 'geometry',
       insets: { top: 7, left: 4, bottom: 7, right: 4 },
       normalColor: '00000000',
       highlightColor: color[theme]['字母键背景颜色-普通'],
       cornerRadius: 7,
     },
-    collectionCellForegroundStyle: {
+    categoryCollectionCellForegroundStyle: {
       buttonStyleType: 'text',
       normalColor: color[theme]['列表未选中字体颜色'],
       highlightColor: color[theme]['列表选中字体颜色'],
@@ -123,7 +121,7 @@ local keyboard(theme) =
       normalLowerEdgeColor: color[theme]['符号键盘右侧collection背景下边缘颜色'],
     },
     descriptionCollectionCellStyle: {
-      backgroundStyle: 'collectionCellBackgroundStyle',
+      backgroundStyle: 'categoryCollectionCellBackgroundStyle',
       foregroundStyle: 'descriptionCollectionCellForegroundStyle',
     },
     descriptionCollectionCellForegroundStyle: {
@@ -133,14 +131,12 @@ local keyboard(theme) =
       fontSize: fontSize['符号键盘右侧collection前景字体大小'],
       fontWeight: 0,
     },
-    returnButton: {
-      size: {
-        width: '56/375',
-      },
-      backgroundStyle: 'systemButtonBackgroundStyle',
-      foregroundStyle: [
-        'returnButtonForegroundStyle',
-      ],
+    returnButton: createButton(
+      'return',
+      { width: '56/375' },
+      {},
+      $
+    ) + {
       action: 'returnPrimaryKeyboard',
     },
 
@@ -152,14 +148,17 @@ local keyboard(theme) =
       fontSize: fontSize['按键前景文字大小'] - 3,
       // center: center['26键中文前景偏移'],
     },
-    pageUpButton: {
-      size: {
-        width: '87/375',
-      },
+
+    pageUpButton: createButton(
+      'pageUp',
+      { width: '87/375' },
+      {},
+      $
+    ) + {
       backgroundStyle: 'systemButtonBackgroundStyle',
-      foregroundStyle: 'pageUpButtonForegroundStyle',
       action: { shortcut: '#subCollectionPageUp' },
     },
+
     pageUpButtonForegroundStyle: {
       buttonStyleType: 'systemImage',
       systemImageName: 'chevron.up',
@@ -168,14 +167,17 @@ local keyboard(theme) =
       fontSize: fontSize['数字键盘数字前景字体大小'] - 3,
       center: { y: 0.53 },
     },
-    pageDownButton: {
-      size: {
-        width: '87/375',
-      },
+
+    pageDownButton: createButton(
+      'pageDown',
+      { width: '87/375' },
+      {},
+      $
+    ) + {
       backgroundStyle: 'systemButtonBackgroundStyle',
-      foregroundStyle: 'pageDownButtonForegroundStyle',
       action: { shortcut: '#subCollectionPageDown' },
     },
+
     pageDownButtonForegroundStyle: {
       buttonStyleType: 'systemImage',
       systemImageName: 'chevron.down',
@@ -184,11 +186,12 @@ local keyboard(theme) =
       fontSize: fontSize['数字键盘数字前景字体大小'] - 3,
       center: { y: 0.53 },
     },
-    lockButton: {
-      size: {
-        width: '87/375',
-      },
-      backgroundStyle: 'systemButtonBackgroundStyle',
+    lockButton: createButton(
+      'lock',
+      { width: '87/375' },
+      {},
+      $
+    ) + {
       foregroundStyle: [
         {
           styleName: 'unlockButtonForegroundStyle',
@@ -202,7 +205,6 @@ local keyboard(theme) =
         },
       ],
       action: 'symbolicKeyboardLockStateToggle',
-      notification: 'symbolicKeyboardLockStateNotification',
     },
 
     lockButtonForegroundStyle: {
@@ -221,14 +223,12 @@ local keyboard(theme) =
       fontSize: fontSize['按键前景sf符号大小'],
       targetScale: 0.6,
     },
-    backspaceButton: {
-      size: {
-        width: '60/375',
-      },
-      backgroundStyle: 'systemButtonBackgroundStyle',
-      foregroundStyle: [
-        'backspaceButtonForegroundStyle',
-      ],
+    backspaceButton: createButton(
+      'backspace',
+      { width: '60/375' },
+      {},
+      $
+    ) + {
       action: 'backspace',
       repeatAction: 'backspace',
     },
@@ -250,17 +250,16 @@ local keyboard(theme) =
       normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
       highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
     },
-    alphabeticBackgroundAnimation: animation['26键按键背景动画'],
-    functionBackgroundAnimation: animation['26键功能键背景动画'],
-    ButtonForegroundAnimation: animation['26键按键前景动画'],
+
+    ButtonScaleAnimation: animation['26键按键动画'],
     dataSource: collectionData.symbolicDataSource,
 
-    symbolicKeyboardLockStateNotification: {
-      notificationType: 'symbolicKeyboardLockedState',
-      lockedState: true,
-      backgroundStyle: 'systemButtonBackgroundStyle',
-      foregroundStyle: 'lockButtonForegroundStyle',
-    },
+    // symbolicKeyboardLockStateNotification: {
+    //   notificationType: 'symbolicKeyboardLockedState',
+    //   lockedState: true,
+    //   backgroundStyle: 'systemButtonBackgroundStyle',
+    //   foregroundStyle: 'lockButtonForegroundStyle',
+    // },
   };
 {
   new(theme):

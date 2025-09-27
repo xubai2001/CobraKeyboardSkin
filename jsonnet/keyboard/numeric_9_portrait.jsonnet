@@ -33,6 +33,9 @@ local createButton(key, size, bounds, root) = {
   [if std.objectHas(swipe_up, key) then 'swipeUpAction']: swipe_up[key].action,
   [if std.objectHas(swipe_down, key) then 'swipeDownAction']: swipe_down[key].action,
   [if std.objectHas(root, 'number' + key + 'ButtonHintSymbolsStyle') then 'hintSymbolsStyle']: 'number' + key + 'ButtonHintSymbolsStyle',
+  animation: [
+    'ButtonScaleAnimation',
+  ],
 };
 
 local keyboard(theme) =
@@ -68,12 +71,8 @@ local keyboard(theme) =
         VStack: {
           style: 'VStackStyle1',
           subviews: [
-            {
-              Cell: 'collection',
-            },
-            {
-              Cell: 'symbolButton',
-            },
+            { Cell: 'collection' },
+            { Cell: 'symbolButton' },
           ],
         },
       },
@@ -81,18 +80,10 @@ local keyboard(theme) =
         VStack: {
           style: 'VStackStyle2',
           subviews: [
-            {
-              Cell: 'number1Button',
-            },
-            {
-              Cell: 'number4Button',
-            },
-            {
-              Cell: 'number7Button',
-            },
-            {
-              Cell: 'returnButton',
-            },
+            { Cell: 'number1Button' },
+            { Cell: 'number4Button' },
+            { Cell: 'number7Button' },
+            { Cell: 'returnButton' },
           ],
         },
       },
@@ -100,18 +91,10 @@ local keyboard(theme) =
         VStack: {
           style: 'VStackStyle2',
           subviews: [
-            {
-              Cell: 'number2Button',
-            },
-            {
-              Cell: 'number5Button',
-            },
-            {
-              Cell: 'number8Button',
-            },
-            {
-              Cell: 'number0Button',
-            },
+            { Cell: 'number2Button' },
+            { Cell: 'number5Button' },
+            { Cell: 'number8Button' },
+            { Cell: 'number0Button' },
           ],
         },
       },
@@ -119,18 +102,10 @@ local keyboard(theme) =
         VStack: {
           style: 'VStackStyle2',
           subviews: [
-            {
-              Cell: 'number3Button',
-            },
-            {
-              Cell: 'number6Button',
-            },
-            {
-              Cell: 'number9Button',
-            },
-            {
-              Cell: 'spaceButton',
-            },
+            { Cell: 'number3Button' },
+            { Cell: 'number6Button' },
+            { Cell: 'number9Button' },
+            { Cell: 'spaceButton' },
           ],
         },
       },
@@ -138,18 +113,10 @@ local keyboard(theme) =
         VStack: {
           style: 'VStackStyle1',
           subviews: [
-            {
-              Cell: 'backspaceButton',
-            },
-            {
-              Cell: 'spaceRightButton',
-            },
-            {
-              Cell: 'atButton',
-            },
-            {
-              Cell: 'enterButton',
-            },
+            { Cell: 'backspaceButton' },
+            { Cell: 'spaceRightButton' },
+            { Cell: 'atButton' },
+            { Cell: 'enterButton' },
           ],
         },
       },
@@ -187,6 +154,7 @@ local keyboard(theme) =
       type: 'symbols',
       dataSource: 'symbols',
       cellStyle: 'collectionCellStyle',
+      useRimeEngine: true,  // 符号列表经过rime处理
     },
     collectionBackgroundStyle: {
       buttonStyleType: 'geometry',
@@ -228,26 +196,6 @@ local keyboard(theme) =
       fontSize: fontSize['按键前景文字大小'] - 3,
       // center: center['26键中文前景偏移'],
     },
-    number1Button: createButton(
-      '1',
-      {},
-      {},
-      $
-    ),
-
-    number4Button: createButton(
-      '4',
-      {},
-      {},
-      $
-    ),
-
-    number7Button: createButton(
-      '7',
-      {},
-      {},
-      $
-    ),
 
     symbolButton: {
       size: {
@@ -270,16 +218,20 @@ local keyboard(theme) =
       fontSize: fontSize['按键前景文字大小'] - 3,
       // center: center['26键中文前景偏移'],
     },
-    number2Button: createButton('2', {}, {}, $),
+    // 数字键定义
+    number1Button: createButton('1', {}, {}, $),
 
+    number4Button: createButton('4', {}, {}, $),
+
+    number7Button: createButton('7', {}, {}, $),
+
+    number2Button: createButton('2', {}, {}, $),
 
     number5Button: createButton('5', {}, {}, $),
 
     number8Button: createButton('8', {}, {}, $),
 
-
     number0Button: createButton('0', {}, {}, $),
-
 
     number3Button: createButton('3', {}, {}, $),
 
@@ -391,12 +343,10 @@ local keyboard(theme) =
       normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
       highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
     },
-    alphabeticBackgroundAnimation: animation['26键按键背景动画'],
-    ButtonForegroundAnimation: animation['26键按键前景动画'],
+    ButtonScaleAnimation: animation['26键按键动画'],
     alphabeticHintSymbolsBackgroundStyle: hintSymbolsStyles['长按背景样式'],
     alphabeticHintSymbolsSelectedStyle: hintSymbolsStyles['长按选中背景样式'],
 
-    functionBackgroundAnimation: animation['26键功能键背景动画'],
     dataSource: {
       symbols: collectionData.numericSymbols,
     },
