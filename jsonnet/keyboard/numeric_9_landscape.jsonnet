@@ -41,10 +41,6 @@ local createButton(key, size, bounds, root) = {
 };
 
 local keyboard(theme) =
-  swipeStyles.getStyle('number', theme, swipe_up, swipe_down) +
-  hintSymbolsStyles.getStyle(theme, hintSymbolsData.number) +
-  toolbar.getToolBar(theme) +
-  utils.genNumberStyles(fontSize, color, theme, center) +
   {
     [if std.objectHas(others, '中文键盘方案') then 'rimeSchema']: others['中文键盘方案'],
     preeditHeight: others['横屏']['preedit高度'],
@@ -585,5 +581,9 @@ local keyboard(theme) =
 
 {
   new(theme):
-    keyboard(theme),
+    keyboard(theme) +
+    swipeStyles.getStyle('number', theme, swipe_up, swipe_down) + // 划动
+    hintSymbolsStyles.getStyle(theme, hintSymbolsData.number) +   // 长按
+    toolbar.getToolBar(theme) +                                   // 工具栏
+    utils.genNumberStyles(fontSize, color, theme, center)         // 批量生成前景
 }

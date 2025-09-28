@@ -3,10 +3,10 @@ local center = import '../lib/center.libsonnet';
 local color = import '../lib/color.libsonnet';
 local fontSize = import '../lib/fontSize.libsonnet';
 local hintSymbolsData = import '../lib/hintSymbolsData.libsonnet';
-local keyboardLayout_ = import '../lib/keyboardLayout.libsonnet';
+local keyboardLayout = import '../lib/keyboardLayout.libsonnet';
 local others = import '../lib/others.libsonnet';
 local swipeData = import '../lib/swipeData-en.libsonnet';
-local toolbar = import '../lib/toolbar.libsonnet';
+local toolbar = import '../lib/toolbar-en.libsonnet';
 local utils = import '../lib/utils.libsonnet';
 
 local hintSymbolsStyles = import '../lib/hintSymbolsStyles.libsonnet';
@@ -53,13 +53,9 @@ local createButton(key, size, bounds, root, isUpper=true) = {
   ],
 };
 
-local keyboard(theme, orientation, keyboardLayout) =
-  keyboardLayout[if orientation == 'portrait' then '竖屏英文26键' else '横屏英文26键'] +
-  swipeStyles.getStyle('en', theme, swipe_up, swipe_down) +
-  hintSymbolsStyles.getStyle(theme, hintSymbolsData.pinyin) +
-  toolbar.getToolBar(theme) +
-  utils.genAlphabeticStyles(fontSize, color, theme, center) +
+local keyboard(theme, orientation) =
   {
+    local ButtonSize = keyboardLayout.getButtonSize,
     [if std.objectHas(others, '英文键盘方案') then 'rimeSchema']: others['英文键盘方案'],
     preeditHeight: others[if orientation == 'portrait' then '竖屏' else '横屏']['preedit高度'],
     toolbarHeight: others[if orientation == 'portrait' then '竖屏' else '横屏']['toolbar高度'],
@@ -85,9 +81,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     qButton: createButton(
       'q',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -102,9 +98,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     wButton: createButton(
       'w',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -117,9 +113,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     eButton: createButton(
       'e',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -133,9 +129,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     rButton: createButton(
       'r',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -149,12 +145,12 @@ local keyboard(theme, orientation, keyboardLayout) =
     tButton: createButton(
       't',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       if orientation == 'portrait' then {}
       else
-        keyboardLayout['横屏按键尺寸']['t键size和bounds'].bounds,
+        ButtonSize['横屏按键尺寸']['t键size和bounds'].bounds,
       $
     ),
 
@@ -168,12 +164,12 @@ local keyboard(theme, orientation, keyboardLayout) =
     yButton: createButton(
       'y',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['y键size和bounds'].size,
+        ButtonSize['横屏按键尺寸']['y键size和bounds'].size,
       if orientation == 'portrait' then {}
       else
-        keyboardLayout['横屏按键尺寸']['y键size和bounds'].bounds,
+        ButtonSize['横屏按键尺寸']['y键size和bounds'].bounds,
       $
     ),
 
@@ -186,9 +182,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     uButton: createButton(
       'u',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -202,9 +198,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     iButton: createButton(
       'i',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -219,9 +215,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     oButton: createButton(
       'o',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -235,9 +231,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     pButton: createButton(
       'p',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -251,13 +247,13 @@ local keyboard(theme, orientation, keyboardLayout) =
     aButton: createButton(
       'a',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['a键size和bounds'].size
+        ButtonSize['竖屏按键尺寸']['a键size和bounds'].size
       else
-        keyboardLayout['横屏按键尺寸']['a键size和bounds'].size,
+        ButtonSize['横屏按键尺寸']['a键size和bounds'].size,
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['a键size和bounds'].bounds
+        ButtonSize['竖屏按键尺寸']['a键size和bounds'].bounds
       else
-        keyboardLayout['横屏按键尺寸']['a键size和bounds'].bounds,
+        ButtonSize['横屏按键尺寸']['a键size和bounds'].bounds,
       $
     ),
 
@@ -270,9 +266,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     sButton: createButton(
       's',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -286,9 +282,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     dButton: createButton(
       'd',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -302,9 +298,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     fButton: createButton(
       'f',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -318,9 +314,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     gButton: createButton(
       'g',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -334,9 +330,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     hButton: createButton(
       'h',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -350,9 +346,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     jButton: createButton(
       'j',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -366,9 +362,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     kButton: createButton(
       'k',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -382,13 +378,13 @@ local keyboard(theme, orientation, keyboardLayout) =
     lButton: createButton(
       'l',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['l键size和bounds'].size
+        ButtonSize['竖屏按键尺寸']['l键size和bounds'].size
       else
-        keyboardLayout['横屏按键尺寸']['l键size和bounds'].size,
+        ButtonSize['横屏按键尺寸']['l键size和bounds'].size,
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['l键size和bounds'].bounds
+        ButtonSize['竖屏按键尺寸']['l键size和bounds'].bounds
       else
-        keyboardLayout['横屏按键尺寸']['l键size和bounds'].bounds,
+        ButtonSize['横屏按键尺寸']['l键size和bounds'].bounds,
       $
     ),
 
@@ -401,9 +397,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     shiftButton: createButton(
       'shift',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['shift键size']
+        ButtonSize['竖屏按键尺寸']['shift键size']
       else
-        keyboardLayout['横屏按键尺寸']['shift键size'],
+        ButtonSize['横屏按键尺寸']['shift键size'],
       {},
       $,
       false
@@ -441,9 +437,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     zButton: createButton(
       'z',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -457,9 +453,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     xButton: createButton(
       'x',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -473,9 +469,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     cButton: createButton(
       'c',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -489,9 +485,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     vButton: createButton(
       'v',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -505,9 +501,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     bButton: createButton(
       'b',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -521,9 +517,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     nButton: createButton(
       'n',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -537,9 +533,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     mButton: createButton(
       'm',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['普通键size']
+        ButtonSize['竖屏按键尺寸']['普通键size']
       else
-        keyboardLayout['横屏按键尺寸']['普通键size'],
+        ButtonSize['横屏按键尺寸']['普通键size'],
       {},
       $
     ),
@@ -552,9 +548,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     backspaceButton: createButton(
       'backspace',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['backspace键size']
+        ButtonSize['竖屏按键尺寸']['backspace键size']
       else
-        keyboardLayout['横屏按键尺寸']['backspace键size'],
+        ButtonSize['横屏按键尺寸']['backspace键size'],
       {},
       $,
       false
@@ -577,9 +573,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     symbolButton: createButton(
       'symbol',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['symbol键size']
+        ButtonSize['竖屏按键尺寸']['symbol键size']
       else
-        keyboardLayout['横屏按键尺寸']['symbol键size'],
+        ButtonSize['横屏按键尺寸']['symbol键size'],
       {},
       $,
       false
@@ -599,9 +595,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     '123Button': createButton(
       '123',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['123键size']
+        ButtonSize['竖屏按键尺寸']['123键size']
       else
-        keyboardLayout['横屏按键尺寸']['123键size'],
+        ButtonSize['横屏按键尺寸']['123键size'],
       {},
       $,
       false
@@ -621,9 +617,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     spaceButton: createButton(
       'space',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['space键size']
+        ButtonSize['竖屏按键尺寸']['space键size']
       else
-        keyboardLayout['横屏按键尺寸']['space键size'],
+        ButtonSize['横屏按键尺寸']['space键size'],
       {},
       $,
       false
@@ -643,9 +639,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     local srBtn = createButton(
       'spaceRight',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['spaceRight键size']
+        ButtonSize['竖屏按键尺寸']['spaceRight键size']
       else
-        keyboardLayout['横屏按键尺寸']['spaceRight键size'],
+        ButtonSize['横屏按键尺寸']['spaceRight键size'],
       {},
       $,
       false
@@ -679,9 +675,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     local slBtn = createButton(
       'spaceLeft',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['spaceRight键size']
+        ButtonSize['竖屏按键尺寸']['spaceRight键size']
       else
-        keyboardLayout['横屏按键尺寸']['spaceRight键size'],
+        ButtonSize['横屏按键尺寸']['spaceRight键size'],
       {},
       $,
       false
@@ -695,9 +691,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     // "EnZhButton": createButton(
     //     "EnZh",
     //     if orientation == "portrait" then
-    //       keyboardLayout["竖屏按键尺寸"]["EnZh键size"]
+    //       ButtonSize["竖屏按键尺寸"]["EnZh键size"]
     //     else
-    //         keyboardLayout["横屏按键尺寸"]["EnZh键size"],
+    //         ButtonSize["横屏按键尺寸"]["EnZh键size"],
     //     {},
     //     $,
     //     false
@@ -716,9 +712,9 @@ local keyboard(theme, orientation, keyboardLayout) =
     enterButton: createButton(
       'enter',
       if orientation == 'portrait' then
-        keyboardLayout['竖屏按键尺寸']['enter键size']
+        ButtonSize['竖屏按键尺寸']['enter键size']
       else
-        keyboardLayout['横屏按键尺寸']['enter键size'],
+        ButtonSize['横屏按键尺寸']['enter键size'],
       {},
       $,
       false
@@ -891,7 +887,13 @@ local keyboard(theme, orientation, keyboardLayout) =
     alphabeticHintSymbolsSelectedStyle: hintSymbolsStyles['长按选中背景样式'],
 
   };
+
 {
   new(theme, orientation):
-    keyboard(theme, orientation, keyboardLayout_.getKeyboardLayout(theme)),
+    keyboard(theme, orientation) +
+    keyboardLayout.getEnLayout(theme, orientation) +    // 布局
+    swipeStyles.getStyle('cn', theme, swipe_up, swipe_down) +   // 划动
+    hintSymbolsStyles.getStyle(theme, hintSymbolsData.pinyin) + // 长按
+    toolbar.getToolBar(theme) +                                 // 工具栏
+    utils.genPinyinStyles(fontSize, color, theme, center)       // 批量生成前景
 }

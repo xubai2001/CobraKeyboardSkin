@@ -39,10 +39,6 @@ local createButton(key, size, bounds, root) = {
 };
 
 local keyboard(theme) =
-  swipeStyles.getStyle('number', theme, swipe_up, swipe_down) +
-  hintSymbolsStyles.getStyle(theme, hintSymbolsData.number) +
-  toolbar.getToolBar(theme) +
-  utils.genNumberStyles(fontSize, color, theme, center) +
   {
     [if std.objectHas(others, '中文键盘方案') then 'rimeSchema']: others['中文键盘方案'],
     preeditHeight: others['竖屏']['preedit高度'],
@@ -351,39 +347,12 @@ local keyboard(theme) =
       symbols: collectionData.numericSymbols,
     },
   };
+
 {
   new(theme):
-    keyboard(theme),
+    keyboard(theme) +
+    swipeStyles.getStyle('number', theme, swipe_up, swipe_down) +
+    hintSymbolsStyles.getStyle(theme, hintSymbolsData.number) +
+    toolbar.getToolBar(theme) +
+    utils.genNumberStyles(fontSize, color, theme, center)
 }
-
-
-// alphabeticHintSymbolsBackgroundStyle: {
-//     normalImage: {
-//       file: 'hold_back',
-//       image: 'IMG1',
-//     },
-//     targetScale: {
-//       x: 1,
-//       y: 1.1,
-//     },
-//     // "type": "original",
-//     // "normalColor": color[theme]["字母键背景颜色-普通"],
-//     // "highlightColor": color[theme]["字母键背景颜色-普通"],
-//     // "cornerRadius": 5,
-//     // "shadowColor": color[theme]["长按背景阴影颜色"],
-//     // "shadowOffset": {'x': 0, 'y': 5}
-//   },
-//   alphabeticHintSymbolsSelectedStyle: {
-//     // "type": "original",
-//     // "normalColor": color[theme]["长按选中背景颜色"],
-//     // "highlightColor": color[theme]["长按选中背景颜色"],
-//     // "cornerRadius": 5,
-//     normalImage: {
-//       file: 'hint',
-//       image: 'IMG1',
-//     },
-//     targetScale: {
-//       x: 0.8,
-//       y: 0.7,
-//     },
-//   },
