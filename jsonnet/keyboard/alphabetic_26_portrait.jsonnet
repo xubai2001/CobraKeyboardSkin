@@ -2,7 +2,7 @@ local animation = import '../lib/animation.libsonnet';
 local center = import '../lib/center.libsonnet';
 local color = import '../lib/color.libsonnet';
 local fontSize = import '../lib/fontSize.libsonnet';
-local hintSymbolsData = import '../lib/hintSymbolsData.libsonnet';
+local _hintSymbolsData = import '../lib/hintSymbolsData.libsonnet';
 local keyboardLayout = import '../lib/keyboardLayout.libsonnet';
 local others = import '../lib/others.libsonnet';
 local swipeData = import '../lib/swipeData-en.libsonnet';
@@ -10,53 +10,60 @@ local toolbar = import '../lib/toolbar-en.libsonnet';
 local utils = import '../lib/utils.libsonnet';
 
 local hintSymbolsStyles = import '../lib/hintSymbolsStyles.libsonnet';
-local swipeStyles = import '../lib/swipeStyle.libsonnet';
+local swipeStyles = import '../lib/swipeStyles2.libsonnet';
 
-// 上下和下划的数据
-local swipe_up = if std.objectHas(swipeData, 'swipe_up') then swipeData.swipe_up else {};
-local swipe_down = if std.objectHas(swipeData, 'swipe_down') then swipeData.swipe_down else {};
+// 划动以及长按数据
+local swipe_up = std.get(swipeData, 'swipe_up', {});
+local swipe_down = std.get(swipeData, 'swipe_down', {});
+local hintSymbolsData = std.get(_hintSymbolsData, 'pinyin', {});
 
-local createButton(key, size, bounds, root, isUpper=true) = {
-  size: size,
-  [if bounds != {} then 'bounds']: bounds,
-  backgroundStyle: 'alphabeticBackgroundStyle',
-  foregroundStyle: std.filter(  // 这样写避免了没有的上下划前景变成null
-    function(x) x != null,
-    [
-      key + 'ButtonForegroundStyle',
-      if std.objectHas(swipe_up, key) then key + 'ButtonUpForegroundStyle' else null,
-      if std.objectHas(swipe_down, key) then key + 'ButtonDownForegroundStyle' else null,
-    ]
-  ),
-  [if isUpper then 'uppercasedStateForegroundStyle']: std.filter(
-    function(x) x != null,
-    [
-      key + 'ButtonUppercasedStateForegroundStyle',
-      if std.objectHas(swipe_up, key) then key + 'ButtonUpForegroundStyle' else null,
-      if std.objectHas(swipe_down, key) then key + 'ButtonDownForegroundStyle' else null,
-    ]
-  ),
-  [if isUpper then 'capsLockedStateForegroundStyle']: self.uppercasedStateForegroundStyle,  // 同uppercaseStateForegroundStyle
-  hintStyle: key + 'ButtonHintStyle',
-  action: {
-    [if std.objectHas(others, '英文键盘方案') then 'character' else 'symbol']: key,
-  },
-  [if std.length(key) == 1 then 'uppercasedStateAction']: {
-    [if std.objectHas(others, '英文键盘方案') then 'character' else 'symbol']: std.asciiUpper(key),
-  },
-  [if std.objectHas(swipe_up, key) then 'swipeUpAction']: swipe_up[key].action,
-  [if std.objectHas(swipe_down, key) then 'swipeDownAction']: swipe_down[key].action,
-  [if std.objectHas(root, key + 'ButtonHintSymbolsStyle') then 'hintSymbolsStyle']: key + 'ButtonHintSymbolsStyle',
-  // 动画
-  animation: [
-    'ButtonScaleAnimation',
-  ],
-};
+local isBindSchema = std.objectHas(others, '英文键盘方案');
+
+local createButton(params={}) =
+  local isLetter = std.get(params, 'isLetter', true);
+  std.prune({
+    size: std.get(params, 'size'),
+    bounds: std.get(params, 'bounds'),
+    backgroundStyle: if isLetter then 'alphabeticBackgroundStyle' else std.get(params, 'backgroundStyle', 'systemButtonBackgroundStyle'),
+    foregroundStyle:
+      if isLetter then
+        std.prune([
+          params.key + 'ButtonForegroundStyle',
+          if std.objectHas(swipe_up, params.key) then params.key + 'ButtonUpForegroundStyle' else null,
+          if std.objectHas(swipe_down, params.key) then params.key + 'ButtonDownForegroundStyle' else null,
+        ])
+      else
+        std.get(params, 'foregroundStyle', params.key + 'ButtonForegroundStyle'),
+
+    [if isLetter then 'uppercasedStateForegroundStyle']: std.prune([
+      params.key + 'ButtonUppercasedStateForegroundStyle',
+      if std.objectHas(swipe_up, params.key) then params.key + 'ButtonUpForegroundStyle' else null,
+      if std.objectHas(swipe_down, params.key) then params.key + 'ButtonDownForegroundStyle' else null,
+    ]),
+    [if isLetter then 'capsLockedStateForegroundStyle']: self.uppercasedStateForegroundStyle,  // 同uppercaseStateForegroundStyle
+    hintStyle: params.key + 'ButtonHintStyle',
+    action: std.get(params, 'action', { [if isBindSchema then 'character' else 'symbol']: params.key }),
+    [if isLetter then 'uppercasedStateAction']: {
+      [if isBindSchema then 'character' else 'symbol']: std.asciiUpper(params.key),
+    },
+    repeatAction: std.get(params, 'repeatAction'),
+    [if std.objectHas(swipe_up, params.key) then 'swipeUpAction']: swipe_up[params.key].action,
+    [if std.objectHas(swipe_down, params.key) then 'swipeDownAction']: swipe_down[params.key].action,
+    [if std.objectHas(hintSymbolsData, params.key) then 'hintSymbolsStyle']: params.key + 'ButtonHintSymbolsStyle',
+
+    // 动画
+    animation: [
+      'ButtonScaleAnimation',
+      // 'CartoonAniamtion',
+    ],
+  });
+
 
 local keyboard(theme, orientation) =
   {
-    local ButtonSize = keyboardLayout.getButtonSize,
-    [if std.objectHas(others, '英文键盘方案') then 'rimeSchema']: others['英文键盘方案'],
+    local ButtonSize = keyboardLayout.getButtonSize(theme, orientation),
+
+    [if isBindSchema then 'rimeSchema']: others['英文键盘方案'],
     preeditHeight: others[if orientation == 'portrait' then '竖屏' else '横屏']['preedit高度'],
     toolbarHeight: others[if orientation == 'portrait' then '竖屏' else '横屏']['toolbar高度'],
     keyboardHeight: others[if orientation == 'portrait' then '竖屏' else '横屏']['keyboard高度'],
@@ -79,13 +86,10 @@ local keyboard(theme, orientation) =
     },
 
     qButton: createButton(
-      'q',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'q',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
 
@@ -96,13 +100,10 @@ local keyboard(theme, orientation) =
     },
 
     wButton: createButton(
-      'w',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'w',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     wButtonHintStyle: {
@@ -111,13 +112,10 @@ local keyboard(theme, orientation) =
       swipeUpForegroundStyle: 'wButtonSwipeUpHintForegroundStyle',
     },
     eButton: createButton(
-      'e',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'e',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     eButtonHintStyle: {
@@ -127,13 +125,10 @@ local keyboard(theme, orientation) =
     },
 
     rButton: createButton(
-      'r',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'r',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     rButtonHintStyle: {
@@ -143,15 +138,11 @@ local keyboard(theme, orientation) =
     },
 
     tButton: createButton(
-      't',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      if orientation == 'portrait' then {}
-      else
-        ButtonSize['横屏按键尺寸']['t键size和bounds'].bounds,
-      $
+      params={
+        key: 't',
+        size: std.get(ButtonSize, '普通键size'),
+        bounds: std.get(ButtonSize, 't键bounds'),
+      }
     ),
 
 
@@ -162,15 +153,11 @@ local keyboard(theme, orientation) =
     },
 
     yButton: createButton(
-      'y',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['y键size和bounds'].size,
-      if orientation == 'portrait' then {}
-      else
-        ButtonSize['横屏按键尺寸']['y键size和bounds'].bounds,
-      $
+      params={
+        key: 'y',
+        size: std.get(ButtonSize, '普通键size'),
+        bounds: std.get(ButtonSize, 'y键bounds'),
+      }
     ),
 
     yButtonHintStyle: {
@@ -180,13 +167,10 @@ local keyboard(theme, orientation) =
     },
 
     uButton: createButton(
-      'u',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'u',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     uButtonHintStyle: {
@@ -196,13 +180,10 @@ local keyboard(theme, orientation) =
     },
 
     iButton: createButton(
-      'i',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'i',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     iButtonHintStyle: {
@@ -213,13 +194,10 @@ local keyboard(theme, orientation) =
 
 
     oButton: createButton(
-      'o',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'o',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     oButtonHintStyle: {
@@ -229,13 +207,10 @@ local keyboard(theme, orientation) =
     },
 
     pButton: createButton(
-      'p',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'p',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     pButtonHintStyle: {
@@ -245,16 +220,11 @@ local keyboard(theme, orientation) =
     },
 
     aButton: createButton(
-      'a',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['a键size和bounds'].size
-      else
-        ButtonSize['横屏按键尺寸']['a键size和bounds'].size,
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['a键size和bounds'].bounds
-      else
-        ButtonSize['横屏按键尺寸']['a键size和bounds'].bounds,
-      $
+      params={
+        key: 'a',
+        size: std.get(ButtonSize, 'a键size'),
+        bounds: std.get(ButtonSize, 'a键bounds'),
+      }
     ),
 
     aButtonHintStyle: {
@@ -264,15 +234,11 @@ local keyboard(theme, orientation) =
     },
 
     sButton: createButton(
-      's',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 's',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
-
 
     sButtonHintStyle: {
       backgroundStyle: 'alphabeticHintBackgroundStyle',
@@ -280,13 +246,10 @@ local keyboard(theme, orientation) =
       swipeUpForegroundStyle: 'sButtonSwipeUpHintForegroundStyle',
     },
     dButton: createButton(
-      'd',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'd',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     dButtonHintStyle: {
@@ -296,13 +259,10 @@ local keyboard(theme, orientation) =
     },
 
     fButton: createButton(
-      'f',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'f',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     fButtonHintStyle: {
@@ -312,13 +272,10 @@ local keyboard(theme, orientation) =
     },
 
     gButton: createButton(
-      'g',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'g',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     gButtonHintStyle: {
@@ -328,13 +285,10 @@ local keyboard(theme, orientation) =
     },
 
     hButton: createButton(
-      'h',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'h',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     hButtonHintStyle: {
@@ -344,13 +298,10 @@ local keyboard(theme, orientation) =
     },
 
     jButton: createButton(
-      'j',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'j',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     jButtonHintStyle: {
@@ -360,13 +311,10 @@ local keyboard(theme, orientation) =
     },
 
     kButton: createButton(
-      'k',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'k',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     kButtonHintStyle: {
@@ -376,16 +324,11 @@ local keyboard(theme, orientation) =
     },
 
     lButton: createButton(
-      'l',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['l键size和bounds'].size
-      else
-        ButtonSize['横屏按键尺寸']['l键size和bounds'].size,
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['l键size和bounds'].bounds
-      else
-        ButtonSize['横屏按键尺寸']['l键size和bounds'].bounds,
-      $
+      params={
+        key: 'l',
+        size: std.get(ButtonSize, 'l键size'),
+        bounds: std.get(ButtonSize, 'l键bounds'),
+      }
     ),
 
     lButtonHintStyle: {
@@ -395,53 +338,51 @@ local keyboard(theme, orientation) =
     },
 
     shiftButton: createButton(
-      'shift',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['shift键size']
-      else
-        ButtonSize['横屏按键尺寸']['shift键size'],
-      {},
-      $,
-      false
+      params={
+        key: 'shift',
+        action: 'shift',
+        size: std.get(ButtonSize, 'shift键size'),
+        isLetter: false,
+      },
     ) + {
-      backgroundStyle: 'systemButtonBackgroundStyle',
-      action: 'shift',
       uppercasedStateAction: 'shift',
       capsLockedStateForegroundStyle: 'shiftButtonCapsLockedForegroundStyle',
       uppercasedStateForegroundStyle: 'shiftButtonUppercasedForegroundStyle',
     },
-    shiftButtonForegroundStyle: {
-      buttonStyleType: 'systemImage',
-      systemImageName: 'shift',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['按键前景文字大小'],
-      center: { y: 0.53 },
-    },
-    shiftButtonUppercasedForegroundStyle: {
-      buttonStyleType: 'systemImage',
-      systemImageName: 'shift.fill',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['按键前景文字大小'],
-      center: { y: 0.53 },
-    },
-    shiftButtonCapsLockedForegroundStyle: {
-      buttonStyleType: 'systemImage',
-      systemImageName: 'capslock.fill',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['按键前景文字大小'],
-      center: { y: 0.53 },
-    },
+
+    shiftButtonForegroundStyle: utils.makeSystemImageStyle(
+      params={
+        systemImageName: 'shift',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['按键前景文字大小'],
+        // center: { y: 0.53 },
+      }
+    ),
+    shiftButtonUppercasedForegroundStyle: utils.makeSystemImageStyle(
+      params={
+        systemImageName: 'shift.fill',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['按键前景文字大小'],
+        // center: { y: 0.53 },
+      }
+    ),
+    shiftButtonCapsLockedForegroundStyle: utils.makeSystemImageStyle(
+      params={
+        systemImageName: 'capslock.fill',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['按键前景文字大小'],
+        // center: { y: 0.53 },
+      }
+    ),
+
     zButton: createButton(
-      'z',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'z',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     zButtonHintStyle: {
@@ -451,13 +392,10 @@ local keyboard(theme, orientation) =
     },
 
     xButton: createButton(
-      'x',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'x',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     xButtonHintStyle: {
@@ -467,13 +405,10 @@ local keyboard(theme, orientation) =
     },
 
     cButton: createButton(
-      'c',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'c',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     cButtonHintStyle: {
@@ -483,13 +418,10 @@ local keyboard(theme, orientation) =
     },
 
     vButton: createButton(
-      'v',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'v',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     vButtonHintStyle: {
@@ -499,13 +431,10 @@ local keyboard(theme, orientation) =
     },
 
     bButton: createButton(
-      'b',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'b',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     bButtonHintStyle: {
@@ -515,13 +444,10 @@ local keyboard(theme, orientation) =
     },
 
     nButton: createButton(
-      'n',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'n',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     nButtonHintStyle: {
@@ -531,13 +457,10 @@ local keyboard(theme, orientation) =
     },
 
     mButton: createButton(
-      'm',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['普通键size']
-      else
-        ButtonSize['横屏按键尺寸']['普通键size'],
-      {},
-      $
+      params={
+        key: 'm',
+        size: std.get(ButtonSize, '普通键size'),
+      }
     ),
 
     mButtonHintStyle: {
@@ -546,178 +469,122 @@ local keyboard(theme, orientation) =
       swipeUpForegroundStyle: 'mButtonSwipeUpHintForegroundStyle',
     },
     backspaceButton: createButton(
-      'backspace',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['backspace键size']
-      else
-        ButtonSize['横屏按键尺寸']['backspace键size'],
-      {},
-      $,
-      false
-    ) + {
-      backgroundStyle: 'systemButtonBackgroundStyle',
-      action: 'backspace',
-      repeatAction: 'backspace',
-    },
+      params={
+        key: 'backspace',
+        size: ButtonSize['backspace键size'],
+        action: 'backspace',
+        repeatAction: 'backspace',
+        isLetter: false,
+      }
+    ),
 
-    backspaceButtonForegroundStyle: {
-      buttonStyleType: 'systemImage',
-      systemImageName: 'delete.left',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['按键前景文字大小'],
-      targetScale: 0.7,
-      center: { y: 0.53 },
-    },
-
+    backspaceButtonForegroundStyle: utils.makeSystemImageStyle(
+      params={
+        systemImageName: 'delete.left',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['按键前景文字大小'],
+        targetScale: 0.7,
+        // center: { y: 0.53 },
+      }
+    ),
     symbolButton: createButton(
-      'symbol',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['symbol键size']
-      else
-        ButtonSize['横屏按键尺寸']['symbol键size'],
-      {},
-      $,
-      false
-    ) + {
-      backgroundStyle: 'systemButtonBackgroundStyle',
-      action: { keyboardType: 'symbolic' },
-    },
+      params={
+        key: 'symbol',
+        size: ButtonSize['symbol键size'],
+        action: { keyboardType: 'symbolic' },
+        isLetter: false,
+      }
+    ),
 
-    symbolButtonForegroundStyle: {
-      buttonStyleType: 'text',
-      text: '#+=',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['按键前景文字大小'] - 3,
-      center: center['功能键前景文字偏移'] { y: 0.5 },
-    },
+    symbolButtonForegroundStyle: utils.makeTextStyle(
+      params={
+        text: '#+=',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['按键前景文字大小'] - 3,
+        center: center['功能键前景文字偏移'] { y: 0.5 },
+      }
+    ),
+
     '123Button': createButton(
-      '123',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['123键size']
-      else
-        ButtonSize['横屏按键尺寸']['123键size'],
-      {},
-      $,
-      false
-    ) + {
-      backgroundStyle: 'systemButtonBackgroundStyle',
-      action: { keyboardType: if orientation == 'portrait' then 'numeric' else 'symbolic' },
-    },
-    '123ButtonForegroundStyle': {
-      buttonStyleType: 'text',
-      text: '123',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['按键前景文字大小'] - 3,
-      center: center['功能键前景文字偏移'] { y: 0.5 },
+      params={
+        key: '123',
+        size: ButtonSize['123键size'],
+        action: { keyboardType: if orientation == 'portrait' then 'numeric' else 'symbolic' },
+        isLetter: false,
+      }
+    ),
 
-    },
+    '123ButtonForegroundStyle': utils.makeTextStyle(
+      params={
+        text: '123',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['按键前景文字大小'] - 3,
+        center: center['功能键前景文字偏移'] { y: 0.5 },
+      }
+    ),
+
     spaceButton: createButton(
-      'space',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['space键size']
-      else
-        ButtonSize['横屏按键尺寸']['space键size'],
-      {},
-      $,
-      false
-    ) + {
-      backgroundStyle: 'alphabeticBackgroundStyle',
-      action: 'space',
-    },
-
-    spaceButtonForegroundStyle: {
-      buttonStyleType: 'text',
-      text: '空格',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['按键前景文字大小'] - 3,
-      center: center['功能键前景文字偏移'],
-    },
-    local srBtn = createButton(
-      'spaceRight',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['spaceRight键size']
-      else
-        ButtonSize['横屏按键尺寸']['spaceRight键size'],
-      {},
-      $,
-      false
+      params={
+        key: 'space',
+        size: ButtonSize['space键size'],
+        backgroundStyle: 'alphabeticBackgroundStyle',
+        action: 'space',
+        isLetter: false,
+      }
     ),
-    spaceRightButton: srBtn {
-      foregroundStyle: [
-        'spaceRightButtonForegroundStyle',
-        'spaceRightButtonForegroundStyle2',
-      ],
-      action: {
-        symbol: '.',
-      },
-    },
 
-    spaceRightButtonForegroundStyle: {
-      buttonStyleType: 'text',
-      text: ',',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['按键前景文字大小'],
-      center: { x: 0.5, y: 0.34 },
-    },
-    spaceRightButtonForegroundStyle2: {
-      buttonStyleType: 'text',
-      text: '.',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['按键前景文字大小'],
-      center: { x: 0.5, y: 0.54 },
-    },
-    local slBtn = createButton(
-      'spaceLeft',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['spaceRight键size']
-      else
-        ButtonSize['横屏按键尺寸']['spaceRight键size'],
-      {},
-      $,
-      false
+    spaceButtonForegroundStyle: utils.makeTextStyle(
+      params={
+        text: '空格',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['按键前景文字大小'] - 3,
+        center: center['功能键前景文字偏移'],
+      }
     ),
-    spaceLeftButton: slBtn {
-      foregroundStyle: 'spaceLeftButtonForegroundStyle',
-      action: {
-        symbol: '@',
-      },
-    },
-    // "EnZhButton": createButton(
-    //     "EnZh",
-    //     if orientation == "portrait" then
-    //       ButtonSize["竖屏按键尺寸"]["EnZh键size"]
-    //     else
-    //         ButtonSize["横屏按键尺寸"]["EnZh键size"],
-    //     {},
-    //     $,
-    //     false
-    //   ) + {
-    //       "backgroundStyle": "systemButtonBackgroundStyle",
-    //       "action": {
-    //         "keyboardType": "pinyin"
-    //       },
-    //     },
-    // "EnZhButtonForegroundStyle": {
-    //   "assetImageName": "englishState2",
-    //   "normalColor": color[theme]["按键前景颜色"],
-    //   "highlightColor": color[theme]["按键前景颜色"],
-    //   // "fontSize": fontSize["按键前景文字大小"]-3,
-    // },
+    spaceRightButton: createButton(
+      params={
+        key: 'spaceRight',
+        size: ButtonSize['spaceRight键size'],
+        action: { symbol: '.' },
+        backgroundStyle: 'alphabeticBackgroundStyle',
+        foregroundStyle: [
+          'spaceRightButtonForegroundStyle',
+          'spaceRightButtonForegroundStyle2',
+        ],
+        isLetter: false,
+      }
+    ),
+
+    spaceRightButtonForegroundStyle: utils.makeTextStyle(
+      params={
+        text: ',',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['按键前景文字大小'],
+        center: { x: 0.5, y: 0.34 },
+      }
+    ),
+    spaceRightButtonForegroundStyle2: utils.makeTextStyle(
+      params={
+        text: '.',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['按键前景文字大小'],
+        center: { x: 0.5, y: 0.54 },
+      }
+    ),
+
     enterButton: createButton(
-      'enter',
-      if orientation == 'portrait' then
-        ButtonSize['竖屏按键尺寸']['enter键size']
-      else
-        ButtonSize['横屏按键尺寸']['enter键size'],
-      {},
-      $,
-      false
+      params={
+        key: 'enter',
+        size: ButtonSize['enter键size'],
+        action: 'enter',
+        isLetter: false,
+      }
     ) + {
       backgroundStyle: [
         {
@@ -770,56 +637,66 @@ local keyboard(theme, orientation) =
       ],
     },
 
-    enterButtonForegroundStyle0: {
-      buttonStyleType: 'text',
-      text: '回车',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['按键前景文字大小'] - 3,
-      center: center['功能键前景文字偏移'],
-    },
-    enterButtonForegroundStyle6: {
-      buttonStyleType: 'text',
-      text: '搜索',
-      normalColor: color[theme]['长按选中字体颜色'],
-      highlightColor: color[theme]['长按非选中字体颜色'],
-      fontSize: fontSize['按键前景文字大小'] - 3,
-      center: center['功能键前景文字偏移'],
-    },
-    // 白色文字
-    enterButtonForegroundStyle7: {
-      buttonStyleType: 'text',
-      text: '发送',
-      normalColor: color[theme]['长按选中字体颜色'],
-      highlightColor: color[theme]['长按非选中字体颜色'],
-      fontSize: fontSize['按键前景文字大小'] - 3,
-      center: center['功能键前景文字偏移'],
-    },
-    enterButtonForegroundStyle14: {
-      buttonStyleType: 'text',
-      text: '前往',
-      normalColor: color[theme]['长按选中字体颜色'],
-      highlightColor: color[theme]['长按非选中字体颜色'],
-      fontSize: fontSize['按键前景文字大小'] - 3,
-      center: center['功能键前景文字偏移'],
-    },
-    enterButtonForegroundStyle9: {
-      buttonStyleType: 'text',
-      text: '完成',
-      normalColor: color[theme]['长按选中字体颜色'],
-      highlightColor: color[theme]['长按非选中字体颜色'],
-      fontSize: fontSize['按键前景文字大小'] - 3,
-      center: center['功能键前景文字偏移'],
-    },
-    enterButtonBlueBackgroundStyle: {
-      buttonStyleType: 'geometry',
-      insets: { top: 5, left: 3, bottom: 5, right: 3 },
-      normalColor: color[theme]['enter键背景(蓝色)'],
-      highlightColor: color[theme]['功能键背景颜色-高亮'],
-      cornerRadius: 7,
-      normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
-      highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
-    },
+    enterButtonForegroundStyle0: utils.makeTextStyle(
+      params={
+        text: '回车',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['按键前景文字大小'] - 3,
+        center: center['功能键前景文字偏移'],
+      }
+    ),
+    enterButtonForegroundStyle6: utils.makeTextStyle(
+      params={
+        text: '搜索',
+        normalColor: color[theme]['长按选中字体颜色'],
+        highlightColor: color[theme]['长按非选中字体颜色'],
+        fontSize: fontSize['按键前景文字大小'] - 3,
+        center: center['功能键前景文字偏移'],
+      }
+    ),
+
+    enterButtonForegroundStyle7: utils.makeTextStyle(
+      params={
+        text: '发送',
+        normalColor: color[theme]['长按选中字体颜色'],
+        highlightColor: color[theme]['长按非选中字体颜色'],
+        fontSize: fontSize['按键前景文字大小'] - 3,
+        center: center['功能键前景文字偏移'],
+      }
+    ),
+
+    enterButtonForegroundStyle14: utils.makeTextStyle(
+      params={
+        text: '前往',
+        normalColor: color[theme]['长按选中字体颜色'],
+        highlightColor: color[theme]['长按非选中字体颜色'],
+        fontSize: fontSize['按键前景文字大小'] - 3,
+        center: center['功能键前景文字偏移'],
+      }
+    ),
+
+    enterButtonForegroundStyle9: utils.makeTextStyle(
+      params={
+        text: '完成',
+        normalColor: color[theme]['长按选中字体颜色'],
+        highlightColor: color[theme]['长按非选中字体颜色'],
+        fontSize: fontSize['按键前景文字大小'] - 3,
+        center: center['功能键前景文字偏移'],
+      }
+    ),
+
+    enterButtonBlueBackgroundStyle: utils.makeGeometryStyle(
+      params={
+        buttonStyleType: 'geometry',
+        insets: { top: 5, left: 3, bottom: 5, right: 3 },
+        normalColor: color[theme]['enter键背景(蓝色)'],
+        highlightColor: color[theme]['功能键背景颜色-高亮'],
+        cornerRadius: 7,
+        normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
+        highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
+      }
+    ),
     // 灰色回车通知（前景 0）
     garyReturnKeyTypeNotification: {
       notificationType: 'returnKeyType',
@@ -854,34 +731,36 @@ local keyboard(theme, orientation) =
       foregroundStyle: 'enterButtonForegroundStyle9',
     },
 
-    alphabeticBackgroundStyle: {
-      buttonStyleType: 'geometry',
-      insets: { top: 5, left: 3, bottom: 5, right: 3 },
-      normalColor: color[theme]['字母键背景颜色-普通'],
-      highlightColor: color[theme]['字母键背景颜色-高亮'],
-      cornerRadius: 7,
-      normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
-      highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
-    },
-    systemButtonBackgroundStyle: {
-      buttonStyleType: 'geometry',
-      insets: { top: 5, left: 3, bottom: 6, right: 3 },
-      normalColor: color[theme]['功能键背景颜色-普通'],
-      highlightColor: color[theme]['功能键背景颜色-高亮'],
-      cornerRadius: 7,
-      normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
-      highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
-    },
+    alphabeticBackgroundStyle: utils.makeGeometryStyle(
+      params={
+        insets: { top: 5, left: 3, bottom: 5, right: 3 },
+        normalColor: color[theme]['字母键背景颜色-普通'],
+        highlightColor: color[theme]['字母键背景颜色-高亮'],
+        cornerRadius: 7,
+        normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
+        highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
+      }
+    ),
 
-
-    alphabeticHintBackgroundStyle: {
-      buttonStyleType: 'geometry',
-      normalColor: color[theme]['气泡背景颜色'],
-      highlightColor: color[theme]['气泡高亮颜色'],
-      cornerRadius: 7,
-      shadowColor: color[theme]['长按背景阴影颜色'],
-      shadowOffset: { x: 0, y: 5 },
-    },
+    systemButtonBackgroundStyle: utils.makeGeometryStyle(
+      params={
+        insets: { top: 5, left: 3, bottom: 6, right: 3 },
+        normalColor: color[theme]['功能键背景颜色-普通'],
+        highlightColor: color[theme]['功能键背景颜色-高亮'],
+        cornerRadius: 7,
+        normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
+        highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
+      }
+    ),
+    alphabeticHintBackgroundStyle: utils.makeGeometryStyle(
+      params={
+        normalColor: color[theme]['气泡背景颜色'],
+        highlightColor: color[theme]['气泡高亮颜色'],
+        cornerRadius: 7,
+        shadowColor: color[theme]['长按背景阴影颜色'],
+        shadowOffset: { x: 0, y: 5 },
+      }
+    ),
     ButtonScaleAnimation: animation['26键按键动画'],
     alphabeticHintSymbolsBackgroundStyle: hintSymbolsStyles['长按背景样式'],
     alphabeticHintSymbolsSelectedStyle: hintSymbolsStyles['长按选中背景样式'],
@@ -891,9 +770,14 @@ local keyboard(theme, orientation) =
 {
   new(theme, orientation):
     keyboard(theme, orientation) +
-    keyboardLayout.getEnLayout(theme, orientation) +    // 布局
-    swipeStyles.getStyle('cn', theme, swipe_up, swipe_down) +   // 划动
-    hintSymbolsStyles.getStyle(theme, hintSymbolsData.pinyin) + // 长按
-    toolbar.getToolBar(theme) +                                 // 工具栏
-    utils.genPinyinStyles(fontSize, color, theme, center)       // 批量生成前景
+    keyboardLayout.getEnLayout(theme, orientation) +  // 布局
+    swipeStyles.makeSwipeStyles(theme, {
+      swipe_up: swipe_up,
+      swipe_down: swipe_down,
+      type: 'pinyin',
+    }) +
+    hintSymbolsStyles.getStyle(theme, hintSymbolsData) +  // 长按
+    toolbar.getToolBar(theme) +  // 工具栏
+    utils.genAlphabeticStyles(theme) +  // 批量生成前景
+    utils.genHintStyles(theme),
 }

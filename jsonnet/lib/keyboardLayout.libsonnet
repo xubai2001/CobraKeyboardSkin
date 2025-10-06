@@ -434,27 +434,29 @@ local keyboarLayout(theme="light") = {
         percentage: 0.1,
       },
     },
-    'a键size和bounds': {
-      size: {
-        width: {
-          percentage: 0.15,
-        },
-      },
-      bounds: {
-        width: '2/3',
-        alignment: 'right',
+    't键size': {
+      width: '200/784',
+    },
+    'y键size': {
+      width: '200/784',
+    },
+    'a键size': {
+      width: {
+        percentage: 0.15,
       },
     },
-    'l键size和bounds': {
-      size: {
-        width: {
-          percentage: 0.15,
-        },
+    'a键bounds': {
+      width: '2/3',
+      alignment: 'right',
+    },
+    'l键size': {
+      width: {
+        percentage: 0.15,
       },
-      bounds: {
-        width: '2/3',
-        alignment: 'left',
-      },
+    },
+    'l键bounds': {
+      width: '2/3',
+      alignment: 'left',
     },
     'shift键size': {
       width: {
@@ -486,11 +488,6 @@ local keyboarLayout(theme="light") = {
         percentage: 0.1,
       },
     },
-    // "EnZh键size": {
-    //   "width": {
-    //     "percentage": 0.1
-    //   }
-    // },
     'enter键size': {
       width: {
         percentage: 0.2,
@@ -502,41 +499,33 @@ local keyboarLayout(theme="light") = {
     '普通键size': {
       width: '146/784',
     },
-    't键size和bounds': {
-      size: {
-        width: '200/784',
-      },
-      bounds: {
-        width: '146/200',
-        alignment: 'left',
-      },
+    't键size': {
+      width: '200/784',
     },
-    'y键size和bounds': {
-      size: {
-        width: '200/784',
-      },
-      bounds: {
-        width: '146/200',
-        alignment: 'right',
-      },
+    't键bounds': {
+      width: '146/200',
+      alignment: 'left',
     },
-    'a键size和bounds': {
-      size: {
-        width: '200/784',
-      },
-      bounds: {
-        width: '146/200',
-        alignment: 'right',
-      },
+    'y键size': {
+      width: '200/784',
     },
-    'l键size和bounds': {
-      size: {
-        width: '200/784',
-      },
-      bounds: {
-        width: '146/200',
-        alignment: 'left',
-      },
+    'y键bounds': {
+      width: '146/200',
+      alignment: 'right',
+    },
+    'a键size': {
+      width: '200/784',
+    },
+    'a键bounds': {
+      width: '146/200',
+      alignment: 'right',
+    },
+    'l键size': {
+      width: '200/784',
+    },
+    'l键bounds': {
+      width: '146/200',
+      alignment: 'left',
     },
     'shift键size': {
       width: '200/784',
@@ -556,9 +545,6 @@ local keyboarLayout(theme="light") = {
     'spaceRight键size': {
       width: '173/784',
     },
-    // "EnZh键size": {
-    //   "width": "173/784"
-    // },
     'enter键size': {
       width: '173/784',
     },
@@ -574,10 +560,7 @@ local keyboarLayout(theme="light") = {
     if orientation=="portrait" then keyboarLayout(theme)["竖屏英文26键"]
     else  keyboarLayout(theme)["横屏英文26键"],
 
-  getButtonSize: {
-    "竖屏按键尺寸": keyboarLayout(theme="light")["竖屏按键尺寸"],
-    "横屏按键尺寸": keyboarLayout(theme="light")["横屏按键尺寸"],
-  }
-
-
+  getButtonSize(theme, orientation):
+    if orientation == "portrait" then keyboarLayout(theme)["竖屏按键尺寸"]
+    else keyboarLayout(theme)["横屏按键尺寸"],
 }

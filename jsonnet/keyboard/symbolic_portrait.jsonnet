@@ -4,19 +4,23 @@ local collectionData = import '../lib/collectionData.libsonnet';
 local color = import '../lib/color.libsonnet';
 local fontSize = import '../lib/fontSize.libsonnet';
 local others = import '../lib/others.libsonnet';
+local utils = import '../lib/utils.libsonnet';
 
-local createButton(key, size, bounds, root) = {
-  [if size != {} then 'size']: size,
-  backgroundStyle: 'systemButtonBackgroundStyle',
-  foregroundStyle: key + 'ButtonForegroundStyle',
-  action: {
-    character: key,
-  },
-  // 动画
-  animation: [
-    'ButtonScaleAnimation',
-  ],
-};
+local createButton(params={}) =
+  std.prune({
+    size: std.get(params, 'size'),
+    bounds: std.get(params, 'bounds'),
+    backgroundStyle: std.get(params, 'backgroundStyle', 'systemButtonBackgroundStyle'),
+    foregroundStyle: std.get(params, 'foregroundStyle', params.key + 'ButtonForegroundStyle'),
+
+    action: std.get(params, 'action', { character: params.key }),
+    repeatAction: std.get(params, 'repeatAction'),
+
+    // 动画
+    animation: [
+      'ButtonScaleAnimation',
+    ],
+  });
 
 local keyboard(theme) =
   {
@@ -112,7 +116,7 @@ local keyboard(theme) =
       backgroundStyle: 'descriptionCollectionBackgroundStyle',
       type: 'subClassifiedSymbols',
       cellStyle: 'descriptionCollectionCellStyle',
-      insets: {left: 4, right: 4, top: 4, bottom: 4}
+      insets: { left: 4, right: 4, top: 4, bottom: 4 },
     },
     descriptionCollectionBackgroundStyle: {
       buttonStyleType: 'geometry',
@@ -122,7 +126,7 @@ local keyboard(theme) =
       normalLowerEdgeColor: color[theme]['符号键盘右侧collection背景下边缘颜色'],
     },
     descriptionCollectionCellStyle: {
-      backgroundStyle: 'categoryCollectionCellBackgroundStyle',
+      // backgroundStyle: 'categoryCollectionCellBackgroundStyle',
       foregroundStyle: 'descriptionCollectionCellForegroundStyle',
     },
     descriptionCollectionCellForegroundStyle: {
@@ -132,135 +136,137 @@ local keyboard(theme) =
       fontSize: fontSize['符号键盘右侧collection前景字体大小'],
       fontWeight: 0,
     },
-    returnButton: createButton(
-      'return',
-      { width: '56/375' },
-      {},
-      $
-    ) + {
-      action: 'returnPrimaryKeyboard',
-    },
 
-    returnButtonForegroundStyle: {
-      buttonStyleType: 'text',
-      text: '返回',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['按键前景文字大小'] - 3,
-      // center: center['26键中文前景偏移'],
-    },
+    returnButton: createButton(
+      params={
+        key: 'return',
+        action: 'returnPrimaryKeyboard',
+        isNumber: false,
+      }
+    ),
+
+    returnButtonForegroundStyle: utils.makeTextStyle(
+      params={
+        text: '返回',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['按键前景文字大小'] - 3,
+      }
+    ),
 
     pageUpButton: createButton(
-      'pageUp',
-      { width: '87/375' },
-      {},
-      $
-    ) + {
-      backgroundStyle: 'systemButtonBackgroundStyle',
-      action: { shortcut: '#subCollectionPageUp' },
-    },
+      params={
+        key: 'pageUp',
+        size: { width: '87/375' },
+        backgroundStyle: 'systemButtonBackgroundStyle',
+        action: { shortcut: '#subCollectionPageUp' },
+        isNumber: false,
+      }
+    ),
 
-    pageUpButtonForegroundStyle: {
-      buttonStyleType: 'systemImage',
-      systemImageName: 'chevron.up',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['数字键盘数字前景字体大小'] - 3,
-      center: { y: 0.53 },
-    },
+    pageUpButtonForegroundStyle: utils.makeSystemImageStyle(
+      params={
+        systemImageName: 'chevron.up',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['按键前景sf符号大小'],
+        center: { y: 0.53 },
+      }
+    ),
 
     pageDownButton: createButton(
-      'pageDown',
-      { width: '87/375' },
-      {},
-      $
-    ) + {
-      backgroundStyle: 'systemButtonBackgroundStyle',
-      action: { shortcut: '#subCollectionPageDown' },
-    },
+      params={
+        key: 'pageDown',
+        size: { width: '87/375' },
+        backgroundStyle: 'systemButtonBackgroundStyle',
+        action: { shortcut: '#subCollectionPageDown' },
+        isNumber: false,
+      }
+    ),
 
-    pageDownButtonForegroundStyle: {
-      buttonStyleType: 'systemImage',
-      systemImageName: 'chevron.down',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['数字键盘数字前景字体大小'] - 3,
-      center: { y: 0.53 },
-    },
+    pageDownButtonForegroundStyle: utils.makeSystemImageStyle(
+      params={
+        systemImageName: 'chevron.down',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['按键前景sf符号大小'],
+        center: { y: 0.53 },
+      }
+    ),
+
     lockButton: createButton(
-      'lock',
-      { width: '87/375' },
-      {},
-      $
-    ) + {
-      foregroundStyle: [
-        {
-          styleName: 'unlockButtonForegroundStyle',
-          conditionKey: '$symbolicKeyboardLockState',
-          conditionValue: false,
-        },
-        {
-          styleName: 'lockButtonForegroundStyle',
-          conditionKey: '$symbolicKeyboardLockState',
-          conditionValue: true,
-        },
-      ],
-      action: 'symbolicKeyboardLockStateToggle',
-    },
+      params={
+        key: 'lock',
+        size: { width: '87/375' },
+        foregroundStyle: [
+          {
+            styleName: 'unlockButtonForegroundStyle',
+            conditionKey: '$symbolicKeyboardLockState',
+            conditionValue: false,
+          },
+          {
+            styleName: 'lockButtonForegroundStyle',
+            conditionKey: '$symbolicKeyboardLockState',
+            conditionValue: true,
+          },
+        ],
+        action: 'symbolicKeyboardLockStateToggle',
+        isNumber: false,
+      }
+    ),
 
-    lockButtonForegroundStyle: {
-      buttonStyleType: 'systemImage',
-      systemImageName: 'lock',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['按键前景sf符号大小'],
-      targetScale: 0.6,
-    },
-    unlockButtonForegroundStyle: {
-      buttonStyleType: 'systemImage',
-      systemImageName: 'lock.open',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['按键前景sf符号大小'],
-      targetScale: 0.6,
-    },
+    lockButtonForegroundStyle: utils.makeSystemImageStyle(
+      params={
+        systemImageName: 'lock',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['按键前景sf符号大小'],
+        center: { y: 0.53 },
+      }
+    ),
+    unlockButtonForegroundStyle: utils.makeSystemImageStyle(
+      params={
+        systemImageName: 'lock.open',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['按键前景sf符号大小'],
+        center: { y: 0.53 },
+      }
+    ),
+
     backspaceButton: createButton(
-      'backspace',
-      { width: '60/375' },
-      {},
-      $
-    ) + {
-      action: 'backspace',
-      repeatAction: 'backspace',
-    },
+      params={
+        key: 'backspace',
+        size: { width: '60/375' },
+        action: 'backspace',
+        repeatAction: 'backspace',
+        isNumber: false,
+      }
+    ),
 
-    backspaceButtonForegroundStyle: {
-      buttonStyleType: 'systemImage',
-      systemImageName: 'delete.left',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['数字键盘数字前景字体大小'] - 3,
-      center: { y: 0.53 },
-    },
-    systemButtonBackgroundStyle: {
-      buttonStyleType: 'geometry',
-      insets: { top: 4, left: 3, bottom: 4, right: 3 },
-      normalColor: color[theme]['功能键背景颜色-普通'],
-      highlightColor: color[theme]['功能键背景颜色-高亮'],
-      cornerRadius: 7,
-      normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
-      highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
-    },
+    backspaceButtonForegroundStyle: utils.makeSystemImageStyle(
+      params={
+        systemImageName: 'delete.left',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['数字键盘数字前景字体大小'] - 3,
+        center: { y: 0.53 },
+      }
+    ),
+
+    systemButtonBackgroundStyle: utils.makeGeometryStyle(
+      params={
+        insets: { top: 4, left: 3, bottom: 4, right: 3 },
+        normalColor: color[theme]['功能键背景颜色-普通'],
+        highlightColor: color[theme]['功能键背景颜色-高亮'],
+        cornerRadius: 7,
+        normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
+        highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
+      }
+    ),
 
     ButtonScaleAnimation: animation['26键按键动画'],
     dataSource: collectionData.symbolicDataSource,
-
-    // symbolicKeyboardLockStateNotification: {
-    //   notificationType: 'symbolicKeyboardLockedState',
-    //   lockedState: true,
-    //   backgroundStyle: 'systemButtonBackgroundStyle',
-    //   foregroundStyle: 'lockButtonForegroundStyle',
-    // },
   };
 {
   new(theme):

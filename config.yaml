@@ -4,7 +4,7 @@ name: 仿仓默认风格
 # 字体设置
 # 皮肤中的字体设置级别大于应用中的字体设置
 # fontFace:
-  # - url: "Hamster-Regular.otf"
+# - url: "Hamster-Regular.otf"
 
 # 中文键盘
 pinyin:

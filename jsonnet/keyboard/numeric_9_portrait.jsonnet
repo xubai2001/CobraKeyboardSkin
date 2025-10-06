@@ -1,42 +1,53 @@
 local animation = import '../lib/animation.libsonnet';
-local center = import '../lib/center.libsonnet';
 local collectionData = import '../lib/collectionData.libsonnet';
 local color = import '../lib/color.libsonnet';
 local fontSize = import '../lib/fontSize.libsonnet';
-local hintSymbolsData = import '../lib/hintSymbolsData.libsonnet';
+local _hintSymbolsData = import '../lib/hintSymbolsData.libsonnet';
 local others = import '../lib/others.libsonnet';
 local swipeData = import '../lib/swipeData.libsonnet';
 local toolbar = import '../lib/toolbar.libsonnet';
 local utils = import '../lib/utils.libsonnet';
 
 local hintSymbolsStyles = import '../lib/hintSymbolsStyles.libsonnet';
-local swipeStyles = import '../lib/swipeStyle.libsonnet';
+local swipeStyles = import '../lib/swipeStyles2.libsonnet';
 
 // 上下和下划的数据
-local swipe_up = if std.objectHas(swipeData, 'number_swipe_up') then swipeData.number_swipe_up else {};
-local swipe_down = if std.objectHas(swipeData, 'number_swipe_up') then swipeData.number_swipe_down else {};
+local swipe_up = std.get(swipeData, 'number_swipe_up', {});
+local swipe_down = std.get(swipeData, 'number_swipe_down', {});
+local hintSymbolsData = std.get(_hintSymbolsData, 'number', {});
 
-local createButton(key, size, bounds, root) = {
-  [if size != {} then 'size']: size,
-  backgroundStyle: if std.length(key) == 1 then 'numberButtonBackgroundStyle' else key + 'ButtonBackgroundStyle',
-  foregroundStyle: std.filter(
-    function(x) x != null,
-    [
-      if std.length(key) == 1 then 'number' + key + 'ButtonForegroundStyle' else key + 'ButtonForegroundStyle',
-      if std.objectHas(swipe_up, key) then 'number' + key + 'ButtonUpForegroundStyle' else null,
-      if std.objectHas(swipe_down, key) then 'number' + key + 'ButtonDownForegroundStyle' else null,
-    ]
-  ),
-  action: {
-    character: key,
-  },
-  [if std.objectHas(swipe_up, key) then 'swipeUpAction']: swipe_up[key].action,
-  [if std.objectHas(swipe_down, key) then 'swipeDownAction']: swipe_down[key].action,
-  [if std.objectHas(root, 'number' + key + 'ButtonHintSymbolsStyle') then 'hintSymbolsStyle']: 'number' + key + 'ButtonHintSymbolsStyle',
-  animation: [
-    'ButtonScaleAnimation',
-  ],
-};
+
+local createButton(params={}) =
+  local isNumber = std.get(params, 'isNumber', true);
+  std.prune({
+    size: std.get(params, 'size'),
+    bounds: std.get(params, 'bounds'),
+    // params中没有isNumber: falsa和背景时，就是数字键背景，非数字键时，设置了背景就用设置的，没设置就默认 key+ButtonBackgroundStyle
+    backgroundStyle: if isNumber then 'numberButtonBackgroundStyle' else std.get(params, 'backgroundStyle', 'systemButtonBackgroundStyle'),
+    // 和背景是差不多的逻辑
+    foregroundStyle:
+      if isNumber then
+        std.prune([
+          if isNumber then 'number' + params.key + 'ButtonForegroundStyle' else params.key + 'ButtonForegroundStyle',
+          if std.objectHas(swipe_up, params.key) then 'number' + params.key + 'ButtonUpForegroundStyle' else null,
+          if std.objectHas(swipe_down, params.key) then 'number' + params.key + 'ButtonDownForegroundStyle' else null,
+        ])
+      else
+        std.get(params, 'foregroundStyle', params.key + 'ButtonForegroundStyle'),
+
+    action: std.get(params, 'action', { character: params.key }),
+    repeatAction: std.get(params, 'repeatAction'),
+
+    [if std.objectHas(swipe_up, params.key) then 'swipeUpAction']: swipe_up[params.key].action,
+    [if std.objectHas(swipe_down, params.key) then 'swipeDownAction']: swipe_down[params.key].action,
+    // [if isNumber then 'hintSymbolsStyle']: 'number' + params.key + 'ButtonHintSymbolsStyle',
+    [if std.objectHas(hintSymbolsData, 'number' + params.key) then 'hintSymbolsStyle']: params.key + 'ButtonHintSymbolsStyle',
+
+    // 动画
+    animation: [
+      'ButtonScaleAnimation',
+    ],
+  });
 
 local keyboard(theme) =
   {
@@ -110,8 +121,8 @@ local keyboard(theme) =
           style: 'VStackStyle1',
           subviews: [
             { Cell: 'backspaceButton' },
-            { Cell: 'spaceRightButton' },
-            { Cell: 'atButton' },
+            { Cell: 'periodButton' },
+            { Cell: 'equalButton' },
             { Cell: 'enterButton' },
           ],
         },
@@ -177,168 +188,185 @@ local keyboard(theme) =
       fontSize: fontSize['collection前景字体大小'],
       fontWeight: 0,
     },
+
+    number1Button: createButton(
+      params={ key: '1' }
+    ),
+    number4Button: createButton(
+      params={ key: '4' }
+    ),
+    number7Button: createButton(
+      params={ key: '7' }
+    ),
+    number2Button: createButton(
+      params={ key: '2' }
+    ),
+    number5Button: createButton(
+      params={ key: '5' }
+    ),
+    number8Button: createButton(
+      params={ key: '8' }
+    ),
+    number0Button: createButton(
+      params={ key: '0' }
+    ),
+    number3Button: createButton(
+      params={ key: '3' }
+    ),
+    number6Button: createButton(
+      params={ key: '6' }
+    ),
+    number9Button: createButton(
+      params={ key: '9' }
+    ),
+
     returnButton: createButton(
-      'return', {}, {}, $
-    ) + {
-      backgroundStyle: 'systemButtonBackgroundStyle',
-      action: 'returnPrimaryKeyboard',
-    },
+      params={
+        key: 'return',
+        action: 'returnPrimaryKeyboard',
+        isNumber: false,
+      }
+    ),
 
-    returnButtonForegroundStyle: {
-      buttonStyleType: 'text',
-      text: '返回',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['按键前景文字大小'] - 3,
-      // center: center['26键中文前景偏移'],
-    },
+    returnButtonForegroundStyle: utils.makeTextStyle(
+      params={
+        text: '返回',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['按键前景文字大小'] - 3,
+      }
+    ),
 
-    symbolButton: {
-      size: {
-        height: '1/4',
-      },
-      backgroundStyle: 'systemButtonBackgroundStyle',
-      foregroundStyle: [
-        'symbolButtonForegroundStyle',
-      ],
-      action: {
-        keyboardType: 'symbolic',
-      },
-    },
 
-    symbolButtonForegroundStyle: {
-      buttonStyleType: 'text',
-      text: '#+=',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['按键前景文字大小'] - 3,
-      // center: center['26键中文前景偏移'],
-    },
-    // 数字键定义
-    number1Button: createButton('1', {}, {}, $),
+    symbolButton: createButton(
+      params={
+        key: 'symbol',
+        action: { keyboardType: 'symbolic' },
+        isNumber: false,
+      }
+    ),
 
-    number4Button: createButton('4', {}, {}, $),
-
-    number7Button: createButton('7', {}, {}, $),
-
-    number2Button: createButton('2', {}, {}, $),
-
-    number5Button: createButton('5', {}, {}, $),
-
-    number8Button: createButton('8', {}, {}, $),
-
-    number0Button: createButton('0', {}, {}, $),
-
-    number3Button: createButton('3', {}, {}, $),
-
-    number6Button: createButton('6', {}, {}, $),
-
-    number9Button: createButton('9', {}, {}, $),
+    symbolButtonForegroundStyle: utils.makeTextStyle(
+      params={
+        text: '#+=',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['按键前景文字大小'] - 3,
+      }
+    ),
 
     spaceButton: createButton(
-      'space', {}, {}, $
-    ) + {
-      backgroundStyle: 'systemButtonBackgroundStyle',
-      action: 'space',
-    },
+      params={
+        key: 'space',
+        action: 'space',
+        isNumber: false,
+      }
+    ),
 
-    spaceButtonForegroundStyle: {
-      buttonStyleType: 'text',
-      text: '空格',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['按键前景文字大小'] - 3,
-      // center: center['功能键前景文字偏移'],
-    },
+    spaceButtonForegroundStyle: utils.makeTextStyle(
+      params={
+        text: '空格',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['按键前景文字大小'] - 3,
+      }
+    ),
+
     backspaceButton: createButton(
-      'backspace', {}, {}, $
-    ) + {
-      backgroundStyle: 'systemButtonBackgroundStyle',
-      action: 'backspace',
-      repeatAction: 'backspace',
-    },
+      params={
+        key: 'backspace',
+        action: 'backspace',
+        repeatAction: 'backspace',
+        isNumber: false,
+      }
+    ),
 
-    backspaceButtonForegroundStyle: {
-      buttonStyleType: 'systemImage',
-      systemImageName: 'delete.left',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['数字键盘数字前景字体大小'] - 3,
-      center: { y: 0.53 },
-    },
-    spaceRightButton: createButton(
-      'spaceRight', {}, {}, $
-    ) + {
-      backgroundStyle: 'systemButtonBackgroundStyle',
-      action: {
-        character: '.',
-      },
-    },
+    backspaceButtonForegroundStyle: utils.makeSystemImageStyle(
+      params={
+        systemImageName: 'delete.left',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['数字键盘数字前景字体大小'] - 3,
+        center: { y: 0.53 },
+      }
+    ),
 
-    spaceRightButtonForegroundStyle: {
-      buttonStyleType: 'text',
-      text: '.',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['数字键盘数字前景字体大小'],
-      // center: {
-      //   x: 0.5,
-      //   y: 0.8,
-      // },
-    },
-    atButton: createButton(
-      'at', {}, {}, $
-    ) + {
-      backgroundStyle: 'systemButtonBackgroundStyle',
-      action: {
-        character: '=',
-      },
-    },
+    periodButton: createButton(
+      params={
+        key: 'period',
+        action: { character: '.' },
+        isNumber: false,
+      }
+    ),
 
-    atButtonForegroundStyle: {
-      buttonStyleType: 'text',
-      text: '=',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['collection前景字体大小'],
-      fontWeight: 0,
-      // center: {
-      //   x: 0.5,
-      //   y: 0.8,
-      // },
-    },
+    periodButtonForegroundStyle: utils.makeTextStyle(
+      params={
+        text: '.',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['数字键盘数字前景字体大小'],
+      }
+    ),
+
+    equalButton: createButton(
+      params={
+        key: 'equal',
+        action: {
+          character: '=',
+        },
+        isNumber: false,
+      }
+    ),
+
+    equalButtonForegroundStyle: utils.makeTextStyle(
+      params={
+        text: '=',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['collection前景字体大小'],
+        fontWeight: 0,
+      }
+    ),
+
     enterButton: createButton(
-      'enter', {}, {}, $
-    ) + {
-      backgroundStyle: 'systemButtonBackgroundStyle',
-      action: 'enter',
-    },
-    enterButtonForegroundStyle: {
-      buttonStyleType: 'text',
-      text: '换行',
-      normalColor: color[theme]['按键前景颜色'],
-      highlightColor: color[theme]['按键前景颜色'],
-      fontSize: fontSize['按键前景文字大小'] - 3,
-      // center: center['功能键前景文字偏移'],
-    },
-    numberButtonBackgroundStyle: {
-      buttonStyleType: 'geometry',
-      insets: { top: 4, left: 3, bottom: 4, right: 3 },
-      normalColor: color[theme]['字母键背景颜色-普通'],
-      highlightColor: color[theme]['字母键背景颜色-高亮'],
-      cornerRadius: 7,
-      normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
-      highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
-    },
-    systemButtonBackgroundStyle: {
-      buttonStyleType: 'geometry',
-      insets: { top: 4, left: 3, bottom: 4, right: 3 },
-      normalColor: color[theme]['功能键背景颜色-普通'],
-      highlightColor: color[theme]['功能键背景颜色-高亮'],
-      cornerRadius: 7,
-      normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
-      highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
-    },
+      params={
+        key: 'enter',
+        action: 'enter',
+        isNumber: false,
+      }
+    ),
+
+    enterButtonForegroundStyle: utils.makeTextStyle(
+      params={
+        text: '换行',
+        normalColor: color[theme]['按键前景颜色'],
+        highlightColor: color[theme]['按键前景颜色'],
+        fontSize: fontSize['按键前景文字大小'] - 3,
+      }
+    ),
+
+    numberButtonBackgroundStyle: utils.makeGeometryStyle(
+      params={
+        insets: { top: 4, left: 3, bottom: 4, right: 3 },
+        normalColor: color[theme]['字母键背景颜色-普通'],
+        highlightColor: color[theme]['字母键背景颜色-高亮'],
+        cornerRadius: 7,
+        normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
+        highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
+      }
+    ),
+
+    systemButtonBackgroundStyle: utils.makeGeometryStyle(
+      params={
+        insets: { top: 4, left: 3, bottom: 4, right: 3 },
+        normalColor: color[theme]['功能键背景颜色-普通'],
+        highlightColor: color[theme]['功能键背景颜色-高亮'],
+        cornerRadius: 7,
+        normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
+        highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
+      }
+    ),
+
     ButtonScaleAnimation: animation['26键按键动画'],
     alphabeticHintSymbolsBackgroundStyle: hintSymbolsStyles['长按背景样式'],
     alphabeticHintSymbolsSelectedStyle: hintSymbolsStyles['长按选中背景样式'],
@@ -351,8 +379,12 @@ local keyboard(theme) =
 {
   new(theme):
     keyboard(theme) +
-    swipeStyles.getStyle('number', theme, swipe_up, swipe_down) +
-    hintSymbolsStyles.getStyle(theme, hintSymbolsData.number) +
+    swipeStyles.makeSwipeStyles(theme, {
+      swipe_up: swipe_up,
+      swipe_down: swipe_down,
+      type: 'number',
+    }) +
+    hintSymbolsStyles.getStyle(theme, hintSymbolsData) +
     toolbar.getToolBar(theme) +
-    utils.genNumberStyles(fontSize, color, theme, center)
+    utils.genNumberStyles(theme),
 }

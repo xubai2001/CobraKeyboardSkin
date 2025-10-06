@@ -1,5 +1,7 @@
-light/resources/*.png
-dark/resources/*.yaml
-dark/resources/*.png
-light/*.yaml
+*.png
 dark/*.yaml
+light/*.yaml
+
+test/*
+test*
+jsonnet/test.jsonnet
