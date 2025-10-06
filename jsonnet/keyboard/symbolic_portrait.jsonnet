@@ -41,11 +41,11 @@ local keyboard(theme) =
           HStack: {
             style: 'HStackStyle2',
             subviews: [
-              { Cell: 'returnButton' },
+              { Cell: 'symbolreturnButton' },
               { Cell: 'pageUpButton' },
               { Cell: 'pageDownButton' },
               { Cell: 'lockButton' },
-              { Cell: 'backspaceButton' },
+              { Cell: 'symbolbackspaceButton' },
             ],
           },
         },
