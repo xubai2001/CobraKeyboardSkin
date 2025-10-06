@@ -41,7 +41,7 @@ local createButton(params={}) =
     [if std.objectHas(swipe_up, params.key) then 'swipeUpAction']: swipe_up[params.key].action,
     [if std.objectHas(swipe_down, params.key) then 'swipeDownAction']: swipe_down[params.key].action,
     // [if isNumber then 'hintSymbolsStyle']: 'number' + params.key + 'ButtonHintSymbolsStyle',
-    [if std.objectHas(hintSymbolsData, 'number' + params.key) then 'hintSymbolsStyle']: params.key + 'ButtonHintSymbolsStyle',
+    [if std.objectHas(hintSymbolsData, 'number' + params.key) then 'hintSymbolsStyle']: 'number' + params.key + 'ButtonHintSymbolsStyle',
 
     // 动画
     animation: [
@@ -387,4 +387,7 @@ local keyboard(theme) =
     hintSymbolsStyles.getStyle(theme, hintSymbolsData) +
     toolbar.getToolBar(theme) +
     utils.genNumberStyles(theme),
+
+  // 导出keyboard给横屏用
+  keyboard: keyboard
 }

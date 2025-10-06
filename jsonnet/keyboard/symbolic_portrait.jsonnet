@@ -137,15 +137,15 @@ local keyboard(theme) =
       fontWeight: 0,
     },
 
-    returnButton: createButton(
+    symbolreturnButton: createButton(
       params={
-        key: 'return',
+        key: 'symbolreturn',
         action: 'returnPrimaryKeyboard',
         isNumber: false,
       }
     ),
 
-    returnButtonForegroundStyle: utils.makeTextStyle(
+    symbolreturnButtonForegroundStyle: utils.makeTextStyle(
       params={
         text: '返回',
         normalColor: color[theme]['按键前景颜色'],
@@ -234,9 +234,9 @@ local keyboard(theme) =
       }
     ),
 
-    backspaceButton: createButton(
+    symbolbackspaceButton: createButton(
       params={
-        key: 'backspace',
+        key: 'symbolbackspace',
         size: { width: '60/375' },
         action: 'backspace',
         repeatAction: 'backspace',
@@ -244,7 +244,7 @@ local keyboard(theme) =
       }
     ),
 
-    backspaceButtonForegroundStyle: utils.makeSystemImageStyle(
+    symbolbackspaceButtonForegroundStyle: utils.makeSystemImageStyle(
       params={
         systemImageName: 'delete.left',
         normalColor: color[theme]['按键前景颜色'],
@@ -269,6 +269,5 @@ local keyboard(theme) =
     dataSource: collectionData.symbolicDataSource,
   };
 {
-  new(theme):
-    keyboard(theme),
+  new(theme): keyboard(theme),
 }
