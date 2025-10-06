@@ -1,7 +1,7 @@
 // 尝试直接引用九键竖屏配置，再用横屏的进行patch
 
 local numeric_9_portrit = import 'numeric_9_portrait.jsonnet';
-local symbolic_portrait = import 'symbolic_portrait2.jsonnet';
+local symbolic_portrait = import 'symbolic_portrait.jsonnet';
 
 local animation = import '../lib/animation.libsonnet';
 local collectionData = import '../lib/collectionData.libsonnet';
@@ -160,11 +160,11 @@ local keyboard(theme) =
               HStack: {
                 style: 'HStackStyle2',
                 subviews: [
-                  { Cell: 'returnButton' },
+                  { Cell: 'symbolreturnButton' },
                   { Cell: 'pageUpButton' },
                   { Cell: 'pageDownButton' },
                   { Cell: 'lockButton' },
-                  { Cell: 'backspaceButton' },
+                  { Cell: 'symbolbackspaceButton' },
                 ],
               },
             },
@@ -224,9 +224,9 @@ local keyboard(theme) =
 
     // ButtonScaleAnimation: animation['26键按键动画'],
 
-    // dataSource: collectionData.symbolicDataSource {
-    //   symbols: collectionData.numericSymbols,
-    // },
+    dataSource: collectionData.symbolicDataSource {
+      symbols: collectionData.numericSymbols,
+    },
   };
 
 {
