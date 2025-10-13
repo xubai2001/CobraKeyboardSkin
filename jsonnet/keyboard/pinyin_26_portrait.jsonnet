@@ -64,23 +64,6 @@ local keyboard(theme, orientation) =
     preeditHeight: others[if orientation == 'portrait' then '竖屏' else '横屏']['preedit高度'],
     toolbarHeight: others[if orientation == 'portrait' then '竖屏' else '横屏']['toolbar高度'],
     keyboardHeight: others[if orientation == 'portrait' then '竖屏' else '横屏']['keyboard高度'],
-    preedit: {
-      insets: {
-        left: 8,
-        top: 2,
-      },
-      backgroundStyle: 'preeditBackgroundStyle',
-      foregroundStyle: 'preeditForegroundStyle',
-    },
-    preeditBackgroundStyle: {
-      buttonStyleType: 'geometry',
-      normalColor: color[theme]['键盘背景颜色'],
-    },
-    preeditForegroundStyle: {
-      textColor: color[theme]['候选字体未选中字体颜色'],
-      fontSize: fontSize['preedit区字体大小'],
-      fontWeight: 0,
-    },
 
     qButton: createButton(
       params={
@@ -526,7 +509,7 @@ local keyboard(theme, orientation) =
       params={
         key: 'space',
         size: ButtonSize['space键size'],
-        backgroundStyle: 'spaceButtonBackgroundStyle',
+        backgroundStyle: 'alphabeticBackgroundStyle',
         foregroundStyle: [
           'spaceButtonForegroundStyle',
           'spaceButtonForegroundStyle2',
@@ -536,20 +519,20 @@ local keyboard(theme, orientation) =
       }
     ),
 
-    spaceButtonBackgroundStyle: utils.makeGeometryStyle(
-      params = {
-        insets: { top: 5, left: 3, bottom: 6, right: 3 },
-        cornerRadius: 7,
-        normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
-        highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
-        normalColor: ["#9bafd9", "#103783" ],
-        highlightColor: ["#432371", "#faae7b" ],
-        colorLocation: [0, 1],
-        colorStartPoint: { x: 0, y: 0.5 },
-        colorEndPoint: { x: 1, y: 0.5 },
-        colorGradientType: 'linear'
-      }
-    ),
+    // spaceButtonBackgroundStyle: utils.makeGeometryStyle(
+    //   params = {
+    //     insets: { top: 5, left: 3, bottom: 6, right: 3 },
+    //     cornerRadius: 7,
+    //     normalLowerEdgeColor: color[theme]['底边缘颜色-普通'],
+    //     highlightLowerEdgeColor: color[theme]['底边缘颜色-高亮'],
+    //     normalColor: ["#9bafd9", "#103783" ],
+    //     highlightColor: ["#432371", "#faae7b" ],
+    //     colorLocation: [0, 1],
+    //     colorStartPoint: { x: 0, y: 0.5 },
+    //     colorEndPoint: { x: 1, y: 0.5 },
+    //     colorGradientType: 'linear'
+    //   }
+    // ),
     spaceButtonForegroundStyle: utils.makeTextStyle(
       params={
         text: '空格',
