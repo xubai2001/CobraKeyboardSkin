@@ -371,9 +371,8 @@ local keyboard(theme) =
     alphabeticHintSymbolsBackgroundStyle: hintSymbolsStyles['长按背景样式'],
     alphabeticHintSymbolsSelectedStyle: hintSymbolsStyles['长按选中背景样式'],
 
-    dataSource: {
-      symbols: collectionData.numericSymbols,
-    },
+    // 左侧符号列表数据来源
+    symbols: collectionData.numericSymbols,
   };
 
 {

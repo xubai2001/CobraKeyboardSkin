@@ -266,8 +266,8 @@ local keyboard(theme) =
     ),
 
     ButtonScaleAnimation: animation['26键按键动画'],
-    dataSource: collectionData.symbolicDataSource,
   };
 {
-  new(theme): keyboard(theme),
+  new(theme): keyboard(theme) + collectionData.symbolicDataSource,  // 符号数据源
+  getKeyboard(theme): keyboard(theme),  // 给emoji键盘使用，提供无符号数据源的键盘配置
 }

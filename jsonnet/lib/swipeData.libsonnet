@@ -137,9 +137,9 @@
 
   // 格式和上面一致
   number_swipe_up: {
-    '1': { action: { character: '/' }, label: { text: '/' } },
+    // '1': { action: { character: '/' }, label: { text: '/' } },
   },
   number_swipe_down: {
-    '1': { action: { character: '$' }, label: { text: '复制' } },
+    // '1': { action: { character: '$' }, label: { text: '复制' } },
   },
 }
