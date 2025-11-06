@@ -140,7 +140,7 @@ local keyboard(theme) =
     symbolreturnButton: createButton(
       params={
         key: 'symbolreturn',
-        action: 'returnPrimaryKeyboard',
+        action: 'returnLastKeyboard',
         isNumber: false,
       }
     ),

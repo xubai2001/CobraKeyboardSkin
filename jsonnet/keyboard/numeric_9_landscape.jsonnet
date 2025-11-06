@@ -60,23 +60,7 @@ local keyboard(theme) =
     preeditHeight: others['横屏']['preedit高度'],
     toolbarHeight: others['横屏']['toolbar高度'],
     keyboardHeight: others['横屏']['keyboard高度'],
-    preedit: {
-      insets: {
-        left: 8,
-        top: 2,
-      },
-      backgroundStyle: 'preeditBackgroundStyle',
-      foregroundStyle: 'preeditForegroundStyle',
-    },
-    preeditBackgroundStyle: {
-      buttonStyleType: 'geometry',
-      normalColor: color[theme]['键盘背景颜色'],
-    },
-    preeditForegroundStyle: {
-      textColor: color[theme]['候选字体未选中字体颜色'],
-      fontSize: fontSize['preedit区字体大小'],
-      fontWeight: 0,
-    },
+
     keyboardLayout: [
       {
         VStack: {
@@ -221,12 +205,8 @@ local keyboard(theme) =
         width: '125/549',
       },
     },
-
     // ButtonScaleAnimation: animation['26键按键动画'],
 
-    dataSource: collectionData.symbolicDataSource {
-      symbols: collectionData.numericSymbols,
-    },
   };
 
 {

@@ -5,7 +5,7 @@
     下面对应的pinyin9(如果当前皮肤不是九键皮肤，就不用管)和number为中文九键和数字九键的划动数据
   格式说明:
     action: 必需， 格式同仓文档
-    label:  非必需， 用于控制是否在按键上显示这个划动前景，可选text/systemImageName
+    label:  非必需， 用于控制是否在按键上显示这个划动前景(也就是说不设置就不显示了)，可选text/systemImageName
     fontSize: 非必需，用于单独指定某个划动前景字符大小
     color: 非必需，用于单独指定某个划动前景字符颜色, 格式见下方q键
   */
@@ -14,9 +14,10 @@
     q: {
       action: { character: '1' },
       label: { text: '1' },
+      // 单独对某个键的划动前景颜色设置示例
       // color: {
-      //   light: { normalColor: '121212', highlightColor: '121212' },
-      //   dark: { normalColor: 'E5C07B', highlightColor: 'E5C07B' },
+      //   light: { normalColor: '#121212', highlightColor: '#121212' },
+      //   dark: { normalColor: '#E5C07B', highlightColor: '#E5C07B' },
       // },
     },
     w: { action: { character: '2' }, label: { text: '2' } },
@@ -50,7 +51,6 @@
     // "backspace": {"action": { "character": "。" }, "label": {"text": "。"}},
     // "enter": {"action": { "shortcut": "#换行" }, "label": {"text": "。"}},
     // "symbol": {"action": { "character": "。" }, "label": {"text": "。"}},
-    // 可用字段见holdSymbolsData.libsonnet
 
   },
   swipe_down: {
@@ -112,7 +112,7 @@
   },
 
   // 中文九键划动
-  pinyin9_swipe_up: {
+  cn9_swipe_up: {
     '1': { action: { symbol: '1' }, label: { text: '1' } },
     '2': { action: { symbol: '2' }, label: { text: '2' } },
     '3': { action: { symbol: '3' }, label: { text: '3' } },
@@ -124,7 +124,7 @@
     '9': { action: { symbol: '9' }, label: { text: '9' } },
     space: { action: { symbol: '0' }, label: { text: '0' } },
   },
-  pinyin9_swipe_down: {
+  cn9_swipe_down: {
     '3': { action: { sendKeys: 'dt' }, label: { text: '时间' } },
     '4': { action: { shortcut: '#行首' }, label: { text: '行首' } },
     '5': { action: { shortcut: '#selectText' }, label: { text: '全选' } },
@@ -137,9 +137,9 @@
 
   // 格式和上面一致
   number_swipe_up: {
-    // '1': { action: { character: '/' }, label: { text: '/' } },
+    // '1': { action: { character: '-' }, label: { text: '-' } },
   },
   number_swipe_down: {
-    // '1': { action: { character: '$' }, label: { text: '复制' } },
+    // '1': { action: { character: '/' }, label: { text: '/' } },
   },
 }
