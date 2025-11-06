@@ -1,46 +1,53 @@
-# 使用`Jsonnet`配置「元书」皮肤。
+# 简单说明
+## 如何修改按键上的划动功能？
+打开 `jsonnet/lib/swipeData.libsonnet` 文件，按照里面的格式说明来增加、删除或修改滑动功能。英文键盘的配置单独放在同目录下的 `swipeData-en.libsonnet` 中。
 
-## 皮肤文件目录结构
-```
+修改完成后，记得在软件的皮肤选择界面，长按当前皮肤，然后选择「运行 `main.jsonnet`」来生效。
 
-皮肤名称/
-├── light/                  # 亮色主题资源目录
-│   └── resources/          # 存放图片及描述文件（如牙齿素材）
-├── dark/                   # 暗色主题资源目录
-│   └── resources/          # 同上
-├── jsonnet/                # 核心配置目录
-│   ├── main.jsonnet        # 主配置文件（必须在此目录顶层）
-│   ├── keyboard/           # 键盘文件主体
-│   └── lib/                # 具体见下方
-├── demo.png                # 皮肤预览图（必须PNG格式）
-└── config.yaml             # 可选，可由main.jsonnet生成
-```
+## 如何修改按键上的长按功能？
+打开 `jsonnet/lib/hintSymbolsData.libsonnet` 文件，按照里面的格式说明来调整长按功能。
 
-## 不同文件管理的配置参数
+修改完成后，同样需要在皮肤选择界面长按皮肤，选择「运行 `main.jsonnet`」。
 
-|      lib/下的文件                    | 对应管理范围                  |
-| :-------------------------: | --------------------------- |
-|      `color.libsonnet`      | 各种颜色值                  |
-|    `fontSize.libsonnet`     | 各处文本字体大小            |
-|     `toolbar.libsonnet`     | toolbar配置                 |
-|   `toolbar-en.libsonnet`    | 对应的英文键盘toolbar设置，会覆盖`toolbar`中相同名称的字段 |
-|    `swipeData.libsonnet`    | 按键划动动作及显示参数      |
-|  `swipeData-en.libsonnet`   | 对应的英文键盘设置，会覆盖`swipeData`中相同名称的字段 |
-| `holdSymbolsData.libsonnet` | 长按动作及显示参数          |
-|     `others.libsonnet`      | 键盘高度、键盘方案绑定      |
-|     `center.libsonnet`      | 各种**偏移**以及**缩放**    |
-| `collectionData.libsonnet` | 符号键盘、emoji键盘等的集合数据 |
-| `keyboardLayout.libsonnet` | 中英文键盘的横竖屏布局 |
+---
 
-| keyboard/下的文件           | 介绍                         |
-| --------------------------------- | ---------------------------- |
-| `alphabetic_26_portrait.jsonnet`  | 英文键盘横竖屏统一的配置     |
-| `pinyin_26_portrait.jsonnet`      | 中文键盘横竖屏统一的配置     |
-| `numeric_9_portrait.jsonnet`      | 数字键盘竖屏配置     |
-| `numeric_9_landscpae.jsonnet`     | **数字+符号**键盘横屏配置 |
-| `symbolic_portrait.jsonnet`       | 符号键盘竖屏配置     |
-| `emoji_portrait.jsonnet`          | emoji键盘横竖屏配置(横屏未适配)     |
-| `panel.jsonnet`                   | 键盘面板横竖屏统一的配置                 |
+# 详细说明
+## 目录结构
+一个皮肤文件夹通常包含以下内容：
+- `light/` – 存放亮色主题的配置文件和图片
+- `dark/` – 存放暗色主题的配置文件和图片
+- `jsonnet/` – 存放核心配置文件
+- `demo.png` – 皮肤预览图
 
-## 使用
-导入皮肤到「元书」内后，首次使用要**长按皮肤**，运行main.jsonnet以生成键盘配置，不然是显示不出来键盘的。
+## Jsonnet 目录配置文件说明
+
+### keyboard/ 目录下的文件：
+- `alphabetic_26` – 英文键盘（同时生成竖屏和横屏配置）
+- `pinyin_26` – 中文拼音键盘
+- `numeric_9` – 数字键盘
+- `symbolic` – 符号键盘
+- `emoji` – 表情键盘(元书已内置有emoji键盘，这个就没什么用了)
+- `panel` – 键盘面板配置
+
+### lib/ 目录下的文件：
+- `color` – 颜色设置
+- `fontSize` – 字体大小
+- `toolbar` – 工具栏配置
+- `swipeData` – 按键滑动功能
+- `hintSymbolsData` – 按键长按功能
+- `others` – 键盘高度、方案绑定等
+- `center` – 偏移和缩放设置
+- `collectionData` – 符号和表情集合
+- `keyboardLayout` – 键盘布局（仅中英文）
+- `utils` – 实用工具函数
+
+## 功能说明
+- 键盘上的符号可以通过上滑或滑动按键触发。部分按键（如 z 到 m）上的功能可能需要开启“完全访问”权限才能使用。
+- 在数字键盘（123键）向下滑动，可以触发 `#RimeSwitcher` 功能。
+
+## 修改说明
+- **在手机上修改**：编辑 `jsonnet/` 目录下的文件后，在皮肤选择界面长按当前皮肤，选择「运行 `main.jsonnet`」即可应用修改。
+- **在电脑上修改**：配置好 Jsonnet 工具后，在皮肤目录打开终端，执行以下命令生成配置文件：
+  ```bash
+  jsonnet -S -m .\jsonnet\main.jsonnet
+  ```

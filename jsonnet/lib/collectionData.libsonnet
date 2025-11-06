@@ -1,10 +1,10 @@
 {
   //数字键盘collection列表
   numericSymbols: [
-    '+',
-    '-',
-    { label: '×', value: '*' },
-    '/',
+    { label: '+', action: { character: "+" } },
+    { label: '-', action: { character: "-" } },
+    { label: '×', action: { character: "*" } },
+    { label: '/', action: { character: "/" } },
     '()',
     '.',
     '@',

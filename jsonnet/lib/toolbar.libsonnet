@@ -51,12 +51,17 @@ local getToolBar(theme) = {
     normalColor: color[theme]['键盘背景颜色'],
   },
 
-  // 工具栏按键背景样式，一般都是纯透明
+  // 工具栏按键背景样式
   toolbarButtonBackgroundStyle: {
     buttonStyleType: 'geometry',
     normalColor: '#00000001',
-    highlightColor: 0,
+    highlightColor: '#00000001',
   },
+
+  // 占位空按键
+  toolbarPlaceholderButton: {
+  },
+
   toolbarMenuButton: {
     backgroundStyle: 'toolbarButtonBackgroundStyle',
     foregroundStyle: 'toolbarMenuButtonForegroundStyle',
@@ -237,7 +242,7 @@ local getToolBar(theme) = {
   horizontalCandidates: {
     type: 'horizontalCandidates',
     size: { width: '7/8' },
-    maxColums: 7,
+    // maxColumns: 4,
     insets: { left: 3 },
     // backgroundStyle:
     candidateStyle: 'candidateStyle',
@@ -287,27 +292,52 @@ local getToolBar(theme) = {
   // 纵向候选布局
   verticalCandidatesLayout: [
     {
-      HStack: {
+      VStack: {
         subviews: [
           { Cell: 'verticalCandidates' },
         ],
       },
     },
     {
-      HStack: {
-        style: 'HStackStyle',
+      VStack: {
+        style: 'VStackStyle',
         subviews: [
-          { Cell: 'verticalCandidatePageUpButton' },
-          { Cell: 'verticalCandidatePageDownButton' },
           { Cell: 'verticalCandidateReturnButton' },
           { Cell: 'verticalCandidateBackspaceButton' },
+          { Cell: 'verticalCandidatePageUpButton' },
+          { Cell: 'verticalCandidatePageDownButton' },
         ],
       },
     },
   ],
+  // verticalCandidatesLayout: [
+  //   {
+  //     HStack: {
+  //       subviews: [
+  //         { Cell: 'verticalCandidates' },
+  //       ],
+  //     },
+  //   },
+  //   {
+  //     HStack: {
+  //       style: 'HStackStyle',
+  //       subviews: [
+  //         { Cell: 'verticalCandidatePageUpButton' },
+  //         { Cell: 'verticalCandidatePageDownButton' },
+  //         { Cell: 'verticalCandidateReturnButton' },
+  //         { Cell: 'verticalCandidateBackspaceButton' },
+  //       ],
+  //     },
+  //   },
+  // ],
   HStackStyle: {
     size: {
       height: '1/5',
+    },
+  },
+  VStackStyle: {
+    size: {
+      width: '29/183',
     },
   },
   // 纵向候选配置
