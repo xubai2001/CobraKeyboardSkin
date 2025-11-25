@@ -101,7 +101,7 @@ local getToolBar(theme) = {
     backgroundStyle: 'toolbarButtonBackgroundStyle',
     foregroundStyle: 'toolbarEmojiButtonForegroundStyle',
     action: {
-      keyboardType: 'emoji',
+      keyboardType: 'emojis',
     },
   },
   toolbarEmojiButtonForegroundStyle: {
