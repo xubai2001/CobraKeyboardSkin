@@ -435,10 +435,14 @@ local keyboarLayout(theme="light") = {
       },
     },
     't键size': {
-      width: '200/784',
+      width: {
+        percentage: 0.1,
+      },
     },
     'y键size': {
-      width: '200/784',
+      width: {
+        percentage: 0.1,
+      },
     },
     'a键size': {
       width: {

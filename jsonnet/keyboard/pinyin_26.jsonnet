@@ -134,7 +134,7 @@ local keyboard(theme, orientation) =
     yButton: createButton(
       params={
         key: 'y',
-        size: std.get(ButtonSize, '普通键size'),
+        size: std.get(ButtonSize, 'y键size'),
         bounds: std.get(ButtonSize, 'y键bounds'),
       }
     ),
@@ -784,5 +784,5 @@ local keyboard(theme, orientation) =
     hintSymbolsStyles.getStyle(theme, hintSymbolsData) +  // 长按
     toolbar.getToolBar(theme) +  // 工具栏
     utils.genPinyinStyles(theme) +  // 批量生成前景
-    utils.genHintStyles(theme),
+    utils.genHintStyles(theme)
 }
