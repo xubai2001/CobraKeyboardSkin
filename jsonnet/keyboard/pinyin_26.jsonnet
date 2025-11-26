@@ -54,6 +54,11 @@ local createButton(params={}) =
       'ButtonScaleAnimation',
       // 'CartoonAniamtion',
     ],
+
+    // 为字母键添加通知，当处于预编辑状态时，改变前景，具体效果为字母不动，划动字符前景变为显示韵母
+    [if isLetter then 'notification']: [
+      params.key + 'ButtonPinyinHintNotification'
+    ]
   });
 
 local keyboard(theme, orientation) =
@@ -784,5 +789,7 @@ local keyboard(theme, orientation) =
     hintSymbolsStyles.getStyle(theme, hintSymbolsData) +  // 长按
     toolbar.getToolBar(theme) +  // 工具栏
     utils.genPinyinStyles(theme) +  // 批量生成前景
-    utils.genHintStyles(theme)
+    utils.genHintStyles(theme) +
+    utils.genDoublePinyinHintStyles(theme) +
+    utils.genDoublePinyinNotification()
 }

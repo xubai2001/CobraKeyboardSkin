@@ -195,6 +195,75 @@ local genHintStyles(theme) =
     for key in std.objectFields(keyMap)
   };
 
+
+// 生成双拼提示
+local doublePinyinKeyMap = {
+  "q": ["iu"],
+  "w": ["ia", "ua"],
+  "e": ["e"],
+  "r": ["uan"],
+  "t": ["ue", "ve"],
+  "y": ["ing", "uai"],
+  "u": ["u"],
+  "i": ["i"],
+  "o": ["o", "uo"],
+  "p": ["un"],
+  "a": ["a"],
+  "s": ["iong", "ong"],
+  "d": ["iang", "uang"],
+  "f": ["en"],
+  "g": ["eng"],
+  "h": ["ang"],
+  "j": ["an"],
+  "k": ["ao"],
+  "l": ["ai"],
+  "z": ["ei"],
+  "x": ["ie"],
+  "c": ["iao"],
+  "v": ["ui", "v"],
+  "b": ["ou"],
+  "n": ["in"],
+  "m": ["ian"]
+};
+
+local genDoublePinyinHintStyles(theme) = {
+  [keyName + 'ButtonPinyinHintForegroundStyle']: makeTextStyle(
+    params={
+      text: doublePinyinKeyMap[keyName][0],
+      fontSize: fontSize['上划文字大小'],
+      normalColor: color[theme]['划动字符颜色'],
+      highlightColor: color[theme]['划动字符颜色'],
+      center: {y: 0.8},
+    },
+  )
+  for keyName in std.objectFields(doublePinyinKeyMap)
+} + {
+  [if std.length(doublePinyinKeyMap[keyName]) == 2 then keyName + 'ButtonPinyinHintForegroundStyle2']: makeTextStyle(
+    params={
+      text: doublePinyinKeyMap[keyName][1],
+      fontSize: fontSize['上划文字大小'],
+      normalColor: color[theme]['划动字符颜色'],
+      highlightColor: color[theme]['划动字符颜色'],
+      center: {y: 0.28},
+    },
+  )
+  for keyName in std.objectFields(doublePinyinKeyMap)
+};
+
+local genDoublePinyinNotification() = {
+  [keyName + "ButtonPinyinHintNotification"]: {
+    notificationType: "preeditChanged",
+    backgroundStyle: 'alphabeticBackgroundStyle',
+    foregroundStyle: [
+      keyName + 'ButtonForegroundStyle',
+      keyName + 'ButtonPinyinHintForegroundStyle',
+      if std.length(doublePinyinKeyMap[keyName]) == 2 then keyName + 'ButtonPinyinHintForegroundStyle2'
+    ]
+  }
+  for keyName in std.objectFields(doublePinyinKeyMap)
+};
+
+
 {
   // makeImageStyle(contentMode, normalFile, highlightFile, normalImage, highlightImage, center, insets):
   //   makeImageStyle(contentMode, normalFile, highlightFile, normalImage, highlightImage, center, insets),
@@ -207,4 +276,8 @@ local genHintStyles(theme) =
   genAlphabeticStyles: genAlphabeticStyles,
   genNumberStyles: genNumberStyles,
   genHintStyles: genHintStyles,
+
+  // 生成双拼提示前景和通知
+  genDoublePinyinHintStyles: genDoublePinyinHintStyles,
+  genDoublePinyinNotification: genDoublePinyinNotification,
 }
