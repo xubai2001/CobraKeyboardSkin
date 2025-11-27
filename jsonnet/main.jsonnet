@@ -1,6 +1,6 @@
 local config = {
   author: '叙白',
-  name: '仿仓默认',
+  name: '仿仓默认-双拼动态提示',
   pinyin: {
     iPhone: {
       portrait: 'pinyin_26_portrait',

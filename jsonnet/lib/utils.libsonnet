@@ -1,6 +1,7 @@
 local center = import 'center.libsonnet';
 local color = import 'color.libsonnet';
 local fontSize = import 'fontSize.libsonnet';
+local keyboardLayout = import 'keyboardLayout.libsonnet';
 
 // key: 按键名, a-z, shift, space....
 // contentMode: center, scaleAspectFill 更多类型见文档
@@ -233,7 +234,7 @@ local genDoublePinyinHintStyles(theme) = {
       fontSize: fontSize['上划文字大小'],
       normalColor: color[theme]['划动字符颜色'],
       highlightColor: color[theme]['划动字符颜色'],
-      center: {y: 0.8},
+      center: {x: 0.5, y: 0.8},
     },
   )
   for keyName in std.objectFields(doublePinyinKeyMap)
@@ -250,10 +251,12 @@ local genDoublePinyinHintStyles(theme) = {
   for keyName in std.objectFields(doublePinyinKeyMap)
 };
 
-local genDoublePinyinNotification() = {
+local genDoublePinyinNotification(theme, orientation) = {
+  local ButtonSize = keyboardLayout.getButtonSize(theme, orientation),
   [keyName + "ButtonPinyinHintNotification"]: {
     notificationType: "preeditChanged",
     backgroundStyle: 'alphabeticBackgroundStyle',
+    [if std.contains(['a', 'l'], keyName) then 'bounds']: std.get(ButtonSize, keyName+'键bounds'),
     foregroundStyle: [
       keyName + 'ButtonForegroundStyle',
       keyName + 'ButtonPinyinHintForegroundStyle',

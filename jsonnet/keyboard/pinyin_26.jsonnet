@@ -791,5 +791,5 @@ local keyboard(theme, orientation) =
     utils.genPinyinStyles(theme) +  // 批量生成前景
     utils.genHintStyles(theme) +
     utils.genDoublePinyinHintStyles(theme) +
-    utils.genDoublePinyinNotification()
+    utils.genDoublePinyinNotification(theme, orientation)
 }

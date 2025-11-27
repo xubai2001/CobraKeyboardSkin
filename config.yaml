@@ -7,7 +7,7 @@ alphabetic:
     landscape: "alphabetic_26_landscape"
     portrait: "alphabetic_26_portrait"
 author: "叙白"
-name: "仿仓默认"
+name: "仿仓默认-双拼动态提示"
 numeric:
   iPad:
     floating: "numeric_9_portrait"
