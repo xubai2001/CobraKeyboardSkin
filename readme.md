@@ -4,11 +4,13 @@
 - 在数字键盘（123键）向下滑动，可以触发 `#RimeSwitcher` 功能。
 
 # 常见问题
-
 ## 如何修改按键上的划动功能？
 打开 `jsonnet/lib/swipeData.libsonnet` 文件，按照里面的格式说明来增加、删除或修改滑动功能。英文键盘的配置单独放在同目录下的 `swipeData-en.libsonnet` 中。
 
 修改完成后，记得在软件的皮肤选择界面，长按当前皮肤，然后选择「运行 `main.jsonnet`」来生效。
+
+## 如何更换到别的双拼提示
+修改`jsonnet/lib/utils.libsonnet`文件，修改`doublePinyinKeyMap`
 
 ## 如何修改按键上的长按功能？
 打开 `jsonnet/lib/hintSymbolsData.libsonnet` 文件，按照里面的格式说明来调整长按功能。
