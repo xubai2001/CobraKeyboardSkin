@@ -85,19 +85,27 @@ local makeSwipeUpHintForegroundStyle = function(key, direction, theme, type, dat
 
 
 local processDirection = function(dirData, direction, theme, type)
-  // 生成基本前景样式
-  std.foldl(
-    function(acc, k) acc + makeForegroundStyle(k, direction, theme, type, dirData[k]),
-    std.objectFields(dirData),
-    {}
-  )+
-  // 上滑气泡显示，原先的按下气泡移到utils中集中生成
-  if direction == 'up' && type == "pinyin" then
+  local validKeys = std.filter(
+    function(k) k != "showLabel",
+    std.objectFields(dirData)
+  );
+
+  local showLabel = std.get(dirData, "showLabel", true);
+  // 生成基本前景样式\
+  if showLabel then
     std.foldl(
-      function(acc, k) acc + makeSwipeUpHintForegroundStyle(k, direction, theme, type, dirData[k]),
-      std.objectFields(dirData),
+      function(acc, k) acc + makeForegroundStyle(k, direction, theme, type, dirData[k]),
+      validKeys,
       {}
-    )
+    )+
+    // 上滑气泡显示，原先的按下气泡移到utils中集中生成
+    if direction == 'up' && type == "pinyin" then
+      std.foldl(
+        function(acc, k) acc + makeSwipeUpHintForegroundStyle(k, direction, theme, type, dirData[k]),
+        validKeys,
+        {}
+      )
+    else {}
   else {};
 
 

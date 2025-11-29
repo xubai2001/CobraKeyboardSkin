@@ -1,3 +1,4 @@
+// 旧的划动样式生成，已不再使用
 local center = import 'center.libsonnet';
 local color = import 'color.libsonnet';
 local fontSize = import 'fontSize.libsonnet';
