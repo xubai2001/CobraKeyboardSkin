@@ -97,7 +97,8 @@ local processDirection = function(dirData, direction, theme, type)
       function(acc, k) acc + makeForegroundStyle(k, direction, theme, type, dirData[k]),
       validKeys,
       {}
-    )+
+    )
+  else {} +
     // 上滑气泡显示，原先的按下气泡移到utils中集中生成
     if direction == 'up' && type == "pinyin" then
       std.foldl(
@@ -105,8 +106,7 @@ local processDirection = function(dirData, direction, theme, type)
         validKeys,
         {}
       )
-    else {}
-  else {};
+    else {};
 
 
 
