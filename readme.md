@@ -56,5 +56,5 @@
 - **在手机上修改**：编辑 `jsonnet/` 目录下的文件后，在皮肤选择界面长按当前皮肤，选择「运行 `main.jsonnet`」即可应用修改。
 - **在电脑上修改**：配置好 Jsonnet 工具后，在皮肤目录打开终端，执行以下命令生成配置文件：
   ```bash
-  jsonnet -S -m .\jsonnet\main.jsonnet
+  jsonnet -S -m .\ .\jsonnet\main.jsonnet
   ```
