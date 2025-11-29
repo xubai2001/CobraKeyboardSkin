@@ -11,7 +11,7 @@
   */
   swipe_up: {
     //控制当前划动方向前景是否生成(相比将前景颜色设置为纯透明，这种方式占用更低)
-    showLabel: false,  // 默认开启，即使你不设置该参数，下同
+    showLabel: true,  // 默认开启，即使你不设置该参数，下同
 
     q: {
       action: { character: '1' },
