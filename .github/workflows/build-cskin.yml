@@ -3,76 +3,126 @@ name: Build and Release Cskin
 on:
   push:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write   # 必须，否则无法上传 release
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create tools directory
-        run: mkdir -p tools
+      - name: Prepare tools dir
+        run: |
+          mkdir -p tools
 
-      - name: Download latest go-jsonnet
+      - name: Download go-jsonnet v0.21.0 into tools
         id: download_jsonnet
         run: |
           set -e
           cd tools
-
-          # 尝试获取 latest 版本号
-          LATEST_TAG=$(curl -s https://api.github.com/repos/google/go-jsonnet/releases/latest | grep tag_name | cut -d '"' -f 4)
-
-          if [ -z "$LATEST_TAG" ]; then
-            echo "Failed to fetch latest release. Using fallback version v0.21.0."
-            LATEST_TAG="v0.21.0"
-          fi
-
-          echo "Downloading go-jsonnet $LATEST_TAG"
-
-          URL="https://github.com/google/go-jsonnet/releases/download/${LATEST_TAG}/go-jsonnet_Linux_x86_64.tar.gz"
-
-          curl -L -o go-jsonnet.tar.gz "$URL"
-
+          VERSION="v0.21.0"
+          URL="https://github.com/google/go-jsonnet/releases/download/${VERSION}/go-jsonnet_Linux_x86_64.tar.gz"
+          echo "Downloading ${URL}"
+          curl -L -s -o go-jsonnet.tar.gz "$URL"
           tar -xzf go-jsonnet.tar.gz
           chmod +x jsonnet
+          # 输出 jsonnet 可执行文件的绝对路径，供后续步骤使用
+          echo "jsonnet=$(pwd)/jsonnet" >> "$GITHUB_OUTPUT"
 
-          echo "jsonnet path=$PWD/jsonnet" >> $GITHUB_OUTPUT
-
-      - name: Run jsonnet
+      - name: Run jsonnet (use downloaded binary)
         run: |
           JSONNET_BIN="${{ steps.download_jsonnet.outputs.jsonnet }}"
-          chmod +x "$JSONNET_BIN"
+          if [ ! -x "$JSONNET_BIN" ]; then
+            echo "jsonnet executable not found at $JSONNET_BIN"
+            exit 1
+          fi
+          # 在仓库根目录执行
           "$JSONNET_BIN" -S -m ./ ./main.jsonnet
 
-      - name: Prepare packaging directory
+      - name: Prepare packaging tree
         run: |
-          mkdir package
-          TARGET="仿仓默认-元书"
-          mkdir "package/$TARGET"
+          set -e
+          PACKAGE_ROOT="package"
+          TOP_DIR_NAME="仿仓默认-元书"
+          rm -rf "$PACKAGE_ROOT"
+          mkdir -p "$PACKAGE_ROOT/$TOP_DIR_NAME"
 
-          # 复制仓库文件到 package 中，排除 .git/ .gitignore tools/
-          rsync -av \
-            --exclude=".git" \
-            --exclude=".gitignore" \
-            --exclude="tools" \
-            "./" "package/$TARGET"
+          # 同步当前仓库到打包目录，排除 .git .gitignore tools 新建目录 以及仓库里的 jsonnet 文件夹
+          # 注意：rsync 的末尾斜杠表示复制内容；这里把仓库内容复制到 package/仿仓默认-元书/
+          rsync -av --delete \
+            --exclude='.git' \
+            --exclude='.gitignore' \
+            --exclude='tools' \
+            --exclude='jsonnet' \
+            --exclude='package' \
+            ./ "$PACKAGE_ROOT/$TOP_DIR_NAME/"
 
-      - name: Zip to UTF-8 zip
+          # 确保不把生成的 .cskin 包包含进去（如果上一次构建生成在仓库根）
+          rm -f "$PACKAGE_ROOT/$TOP_DIR_NAME/仿仓默认-元书.cskin"
+          rm -f "$PACKAGE_ROOT/$TOP_DIR_NAME/仿仓默认-元书.zip"
+
+      - name: Zip to UTF-8 encoded archive and rename to .cskin
         run: |
+          set -e
+          export LANG=en_US.UTF-8
           cd package
           ZIPNAME="仿仓默认-元书.zip"
+          # 使用 -r 递归，保留文件名的 utf-8 编码（通过 LANG 环境尽可能确保）
           zip -r "$ZIPNAME" "仿仓默认-元书"
-          mv "$ZIPNAME" "../仿仓默认-元书.cskin"
+          mv "$ZIPNAME" ../"仿仓默认-元书.cskin"
+          cd ..
+          ls -lah 仿仓默认-元书.cskin
 
-      - name: Create prerelease-alpha and upload
-        uses: softprops/action-gh-release@v2
+      - name: Create or update prerelease-alpha release
+        id: create_release
+        uses: actions/create-release@v1
         with:
           tag_name: prerelease-alpha
-          name: prerelease-alpha
-          prerelease: true
+          release_name: prerelease-alpha
+          body: Automated build
           draft: false
-          overwrite: true    # 覆盖已有 release
-          files: 仿仓默认-元书.cskin
+          prerelease: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Remove existing asset with same name (if any)
+        # 使用 GitHub API 删除同名资产，避免重复；如果没有也不影响
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          REPO="${{ github.repository }}"
+          OWNER="$(echo $REPO | cut -d'/' -f1)"
+          REPO_NAME="$(echo $REPO | cut -d'/' -f2)"
+          RELEASE_ID=$(gh release view prerelease-alpha --repo "$REPO" --json id --jq .id 2>/dev/null || echo "")
+          # 如果 gh CLI 可用并且拿到 release id，就用 gh 删除同名资产
+          if [ -n "$RELEASE_ID" ]; then
+            # 列出资产，找到同名然后删除
+            ASSET_NAME="仿仓默认-元书.cskin"
+            # 使用 GitHub API via curl to list assets
+            API_URL="https://api.github.com/repos/${REPO}/releases/${RELEASE_ID}/assets"
+            ASSET_ID=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "$API_URL" | jq -r --arg name "$ASSET_NAME" '.[] | select(.name==$name) | .id' || true)
+            if [ -n "$ASSET_ID" ] && [ "$ASSET_ID" != "null" ]; then
+              echo "Deleting existing asset id $ASSET_ID ..."
+              curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
+                -H "Accept: application/vnd.github.v3+json" \
+                "https://api.github.com/repos/${REPO}/releases/assets/${ASSET_ID}"
+            else
+              echo "No existing asset named $ASSET_NAME"
+            fi
+          else
+            echo "Release prerelease-alpha not found by gh. Continuing."
+          fi
+
+      - name: Upload asset to release
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./仿仓默认-元书.cskin
+          asset_name: 仿仓默认-元书.cskin
+          asset_content_type: application/octet-stream
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
