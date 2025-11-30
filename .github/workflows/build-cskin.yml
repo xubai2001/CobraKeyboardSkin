@@ -3,11 +3,11 @@ name: Build and Publish Skin
 on:
   push:
     branches:
-      - main
+      - main  # 根据你的主分支名称修改
   workflow_dispatch: # 允许手动触发
 
 permissions:
-  contents: write
+  contents: write  # 必须开启，允许 Action 创建 Release 和上传文件
 
 jobs:
   build-and-release:
@@ -17,8 +17,15 @@ jobs:
       # 1. 检出代码
       - name: Checkout repository
         uses: actions/checkout@v4
+        # Note: 默认工作目录即为仓库根目录
 
-      # 2. 安装最新版 go-jsonnet
+      # 2. 安装额外的工具 (为了更精确地进行文件复制和排除)
+      - name: Install Utilities
+        run: |
+          # rsync 用于精确地复制和排除文件
+          sudo apt-get update && sudo apt-get install -y rsync jq
+
+      # 3. 安装最新版 go-jsonnet (修正了文件冲突的版本)
       - name: Install latest go-jsonnet
         run: |
           echo "Fetching latest go-jsonnet release..."
@@ -29,42 +36,54 @@ jobs:
           echo "Downloading from: $DOWNLOAD_URL"
           curl -L -o go-jsonnet.tar.gz "$DOWNLOAD_URL"
           
-          # 解压
-          tar -xvf go-jsonnet.tar.gz
+          # 【重要修正】解压到临时的 /tmp 目录，避免与仓库中的 'jsonnet' 文件夹冲突
+          mkdir -p /tmp/jsonnet_install
+          tar -xvf go-jsonnet.tar.gz -C /tmp/jsonnet_install
           
-          # 将 jsonnet 移动到系统路径以便直接调用
-          sudo mv jsonnet /usr/local/bin/
+          # 将 jsonnet 二进制文件移动到系统路径
+          sudo mv /tmp/jsonnet_install/jsonnet /usr/local/bin/
           
-          # 验证安装
+          # 清理临时文件和文件夹
+          rm -rf /tmp/jsonnet_install go-jsonnet.tar.gz
+          
           jsonnet --version
 
-      # 3. 执行 Jsonnet 构建命令
+      # 4. 执行 Jsonnet 构建命令
       - name: Run Jsonnet Build
         run: |
-          # 确保在当前目录执行
           jsonnet -S -m ./ ./main.jsonnet
 
-      # 4. 打包文件 (.cskin)
-      - name: Package artifacts
+      # 5. 打包文件 (.cskin) - 创建一层根目录
+      - name: Package artifacts with nested folder
         run: |
-          # 清理不需要打包的临时文件（如刚才下载的安装包）
-          rm -f go-jsonnet.tar.gz jsonnetfmt README.md LICENSE
+          # 1. 定义最终文件夹和文件名
+          FINAL_DIR_NAME="仿仓默认-元书"
+          ZIP_NAME="${FINAL_DIR_NAME}.zip"
           
-          # 定义文件名
-          FILENAME="仿仓默认-元书"
+          # 2. 创建最终需要的根目录结构
+          mkdir -p "$FINAL_DIR_NAME"
           
-          # 打包为 zip，排除 .git 文件夹和 .github 文件夹 (action配置本身)
-          # -r: 递归
-          # -q: 安静模式
-          zip -r -q "${FILENAME}.zip" . -x ".git/*" -x ".github/*"
+          # 3. 使用 rsync 将工作目录中的文件精确地复制到这个文件夹中
+          #    排除项: .git, .gitignore, .github, 以及最终的zip文件和我们现在创建的文件夹
+          rsync -a --exclude='.git' \
+                  --exclude='.gitignore' \
+                  --exclude='.github' \
+                  --exclude="$FINAL_DIR_NAME" \
+                  --exclude="*.zip" \
+                  ./ "$FINAL_DIR_NAME/"
           
-          # 重命名后缀为 .cskin
-          mv "${FILENAME}.zip" "${FILENAME}.cskin"
+          # 4. 压缩这个文件夹，保证压缩包内只有一层目录
+          zip -r -q "$ZIP_NAME" "$FINAL_DIR_NAME"
           
-          # 输出文件信息以便检查
-          ls -lh "${FILENAME}.cskin"
+          # 5. 清理用于打包的临时文件夹
+          rm -rf "$FINAL_DIR_NAME"
+          
+          # 6. 重命名后缀为 .cskin
+          mv "$ZIP_NAME" "${FINAL_DIR_NAME}.cskin"
+          
+          ls -lh "${FINAL_DIR_NAME}.cskin"
 
-      # 5. 上传到 Pre-release
+      # 6. 上传到 Pre-release
       - name: Upload to Release
         uses: softprops/action-gh-release@v1
         with:
