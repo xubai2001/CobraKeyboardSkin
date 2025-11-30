@@ -1,5 +1,6 @@
 dark/*.yaml
 light/*.yaml
+config.yaml
 
 test/*
 test*

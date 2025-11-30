@@ -1,0 +1,87 @@
+name: Build and Release Cskin
+
+on:
+  push:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Prepare tools dir
+        run: |
+          mkdir -p tools
+
+      - name: Download go-jsonnet v0.21.0 into tools
+        id: download_jsonnet
+        run: |
+          set -e
+          cd tools
+          VERSION="v0.21.0"
+          URL="https://github.com/google/go-jsonnet/releases/download/${VERSION}/go-jsonnet_Linux_x86_64.tar.gz"
+          echo "Downloading ${URL}"
+          curl -L -s -o go-jsonnet.tar.gz "$URL"
+          tar -xzf go-jsonnet.tar.gz
+          chmod +x jsonnet
+          # 输出 jsonnet 可执行文件的绝对路径
+          echo "jsonnet=$(pwd)/jsonnet" >> "$GITHUB_OUTPUT"
+
+      - name: Run jsonnet (use downloaded binary)
+        run: |
+          JSONNET_BIN="${{ steps.download_jsonnet.outputs.jsonnet }}"
+          if [ ! -x "$JSONNET_BIN" ]; then
+            echo "jsonnet executable not found at $JSONNET_BIN"
+            exit 1
+          fi
+          # 在仓库根目录执行，避免路径问题
+          "$JSONNET_BIN" -S -m ./ ./jsonnet/main.jsonnet
+
+      - name: Prepare packaging tree
+        run: |
+          set -e
+          PACKAGE_ROOT="package"
+          TOP_DIR_NAME="CobraKeyboardSkin"
+          rm -rf "$PACKAGE_ROOT"
+          mkdir -p "$PACKAGE_ROOT/$TOP_DIR_NAME"
+
+          # 同步仓库内容到打包目录，排除不需要的文件夹和文件
+          rsync -av --delete \
+            --exclude='.git' \
+            --exclude='.gitignore' \
+            --exclude='tools' \
+            --exclude='jsonnet' \
+            --exclude='package' \
+            ./ "$PACKAGE_ROOT/$TOP_DIR_NAME/"
+
+          # 删除旧的压缩包，防止被打包进去
+          rm -f "$PACKAGE_ROOT/$TOP_DIR_NAME/CobraKeyboardSkin.cskin"
+          rm -f "$PACKAGE_ROOT/$TOP_DIR_NAME/CobraKeyboardSkin.zip"
+
+      - name: Zip to UTF-8 encoded archive and rename to .cskin
+        run: |
+          set -e
+          export LANG=en_US.UTF-8
+          cd package
+          ZIPNAME="CobraKeyboardSkin.zip"
+          zip -r "$ZIPNAME" "CobraKeyboardSkin"
+          mv "$ZIPNAME" ../"CobraKeyboardSkin.cskin"
+          cd ..
+          ls -lah CobraKeyboardSkin.cskin
+
+      - name: Upload to prerelease-alpha (with overwrite)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: prerelease-alpha
+          name: prerelease-alpha
+          prerelease: true
+          draft: false
+          overwrite: true
+          files: CobraKeyboardSkin.cskin
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
