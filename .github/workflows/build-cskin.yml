@@ -1,0 +1,50 @@
+name: Build and Upload Cskin
+
+on:
+  push:
+    branches: [ main, pinyinHint ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download go-jsonnet
+        run: |
+          wget https://github.com/google/go-jsonnet/releases/download/v0.21.0/go-jsonnet_Linux_x86_64.tar.gz -O jsonnet.tar.gz
+          mkdir jsonnet-bin
+          tar -xzf jsonnet.tar.gz -C jsonnet-bin --strip-components=1
+          echo "$PWD/jsonnet-bin" >> $GITHUB_PATH
+
+      - name: Verify jsonnet
+        run: jsonnet --version
+
+      - name: Run jsonnet build
+        run: |
+          mkdir -p output
+          jsonnet -S -m ./ output ./main.jsonnet
+
+      - name: Create zip (UTF-8, exclude .git)
+        run: |
+          cd ..
+          repo_name=$(basename "$GITHUB_REPOSITORY")
+          cd "$repo_name"
+          zip -r "仿仓默认-元书.zip" . -x ".git/*"
+
+      - name: Rename zip to .cskin
+        run: |
+          mv "仿仓默认-元书.zip" "仿仓默认-元书.cskin"
+
+      - name: Upload / Replace prerelease-alpha asset
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: prerelease-alpha
+          name: prerelease-alpha
+          prerelease: true
+          files: |
+            仿仓默认-元书.cskin
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
