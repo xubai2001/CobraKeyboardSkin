@@ -39,9 +39,7 @@ jobs:
             echo "jsonnet executable not found at $JSONNET_BIN"
             exit 1
           fi
-          cd jsonnet
-          "$JSONNET_BIN" -S -m ./ ./main.jsonnet
-          cd ..
+          "$JSONNET_BIN" -S -m ./ ./jsonnet/main.jsonnet
 
       - name: Prepare packaging tree
         run: |
