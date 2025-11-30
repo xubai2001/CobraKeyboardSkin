@@ -1,96 +1,78 @@
-name: Build and Publish Skin
+name: Build and Release Cskin
 
 on:
   push:
-    branches:
-      - main  # 根据你的主分支名称修改
-  workflow_dispatch: # 允许手动触发
-
-permissions:
-  contents: write  # 必须开启，允许 Action 创建 Release 和上传文件
 
 jobs:
-  build-and-release:
+  build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # 必须，否则无法上传 release
 
     steps:
-      # 1. 检出代码
       - name: Checkout repository
         uses: actions/checkout@v4
-        # Note: 默认工作目录即为仓库根目录
 
-      # 2. 安装额外的工具 (为了更精确地进行文件复制和排除)
-      - name: Install Utilities
+      - name: Create tools directory
+        run: mkdir -p tools
+
+      - name: Download latest go-jsonnet
+        id: download_jsonnet
         run: |
-          # rsync 用于精确地复制和排除文件
-          sudo apt-get update && sudo apt-get install -y rsync jq
+          set -e
+          cd tools
 
-      # 3. 安装最新版 go-jsonnet (修正了文件冲突的版本)
-      - name: Install latest go-jsonnet
+          # 尝试获取 latest 版本号
+          LATEST_TAG=$(curl -s https://api.github.com/repos/google/go-jsonnet/releases/latest | grep tag_name | cut -d '"' -f 4)
+
+          if [ -z "$LATEST_TAG" ]; then
+            echo "Failed to fetch latest release. Using fallback version v0.21.0."
+            LATEST_TAG="v0.21.0"
+          fi
+
+          echo "Downloading go-jsonnet $LATEST_TAG"
+
+          URL="https://github.com/google/go-jsonnet/releases/download/${LATEST_TAG}/go-jsonnet_Linux_x86_64.tar.gz"
+
+          curl -L -o go-jsonnet.tar.gz "$URL"
+
+          tar -xzf go-jsonnet.tar.gz
+          chmod +x jsonnet
+
+          echo "jsonnet path=$PWD/jsonnet" >> $GITHUB_OUTPUT
+
+      - name: Run jsonnet
         run: |
-          echo "Fetching latest go-jsonnet release..."
-          # 使用 GitHub API 获取最新 release 的下载链接
-          DOWNLOAD_URL=$(curl -s https://api.github.com/repos/google/go-jsonnet/releases/latest \
-            | jq -r '.assets[] | select(.name | contains("Linux_x86_64.tar.gz")) | .browser_download_url')
-          
-          echo "Downloading from: $DOWNLOAD_URL"
-          curl -L -o go-jsonnet.tar.gz "$DOWNLOAD_URL"
-          
-          # 【重要修正】解压到临时的 /tmp 目录，避免与仓库中的 'jsonnet' 文件夹冲突
-          mkdir -p /tmp/jsonnet_install
-          tar -xvf go-jsonnet.tar.gz -C /tmp/jsonnet_install
-          
-          # 将 jsonnet 二进制文件移动到系统路径
-          sudo mv /tmp/jsonnet_install/jsonnet /usr/local/bin/
-          
-          # 清理临时文件和文件夹
-          rm -rf /tmp/jsonnet_install go-jsonnet.tar.gz
-          
-          jsonnet --version
+          JSONNET_BIN="${{ steps.download_jsonnet.outputs.jsonnet }}"
+          chmod +x "$JSONNET_BIN"
+          "$JSONNET_BIN" -S -m ./ ./main.jsonnet
 
-      # 4. 执行 Jsonnet 构建命令
-      - name: Run Jsonnet Build
+      - name: Prepare packaging directory
         run: |
-          jsonnet -S -m ./ ./main.jsonnet
+          mkdir package
+          TARGET="仿仓默认-元书"
+          mkdir "package/$TARGET"
 
-      # 5. 打包文件 (.cskin) - 创建一层根目录
-      - name: Package artifacts with nested folder
+          # 复制仓库文件到 package 中，排除 .git/ .gitignore tools/
+          rsync -av \
+            --exclude=".git" \
+            --exclude=".gitignore" \
+            --exclude="tools" \
+            "./" "package/$TARGET"
+
+      - name: Zip to UTF-8 zip
         run: |
-          # 1. 定义最终文件夹和文件名
-          FINAL_DIR_NAME="仿仓默认-元书"
-          ZIP_NAME="${FINAL_DIR_NAME}.zip"
-          
-          # 2. 创建最终需要的根目录结构
-          mkdir -p "$FINAL_DIR_NAME"
-          
-          # 3. 使用 rsync 将工作目录中的文件精确地复制到这个文件夹中
-          #    排除项: .git, .gitignore, .github, 以及最终的zip文件和我们现在创建的文件夹
-          rsync -a --exclude='.git' \
-                  --exclude='.gitignore' \
-                  --exclude='.github' \
-                  --exclude="$FINAL_DIR_NAME" \
-                  --exclude="*.zip" \
-                  ./ "$FINAL_DIR_NAME/"
-          
-          # 4. 压缩这个文件夹，保证压缩包内只有一层目录
-          zip -r -q "$ZIP_NAME" "$FINAL_DIR_NAME"
-          
-          # 5. 清理用于打包的临时文件夹
-          rm -rf "$FINAL_DIR_NAME"
-          
-          # 6. 重命名后缀为 .cskin
-          mv "$ZIP_NAME" "${FINAL_DIR_NAME}.cskin"
-          
-          ls -lh "${FINAL_DIR_NAME}.cskin"
+          cd package
+          ZIPNAME="仿仓默认-元书.zip"
+          zip -r "$ZIPNAME" "仿仓默认-元书"
+          mv "$ZIPNAME" "../仿仓默认-元书.cskin"
 
-      # 6. 上传到 Pre-release
-      - name: Upload to Release
-        uses: softprops/action-gh-release@v1
+      - name: Create prerelease-alpha and upload
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: prerelease-alpha  # 固定的 Tag 名称
-          name: "Latest Auto Build (Alpha)"
-          prerelease: true            # 标记为预发布
-          files: "仿仓默认-元书.cskin" # 上传的文件
-          overwrite: true             # 覆盖同名文件
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: prerelease-alpha
+          name: prerelease-alpha
+          prerelease: true
+          draft: false
+          overwrite: true    # 覆盖已有 release
+          files: 仿仓默认-元书.cskin
