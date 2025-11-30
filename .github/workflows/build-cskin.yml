@@ -46,7 +46,7 @@ jobs:
         run: |
           set -e
           PACKAGE_ROOT="package"
-          TOP_DIR_NAME="CobraKeyboardSkin"
+          TOP_DIR_NAME="仿仓默认-元书"
           rm -rf "$PACKAGE_ROOT"
           mkdir -p "$PACKAGE_ROOT/$TOP_DIR_NAME"
 
@@ -54,8 +54,8 @@ jobs:
           rsync -av --delete \
             --exclude='.git' \
             --exclude='.gitignore' \
+            --exclude='.github' \
             --exclude='tools' \
-            --exclude='jsonnet' \
             --exclude='package' \
             ./ "$PACKAGE_ROOT/$TOP_DIR_NAME/"
 
@@ -69,7 +69,7 @@ jobs:
           export LANG=en_US.UTF-8
           cd package
           ZIPNAME="CobraKeyboardSkin.zip"
-          zip -r "$ZIPNAME" "CobraKeyboardSkin"
+          zip -r -ll "CobraKeyboardSkin.zip" "仿仓默认-元书"
           mv "$ZIPNAME" ../"CobraKeyboardSkin.cskin"
           cd ..
           ls -lah CobraKeyboardSkin.cskin
