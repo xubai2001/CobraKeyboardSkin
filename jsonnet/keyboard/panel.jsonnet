@@ -2,97 +2,117 @@ local animation = import '../lib/animation.libsonnet';
 local center = import '../lib/center.libsonnet';
 local color = import '../lib/color.libsonnet';
 local fontSize = import '../lib/fontSize.libsonnet';
-
+local utils = import '../lib/utils.libsonnet';
 // key: 按键名称
-local createButton(key, action, sf_symbol, text, theme) = {
-  [key + 'Button']: {
+local createButton(params, theme, textColor={}, systemImageColor={}) = {
+  [params.key + 'Button']: {
     size: {
       height: '1/4',
     },
     backgroundStyle: 'ButtonBackgroundStyle',
     foregroundStyle: [
-      key + 'ButtonForegroundStyle',
-      key + 'ButtonForegroundStyle2',
+      params.key + 'ButtonForegroundStyle',
+      params.key + 'ButtonForegroundStyle2',
     ],
-    action: action,
+    action: params.action,
   },
-  [key + 'ButtonForegroundStyle']: {
-    buttonStyleType: 'systemImage',
-    systemImageName: sf_symbol,
+
+  [params.key + 'ButtonForegroundStyle']: utils.makeSystemImageStyle({
+    systemImageName: params.systemImageName,
     fontSize: fontSize['panel按键前景sf符号大小'],
     normalColor: color[theme]['按键前景颜色'],
     highlightColor: color[theme]['按键前景颜色'],
     center: center['panel键盘按键sf符号前景偏移'],
-  },
-  [key + 'ButtonForegroundStyle2']: {
-    buttonStyleType: 'text',
-    text: text,
+  }) + std.get(systemImageColor, theme, {}),
+
+  [params.key + 'ButtonForegroundStyle2']: utils.makeTextStyle({
+    text: params.text,
     fontSize: fontSize['panel按键前景文字大小'],
     normalColor: color[theme]['按键前景颜色'],
     highlightColor: color[theme]['按键前景颜色'],
     center: center['panel键盘按键文字前景偏移'],
-  },
+  }) + std.get(textColor, theme, {}),
+
   animation: [
     'ButtonScaleAnimation',
   ],
 };
 local keyboard(theme, orientation) =
   createButton(
-    'Hamster',
-    { openURL: 'hamster3://com.ihsiao.apps.hamster3/' },
-    'keyboard',
-    '元书',
-    theme
+    params={
+      key: 'Hamster',
+      action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/' },
+      systemImageName: 'keyboard',
+      text: '元书',
+    },
+    // 单独指定按键上文本和systemImage的颜色示例, 在仅设置light或dark，也可只设置normalColor或highlightColor
+    // textColor = { light: { normalColor: '#ff0000' , highlightColor: "#0000ff"} },
+    // systemImageColor = { dark: { normalColor: '#00ff00' } },
+    theme=theme
   ) +
 
   createButton(
-    'Switcher',
-    { shortcut: '#RimeSwitcher' },
-    'switch.2',
-    'Switcher',
-    theme
+    params={
+      key: 'Switcher',
+      action: { shortcut: '#RimeSwitcher' },
+      systemImageName: 'switch.2',
+      text: 'Switcher',
+    },
+    theme=theme
   ) +
   createButton(
-    'Phrase',
-    { shortcut: '#showPhraseView' },
-    'clipboard',
-    '常用语',
-    theme
+    params={
+      key: 'Phrase',
+      action: { shortcut: '#showPhraseView' },
+      systemImageName: 'clipboard',
+      text: '常用语',
+    },
+    theme=theme
   ) +
   createButton(
-    'HamsterSkin',
-    { openURL: 'hamster3://com.ihsiao.apps.hamster3/keyboardSkins' },
-    'tshirt',
-    '皮肤设置',
-    theme
+    params={
+      key: 'HamsterSkin',
+      action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/keyboardSkins' },
+      systemImageName: 'tshirt',
+      text: '皮肤设置',
+    },
+    theme=theme
   ) +
   createButton(
-    'Upload',
-    { openURL: 'hamster3://com.ihsiao.apps.hamster3/wifi' },
-    'square.and.arrow.up',
-    '方案上传',
-    theme
+    params={
+      key: 'Upload',
+      action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/wifi' },
+      systemImageName: 'square.and.arrow.up',
+      text: '方案上传',
+    },
+    theme=theme
   ) +
   createButton(
-    'Deploy',
-    { openURL: 'hamster3://com.ihsiao.apps.hamster3/rime?action=deploy' },
-    'command.circle',
-    '部署',
-    theme
+    params={
+      key: 'Deploy',
+      action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/rime?action=deploy' },
+      systemImageName: 'command.circle',
+      text: '部署',
+    },
+    theme=theme
   ) +
   createButton(
-    'Finder',
-    { openURL: 'hamster3://com.ihsiao.apps.hamster3/finder' },
-    'folder',
-    '文件',
-    theme
+    params={
+      key: 'Finder',
+      action: { openURL: 'hamster3://com.ihsiao.apps.hamster3/finder' },
+      systemImageName: 'folder',
+      text: '文件',
+    },
+    theme=theme
   ) +
   createButton(
-    'toogleEmbedded',
-    { shortcut: '#toggleEmbeddedInputMode' },
-    'square.and.pencil',
-    '内嵌开关',
-    theme
+    params={
+      key: 'toogleEmbedded',
+      action: { shortcut: '#toggleEmbeddedInputMode' },
+      systemImageName: 'square.and.pencil',
+      text: '内嵌开关',
+    },
+    theme=theme
   ) +
   {
     keyboardLayout: [
@@ -142,11 +162,6 @@ local keyboard(theme, orientation) =
         file: 'float_back',
         image: 'IMG1',
       },
-      // "type": "original",
-      // "normalColor": color[theme]["键盘背景颜色"],
-      // "cornerRadius": 15,
-      // "normalShadowColor": "000000",
-      // "shadowRadius": 8
     },
 
     ButtonBackgroundStyle: {

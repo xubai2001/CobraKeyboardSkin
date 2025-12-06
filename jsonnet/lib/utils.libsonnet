@@ -2,35 +2,6 @@ local center = import 'center.libsonnet';
 local color = import 'color.libsonnet';
 local fontSize = import 'fontSize.libsonnet';
 
-// key: 按键名, a-z, shift, space....
-// contentMode: center, scaleAspectFill 更多类型见文档
-// normalFile、highlightFile
-
-// 单个生成函数
-// local makeImageStyle(contentMode, normalFile, highlightFile, normalImage, highlightImage, center, insets) = {
-//   [if contentMode != null then 'contentMode']: contentMode,
-//   buttonStyleType: 'fileImage',
-//   normalImage: {
-//     file: normalFile,
-//     image: normalImage,
-//   },
-//   highlightImage: {
-//     file: highlightFile,
-//     image: highlightImage,
-//   },
-//   [if insets != {} then 'insets']: insets,
-//   [if center != {} then 'center']: center,
-// };
-
-// local makeTextStyle(text, fontSize, normalColor, highlightColor, center) = {
-//   buttonStyleType: 'text',
-//   text: text,
-//   fontSize: fontSize,
-//   normalColor: normalColor,
-//   highlightColor: highlightColor,
-//   [if center != {} then 'center']: center,
-// };
-
 local makeTextStyle(params={}) =
   std.prune({
     buttonStyleType: 'text',
@@ -55,29 +26,29 @@ local makeSystemImageStyle(params={}) =
     highlightColor: std.get(params, 'highlightColor'),
   });
 
-  local makeGeometryStyle(params = {}) =
-    std.prune({
-      buttonStyleType: 'geometry',
-      insets: std.get(params, 'insets'),
-      normalColor: std.get(params, 'normalColor'),
-      highlightColor: std.get(params, 'highlightColor'),
-      colorLocation: std.get(params, 'colorLocation'),
-      colorStartPoint: std.get(params, 'colorStartPoint'),
-      colorEndPoint: std.get(params, 'colorEndPoint'),
-      colorGradientType: std.get(params, 'colorGradientType'),
-      cornerRadius: std.get(params, 'cornerRadius'),
-      borderSize: std.get(params, 'borderSize'),
-      borderColor: std.get(params, 'borderColor'),
-      normalLowerEdgeColor: std.get(params, 'normalLowerEdgeColor'),
-      highlightLowerEdgeColor: std.get(params, 'highlightLowerEdgeColor'),
-      normalShadowColor: std.get(params, 'normalShadowColor'),
-      highlightShadowColor: std.get(params, 'highlightShadowColor'),
-      shadowOpacity: std.get(params, 'shadowOpacity'),
-      shadowRadius: std.get(params, 'shadowRadius'),
-      shadowOffset: std.get(params, 'shadowOffset'),
-    });
+local makeGeometryStyle(params={}) =
+  std.prune({
+    buttonStyleType: 'geometry',
+    insets: std.get(params, 'insets'),
+    normalColor: std.get(params, 'normalColor'),
+    highlightColor: std.get(params, 'highlightColor'),
+    colorLocation: std.get(params, 'colorLocation'),
+    colorStartPoint: std.get(params, 'colorStartPoint'),
+    colorEndPoint: std.get(params, 'colorEndPoint'),
+    colorGradientType: std.get(params, 'colorGradientType'),
+    cornerRadius: std.get(params, 'cornerRadius'),
+    borderSize: std.get(params, 'borderSize'),
+    borderColor: std.get(params, 'borderColor'),
+    normalLowerEdgeColor: std.get(params, 'normalLowerEdgeColor'),
+    highlightLowerEdgeColor: std.get(params, 'highlightLowerEdgeColor'),
+    normalShadowColor: std.get(params, 'normalShadowColor'),
+    highlightShadowColor: std.get(params, 'highlightShadowColor'),
+    shadowOpacity: std.get(params, 'shadowOpacity'),
+    shadowRadius: std.get(params, 'shadowRadius'),
+    shadowOffset: std.get(params, 'shadowOffset'),
+  });
 
-local makeAssetImageStyle(params = {}) =
+local makeAssetImageStyle(params={}) =
   std.prune({
     buttonStyleType: 'assetImage',
     insets: std.get(params, 'insets'),
@@ -172,7 +143,7 @@ local genAlphabeticStyles(theme) =
 
 local genNumberStyles(theme) = {
   ['number' + num + 'ButtonForegroundStyle']: makeTextStyle(
-    params = {
+    params={
       text: std.toString(num),
       fontSize: fontSize['数字键盘数字前景字体大小'],
       normalColor: color[theme]['按键前景颜色'],
